@@ -7,9 +7,9 @@ function query(criteria) {
       db
         .collection("proj")
         .find({})
-        .toArray((err, project) => {
+        .toArray((err, projs) => {
           if (err) reject(err);
-          else resolve(project);
+          else resolve(projs);
           db.close();
         });
     });
