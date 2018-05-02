@@ -23,7 +23,7 @@ export default {
     },
     actions: {
         loadProjs(store) {
-            return projService.getProjs(null)
+            return projService.getProjs()
                 .then(projs => {
                     store.commit({ type: 'setProjs', projs });
                 })

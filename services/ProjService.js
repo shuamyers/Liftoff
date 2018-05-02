@@ -5,7 +5,7 @@ function query(criteria) {
   return new Promise((resolve, reject) => {
     DBService.dbConnect().then(db => {
       db
-        .collection("project")
+        .collection("proj")
         .find({})
         .toArray((err, project) => {
           if (err) reject(err);
@@ -20,7 +20,7 @@ function getById(projId) {
   projId = new mongo.ObjectID(projId);
   return new Promise((resolve, reject) => {
     DBService.dbConnect().then(db => {
-      db.collection("project").findOne({ _id: projId }, (err, proj) => {
+      db.collection("proj").findOne({ _id: projId }, (err, proj) => {
         // console.log('proj',proj)
         if (err) reject(err);
         else resolve(proj);
@@ -33,10 +33,10 @@ function getById(projId) {
 function add(proj) {
   return new Promise((resolve, reject) => {
     DBService.dbConnect().then(db => {
-      db.collection("project").insertOne(proj, (err, res) => {
+      db.collection("proj").insertOne(proj, (err, res) => {
         console.log("resresresresresres", res);
         db
-          .collection("project")
+          .collection("proj")
           .findOne(
             { _id: new mongo.ObjectID(res.insertedId) },
             (err, projFromDB) => {
@@ -54,7 +54,7 @@ function remove(projId) {
   projId = new mongo.ObjectID(projId);
   return new Promise((resolve, reject) => {
     DBService.dbConnect().then(db => {
-      db.collection("project").deleteOne({ _id: projId }, (err, res) => {
+      db.collection("proj").deleteOne({ _id: projId }, (err, res) => {
         if (err) reject(err);
         else resolve();
         db.close();
@@ -69,7 +69,7 @@ function update(proj) {
   return new Promise((resolve, reject) => {
     DBService.dbConnect().then(db => {
       db
-        .collection("project")
+        .collection("proj")
         .updateOne({ _id: proj._id }, proj, (err, updatedProj) => {
           if (err) reject(err);
           else resolve(updatedProj);

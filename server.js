@@ -3,13 +3,13 @@ var cors = require('cors');
 var app = express();
 
 var corsOptions = {
-	origin: /http:\/\/127.0.0.1:\d+/,
+	origin: /http:\/\/localhost:\d+/,
 	credentials: true
 };
 
 app.use(cors(corsOptions))
 
-//lalalala
+
 
 var http = require('http').Server(app);
 var bodyParser = require('body-parser')
