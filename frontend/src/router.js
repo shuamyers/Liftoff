@@ -30,6 +30,10 @@ export default new Router({
           component: Project
         }
       ]
+    },
+    {
+      path: '*',
+      redirect: { name: 'home' }
     }
   ]
 })
