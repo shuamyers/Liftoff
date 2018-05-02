@@ -1,0 +1,19 @@
+{
+  "name": "websocket-sample",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "client-sessions": "^0.8.0",
+    "cors": "^2.8.4",
+    "express": "^4.10.2",
+    "mongodb": "^2.2.33",
+    "socket.io": "^1.7.2"
+  }
+}
