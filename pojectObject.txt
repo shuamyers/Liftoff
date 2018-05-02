@@ -1,0 +1,8 @@
+{
+  "basic":{},
+  "pledgedPlan":{},
+  "story":{},
+  "owner":{},
+  "pledgedMoney":0,
+  "pledgedUsers":[{"userId":"22222","pledgedPlanId":"1"}]
+}
