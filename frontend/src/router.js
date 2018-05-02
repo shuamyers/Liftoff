@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import About from './views/About.vue'
+import Explore from './views/Explore.vue'
+import Project from './views/Project.vue'
 
 Vue.use(Router)
 
@@ -13,9 +14,22 @@ export default new Router({
       component: Home
     },
     {
-      path: '/about',
-      name: 'about',
-      component: About
+      path: '/explore',
+      name: 'explore',
+      component: Explore
+    },
+    {
+      path: '/projects',
+      children: [
+        {
+          path: '',
+          redirect: { name: 'explore' }
+        },
+        {
+          path: ':id',
+          component: Project
+        }
+      ]
     }
   ]
 })
