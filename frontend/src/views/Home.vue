@@ -14,7 +14,6 @@ export default {
         Featured,
         SiteStats
     },
-
 }
 </script>
 

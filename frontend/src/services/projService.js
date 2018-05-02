@@ -1,13 +1,13 @@
-const PROJ_URL = 'http://localhost:3000/proj';
-
 import axios from "axios"
+
+const PROJ_URL = 'http://localhost:3000/proj';
 
 function getProjs() {
     return axios
             .get(PROJ_URL)
             .then(res => {
-                console.log("service", res.data)
-                res.data})
+                return res.data;
+                })
             .catch(e => console.log('No Projs', e))
 }
 
@@ -21,7 +21,7 @@ function deleteProj(projId) {
 }
 
 
-function getProjById(projId) {
+function getById(projId) {
     return axios
     .get(_getProjUrl(projId))
     .then(res => res.data)
@@ -36,5 +36,5 @@ export default {
     getProjs,
     saveProj,
     deleteProj,
-    getProjById,
+    getById,
 }
