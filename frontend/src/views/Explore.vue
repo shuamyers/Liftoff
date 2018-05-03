@@ -1,6 +1,6 @@
 <template>
    <v-container grid-list-md text-xs-center>
-    <v-layout  wrap >
+    <v-layout wrap >
       <v-flex xs12 sm6 md3 wrap v-for="i in items" :key="i" >
         <v-card>
           <v-card-media src="/static/doc-images/cards/desert.jpg" height="200px">
@@ -11,8 +11,9 @@
               <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
             </div>
           </v-card-title>
+           <v-divider ></v-divider>
           <v-card-actions>
-            <v-btn flat color="orange">Share</v-btn>
+            <v-btn flat color="blue">Share</v-btn>
             <v-btn flat color="orange">Explore</v-btn>
           </v-card-actions>
         </v-card>
@@ -20,7 +21,6 @@
    </v-layout>
   </v-container>
   
-
 </template>
 
 <script>

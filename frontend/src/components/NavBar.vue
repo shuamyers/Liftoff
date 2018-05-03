@@ -39,7 +39,7 @@ export default {
     // just for dev, change when user store ready
     loggedInUser() {
       return {
-        name: "d",
+        name: "Ophir",
         id: 123
       };
     }
