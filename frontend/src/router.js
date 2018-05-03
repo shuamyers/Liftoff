@@ -20,21 +20,18 @@ export default new Router({
       component: Explore
     },
     {
-      path: '/projects',
+      path: '/project',
+      component: Project,
       children: [
         {
           path: '',
           redirect: { name: 'explore' }
         },
-        // {
-        //   path: ':id',
-        //   component: ProjectDetails
-        // }
+        {
+          path: ':projId',
+          component: ProjectDetails
+        }
       ]
-    },
-    {
-      path:'/projects/:projId',
-      component:ProjectDetails
     },
     {
       path: '*',

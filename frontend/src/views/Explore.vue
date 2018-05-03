@@ -1,5 +1,7 @@
 <template>
+<section>
   <p>Explore</p>
+  </section>
 </template>
 
 <script>
