@@ -1,0 +1,146 @@
+[
+	{
+		"title":"Proj1 title",
+		"desc":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat sunt provident deserunt fuga ut voluptas, nisi natus. Dolorem harum ad nesciunt.",
+		"porjImgUrls":["http://www.citizensfiber.com/assets/fullPage/examples/imgs/iphone-blue.png",
+										"http://www.citizensfiber.com/assets/fullPage/examples/imgs/iphone1.jpg"],
+		"featuredImagesUrl":"https://ksr-ugc.imgix.net/assets/021/057/608/7eb31893f9290bf30a1f5d0988717312_original.jpg?w=680&fit=max&v=1525027427&auto=format&q=92&s=8d7d1c31d877d70eb58e3f270518bf41",
+		"category":"Tech",
+		"location":"Israel",
+		"fundingGoal":10000,
+		"fundsRaised":5000,	
+		"duration":"1525305600",
+		"rewards":[
+			{
+			"id":1,
+			"title":"basic",
+			"cost": 59,
+			"desc":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+			"estimatedDelivery":"1525305600"
+			},
+			{
+			"id":2,
+			"title":"Gold",
+			"cost": 100,
+			"desc":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+			"estimatedDelivery":"1525305600"
+			},
+			{
+			"id":3,
+			"title":"Platinum",
+			"cost": 155,
+			"desc":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+			"estimatedDelivery":"1525305600"
+			}
+		],
+		"owner":{
+				"userID":"12321312",
+				"name":"Shua",
+				"bio":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+				"avterUrl":""
+			},
+			"pledges":{
+				"userId":"22222",
+				"rewardsId":"1",
+				"pledgedAt":"1525347324",
+				"pledgedAmuont":"59"
+			}
+	},
+	{
+		"title":"Proj2 title",
+		"desc":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat sunt provident deserunt fuga ut voluptas, nisi natus. Dolorem harum ad nesciunt.",
+		"porjImgUrls":["http://www.citizensfiber.com/assets/fullPage/examples/imgs/iphone-blue.png",
+			"http://www.citizensfiber.com/assets/fullPage/examples/imgs/iphone1.jpg"],
+		"featuredImagesUrl":"https://ksr-ugc.imgix.net/assets/021/057/608/7eb31893f9290bf30a1f5d0988717312_original.jpg?w=680&fit=max&v=1525027427&auto=format&q=92&s=8d7d1c31d877d70eb58e3f270518bf41",
+		"category":"Tech",
+		"location":"Israel",
+		"fundingGoal":10000,
+		"fundsRaised":5000,	
+		"duration":"1525305600",
+		"rewards":[
+			{
+			"id":1,
+			"title":"basic",
+			"cost": 59,
+			"desc":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+			"estimatedDelivery":"1525305600"
+			},
+			{
+			"id":2,
+			"title":"Gold",
+			"cost": 100,
+			"desc":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+			"estimatedDelivery":"1525305600"
+			},
+			{
+			"id":3,
+			"title":"Platinum",
+			"cost": 155,
+			"desc":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+			"estimatedDelivery":"1525305600"
+			}
+		],
+		"owner":{
+				"userID":"12321312",
+				"name":"Shua",
+				"bio":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+				"avterUrl":""
+			},
+			"pledges":{
+				"userId":"22222",
+				"rewardsId":"1",
+				"pledgedAt":"1525347324",
+				"pledgedAmuont":"59"
+			}
+	},
+	{
+		"title":"Proj3 title",
+		"desc":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat sunt provident deserunt fuga ut voluptas, nisi natus. Dolorem harum ad nesciunt.",
+		"porjImgUrls":["http://www.citizensfiber.com/assets/fullPage/examples/imgs/iphone-blue.png",
+								"http://www.citizensfiber.com/assets/fullPage/examples/imgs/iphone1.jpg"],
+		"featuredImagesUrl":"https://ksr-ugc.imgix.net/assets/021/057/608/7eb31893f9290bf30a1f5d0988717312_original.jpg?w=680&fit=max&v=1525027427&auto=format&q=92&s=8d7d1c31d877d70eb58e3f270518bf41",
+		"category":"Hardware",
+		"location":"Israel",
+		"fundingGoal":10000,
+		"fundsRaised":5000,	
+		"duration":"1525305600",
+		"rewards":[
+			{
+			"id":1,
+			"title":"basic",
+			"cost": 59,
+			"desc":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+			"estimatedDelivery":"1525305600"
+			},
+			{
+			"id":2,
+			"title":"Gold",
+			"cost": 150,
+			"desc":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+			"estimatedDelivery":"1525305600"
+			},
+			{
+			"id":3,
+			"title":"Platinum",
+			"cost": 250,
+			"desc":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+			"estimatedDelivery":"1525305600"
+			}
+		],
+		"owner":{
+				"userID":"12321312",
+				"name":"Shua",
+				"bio":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+				"avterUrl":""
+			},
+			"pledges":{
+				"userId":"22222",
+				"rewardsId":"1",
+				"pledgedAt":"1525347324",
+				"pledgedAmuont":"59"
+			}
+	}
+]
+
+
+
