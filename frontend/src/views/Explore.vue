@@ -21,10 +21,6 @@
    </v-layout>
   </v-container>
   
-<<<<<<< HEAD
-
-=======
->>>>>>> cc3e2ea9e57c4dd6124aa65e63420d789a73993f
 </template>
 
 <script>
