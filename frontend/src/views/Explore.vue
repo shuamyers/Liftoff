@@ -1,35 +1,34 @@
 <template>
    <v-container grid-list-md text-xs-center>
     <v-layout wrap >
-      <v-flex xs12 sm6 md3 wrap v-for="i in items" :key="i" >
-        <v-card>
-          <v-card-media src="/static/doc-images/cards/desert.jpg" height="200px">
-          </v-card-media>
-          <v-card-title primary-title>
-            <div>
-              <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
-              <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
-            </div>
-          </v-card-title>
-           <v-divider ></v-divider>
-          <v-card-actions>
-            <v-btn flat color="blue">Share</v-btn>
-            <v-btn flat color="orange">Explore</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-flex>
+      <proj-preview :proj="proj" v-for="proj in projs" :key="proj._id"></proj-preview>
    </v-layout>
   </v-container>
   
 </template>
 
 <script>
+
+import projPreview from '../components/ProjPreview'
+import {LOAD_PROJS} from '../store/ProjStore'
+
 export default {
+  created(){
+    this.$store.dispatch({ type: LOAD_PROJS })
+  },
   data() {
     return {
-      items: 17
+    
     }
   },
+  computed: {
+    projs() {
+      return this.$store.getters.projsForDisplay 
+    }
+  },
+  components:{
+    projPreview
+  }
 
 }
 </script>
