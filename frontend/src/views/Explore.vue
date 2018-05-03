@@ -1,16 +1,39 @@
 <template>
-   <v-container grid-list-md text-xs-center>
-    <v-layout wrap >
-      <proj-preview :proj="proj" v-for="proj in projs" :key="proj._id"></proj-preview>
-   </v-layout>
+   <v-container grid-list-md text-xs-center> 
+     <div class="cmp-title">
+       <p class="display-3">Invest in the future</p>
+     </div>
+     <div class="my-flex">
+       <proj-filters></proj-filters>
+        <!-- main -->
+        <div>
+          <div class="serch-wrapper">
+              <v-container grid-list-md text-xs-center> 
+                <v-text-field solo label="Serch" color="black" prepend-icon="search"></v-text-field>
+             </v-container>
+          </div>
+           <v-container grid-list-md > 
+             <v-divider class="divder"></v-divider>
+              <v-flex>
+                <v-spacer></v-spacer>
+
+              </v-flex>
+            <v-layout wrap>
+               <proj-preview class="proj-preview" :proj="proj" v-for="proj in projs"
+                   :key="proj._id" @click.native="goToProj(proj._id)"></proj-preview>
+            </v-layout>
+          </v-container>
+        </div>
+    </div>  
   </v-container>
-  
 </template>
 
 <script>
 
-import projPreview from '../components/ProjPreview'
+import ProjPreview from '../components/ProjPreview'
 import {LOAD_PROJS} from '../store/ProjStore'
+import ProjFilters from '../components/ProjFilters.vue';
+
 
 export default {
   created(){
@@ -18,8 +41,12 @@ export default {
   },
   data() {
     return {
-    
     }
+  },
+  methods: {
+   goToProj(projId) {
+            this.$router.push('project/' + projId)
+        }
   },
   computed: {
     projs() {
@@ -27,30 +54,32 @@ export default {
     }
   },
   components:{
-    projPreview
+    ProjPreview,
+    ProjFilters
   }
 
 }
 </script>
 
 <style scoped>
-/* .container {
-  display: grid;
 
-  height: 100%;
-  grid-template-columns:160px repeat(10, 1fr);
-  grid-auto-rows: calc ((100vh-90px)/11);
-  grid-gap: 10px;
-} */
-aside{
-  grid-column: 1/2;
-  grid-row: auto;
-  background: red;
+.divder{
+  margin: 20px 0 10px;
   width: 100%;
-  height: 100%;
 }
-p{
-  grid-row: span 3;
-  grid-column: span 3;
+
+.my-flex{
+  display: flex;
 }
+
+.proj-preview{
+  cursor: pointer;
+}
+
+
+.inline{
+  display: inline;
+  width: 80%;
+}
+
 </style>
