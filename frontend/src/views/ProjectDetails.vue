@@ -1,9 +1,18 @@
 <template>
   <section class="project-details">
     <h1>Project details</h1>
-  {{proj}}
-      <button @click="goBack">Go Back</button>
-      <button @click="deleteProj">Delete Proj</button>
+        {{proj}}
+      <v-btn  @click="goBack">Go Back</v-btn>
+      <v-btn color="error" @click="deleteProj">Delete Proj</v-btn>
+      
+      <v-container>
+          <v-card>
+            <h3>check</h3>      
+           <v-progress-linear v-model="valueDeterminate"></v-progress-linear>
+           <v-btn>Back It</v-btn>
+          </v-card>
+      </v-container>
+
   </section>
 </template>
 
@@ -12,8 +21,8 @@ import { SET_SELECTED_PROJ, DELETE_PROJ } from "../store/ProjStore.js";
 export default {
   data() {
     return {
-      
-    };
+         valueDeterminate: 20,
+    }
   },
 
   created() {
