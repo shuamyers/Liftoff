@@ -1,50 +1,56 @@
 <template>
-  <section class="nav-bar">
-    <router-link 
-      tag="img"
-      src="https://upload.wikimedia.org/wikipedia/commons/2/24/GitHub_logo_2013_padded.svg"
-      :to="{name: 'home'}"
-      class="logo"></router-link>
-
-    <ul>
+  <v-toolbar>
+    
+    <v-toolbar-title>
       <router-link 
-        :to="{name: 'explore'}"
-        class="nav-link">Explore</router-link>  
+        tag="img"
+        src="https://upload.wikimedia.org/wikipedia/commons/2/24/GitHub_logo_2013_padded.svg"
+        :to="{name: 'home'}"
+        class="logo"></router-link>
+    </v-toolbar-title>
 
-      <template v-if="userLoggedIn">
-        <router-link 
-          :to="{name: 'explore'}">Log in</router-link>
+    <v-spacer></v-spacer>
+      
+    <v-toolbar-items class="hidden-sm-and-down">
+      
+      <!-- Update all links when components are ready -->
+      <v-btn :to="{name: 'explore'}">Explore</v-btn>
+      <v-btn :to="{name: 'startCampaign'}">Start a Campaign</v-btn>
+      
+      <template v-if="loggedInUser.name">
+        <v-btn 
+          :to="{name: 'userProfile', params: {userId: loggedInUser.id}}"
+          >{{ loggedInUser.name }}</v-btn>
+      </template>
 
-
-      </template>  
       <template v-else>
-        <router-link 
-          :to="{name: 'explore'}">Log in</router-link>
+        <v-btn :to="{name: 'login'}">Log in</v-btn>
+        <v-btn :to="{name: 'signup'}">Sign up</v-btn>
+      </template>
 
-      </template>  
+    </v-toolbar-items>
 
-        <!-- Just for presentation -->
-        <router-link :to="{name: 'explore'}">Log in</router-link>
-        <router-link :to="{name: 'explore'}">Sign Up</router-link>
-      </ul>
-  </section>
+  </v-toolbar>
 </template>
 
 <script>
 export default {
   computed: {
     // just for dev, change when user store ready
-    userLoggedIn() {
-      return true;
+    loggedInUser() {
+      return {
+        name: "Ophir",
+        id: 123
+      };
     }
   }
 };
 </script>
 
 <style scoped>
-  .logo {
-    height: 50px;
-    width: 150px;
-    cursor: pointer;
-  }
+.logo {
+  height: 50px;
+  width: 150px;
+  cursor: pointer;
+}
 </style>
