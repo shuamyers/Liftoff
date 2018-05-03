@@ -3,6 +3,11 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Explore from './views/Explore.vue'
 import Project from './views/Project.vue'
+import Login from './views/Login.vue'
+import Signup from './views/Signup.vue'
+import User from './views/User.vue'
+import UserProfile from './views/UserProfile.vue'
+import StartCampaign from './views/StartCampaign.vue'
 import ProjectDetails from './views/ProjectDetails.vue'
 
 Vue.use(Router)
@@ -30,6 +35,36 @@ export default new Router({
         {
           path: ':projId',
           component: ProjectDetails
+        }
+      ]
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: Signup
+    },
+    {
+      path: '/start-campaign',
+      name: 'startCampaign',
+      component: StartCampaign
+    },
+    {
+      path: '/user',
+      component: User,
+      children: [
+        {
+          path: '',
+          redirect: { name: 'home' }
+        },
+        {
+          path: ':userId',
+          name: 'userProfile',
+          component: UserProfile
         }
       ]
     },
