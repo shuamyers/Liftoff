@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
    <v-container grid-list-md text-xs-center>
     <v-layout  wrap >
       <v-flex xs12 sm6 md3 wrap v-for="i in items" :key="i" >
@@ -22,11 +21,6 @@
   </v-container>
   
 
-=======
-<section>
-  <p>Explore</p>
-  </section>
->>>>>>> 9c79475c97801ddf10afad841047886c60452c24
 </template>
 
 <script>
