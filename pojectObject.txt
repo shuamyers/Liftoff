@@ -1,8 +1,12 @@
 {
-  "basic":{},
-  "pledgedPlan":{},
-  "story":{},
+  "basicInfo":{
+	"ProjName":"proj 1",
+	"ProjectTitle":"Proj title",
+	"porjImgUrls":"",
+	fi
+  },
+  "rewards":[{}],
   "owner":{},
-  "pledgedMoney":0,
-  "pledgedUsers":[{"userId":"22222","pledgedPlanId":"1"}]
+  "fundsRaised":0,
+  "pledgedUsers":[{"userId":"22222","pledgedPlanId":"1" "pledgedAt":"","pledgedAmuont"}]
 }
