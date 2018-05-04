@@ -1,23 +1,34 @@
 <template>
-  <v-flex xs12 sm6 md3 wrap  >
-        <v-card>
-          <v-card-media :src="proj.featuredImgUrl" height="200px">
+  <v-flex  xs12 sm6 md4 wrap >
+        <v-card class="ma-2">
+          <v-card-media class="preview-img" :src="proj.featuredImgUrl" height="200px">
           </v-card-media>
-             <v-icon>favorite</v-icon>
+             <v-btn icon v-if="!favorite" @click.stop ="favorite = !favorite">
+                 <v-icon color="info">favorite_border</v-icon>
+             </v-btn>
+                <v-btn icon v-if="favorite" @click.stop ="favorite = !favorite" >
+                 <v-icon color="info">favorite</v-icon>
+             </v-btn>
            <v-divider ></v-divider>
           <v-card-title primary-title>
             <div>
-              <h3 class="headline mb-0">{{proj.title}}</h3>
-               <v-progress-linear value="30" height="5" color="success"></v-progress-linear>
-              <div>{{proj.desc}}</div>
+              <h3 class="display-1 mb-0">{{proj.title}}</h3>
+              <div class="mt-5">
+                  <div class="prgs-bar-stats">
+                    <span class="text-xs-left title">{{proj.fundsRaised}}$</span>
+                    <span>{{procentRasied}}%</span>
+                  </div>
+                <v-progress-linear :value="procentRasied" height="5" color="info"></v-progress-linear>
+              </div>
+              <div class="text-xs-left">{{proj.desc}}</div>
             </div>
           </v-card-title>
-          <v-card-actions>
-            <v-btn flat color="bule">Share</v-btn>
-            <v-btn flat color="orange">Explore</v-btn>
+          <v-card-actions class="card-footer">
+            <p>30 days left</p>
+            <v-btn flat color="blue" @click="goToProj(proj._id)">Explore</v-btn>
           </v-card-actions>
         </v-card>
-      </v-flex>
+    </v-flex>
 </template>
 
 <script>
@@ -28,10 +39,35 @@ export default {
             required:true
         },
     },
+    data() {
+        return {
+            favorite: false
+        }
+    },
+    methods: {
+        goToProj(projId) {
+            this.$router.push('project/' + projId)
+        }
+    },
+    computed: {
+        procentRasied() {
+            return (this.proj.fundsRaised/this.proj.fundingGoal)*100
+        }
+    },
 
 }
 </script>
 
 <style scoped>
-
+    .preview-img{
+       object-fit: cover;
+    }   
+   .prgs-bar-stats{
+       display: flex;
+       justify-content: space-between;
+   }
+   .card-footer{
+       display: flex;
+       justify-content: space-between;
+   }
 </style>

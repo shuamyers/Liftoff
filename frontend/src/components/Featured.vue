@@ -1,11 +1,22 @@
 <template>
-  <p>Featured</p>
+  <p>{{ featuredProjs }}</p>
 </template>
 
 <script>
-export default {
+import projService from "../services/projService.js";
 
-}
+export default {
+  data() {
+    return {
+      featuredProjs: []
+    }
+  },
+  created() {
+      projService.query({category: 'Tech'}).then(projs => {
+        this.featuredProjs.push(projs);
+      });
+  }
+};
 </script>
 
 <style>

@@ -1,21 +1,6 @@
 const mongo = require("mongodb");
 var DBService = require("./DBService");
 
-function query(criteria) {
-  return new Promise((resolve, reject) => {
-    DBService.dbConnect().then(db => {
-      db
-        .collection("proj")
-        .find({})
-        .toArray((err, projs) => {
-          if (err) reject(err);
-          else resolve(projs);
-          db.close();
-        });
-    });
-  });
-}
-
 function getById(projId) {
   projId = new mongo.ObjectID(projId);
   return new Promise((resolve, reject) => {
@@ -77,6 +62,21 @@ function update(proj) {
         });
     });
   });
+}
+
+function query(criteria) {
+  return new Promise((resolve, reject) => {
+    DBService.dbConnect().then(db => {
+      db
+        .collection('proj')
+        .find(criteria)
+        .toArray((err, projs) => {
+          if (err) reject(err);
+          else resolve(projs);
+          db.close();
+        })
+    });
+  })
 }
 
 module.exports = {
