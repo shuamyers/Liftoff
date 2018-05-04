@@ -40,10 +40,11 @@ export default {
   },
   actions: {
     [LOAD_PROJS](store) {
-      return projService.getProjs().then(projs => {
+      return projService.query().then(projs => {
         store.commit({ type: "setProjs", projs });
       });
     },
+
     [SET_SELECTED_PROJ](store, { projId }) {
       return projService.getById(projId).then(proj => {
         console.log("got proj", proj);
@@ -53,7 +54,7 @@ export default {
 
     [SAVE_PROJ](store, { proj }) {
       const isEdit = !!proj._id;
-      
+
       return projService.saveProj(proj).then(proj => {
         if (isEdit) {
           store.commit({ type: "updateProj", proj });
