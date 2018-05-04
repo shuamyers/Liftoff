@@ -8,11 +8,8 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-<<<<<<< HEAD
     "material-design-icons-iconfont": "^3.0.3",
     "material-icons": "^0.2.2",
-=======
->>>>>>> 52af0a3a21bfb3e1ea26868a15fde91276c1f413
     "register-service-worker": "^1.0.0",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
