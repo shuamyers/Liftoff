@@ -13,7 +13,7 @@
     "location": "Israel",
     "fundingGoal": 10000,
     "fundsRaised": 5000,
-    "duration": "1525305600",
+    "duration": 1527022800000,
     "rewards": [
       {
         "id": 1,
@@ -21,7 +21,7 @@
         "cost": 59,
         "desc":
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-        "estimatedDelivery": "1525305600"
+        "estimatedDelivery": 1525305600
       },
       {
         "id": 2,
@@ -29,7 +29,7 @@
         "cost": 100,
         "desc":
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-        "estimatedDelivery": "1525305600"
+        "estimatedDelivery": 1525305600
       },
       {
         "id": 3,
@@ -37,7 +37,7 @@
         "cost": 155,
         "desc":
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-        "estimatedDelivery": "1525305600"
+        "estimatedDelivery": 1525305600
       }
     ],
     "owner": {
@@ -52,7 +52,7 @@
       {
         "userId": "22222",
         "rewardsId": "1",
-        "pledgedAt": "1525347324",
+        "pledgedAt": 1525347324,
         "pledgedAmuont": "59"
       }
     ]
@@ -71,7 +71,7 @@
     "location": "Israel",
     "fundingGoal": 10000,
     "fundsRaised": 5000,
-    "duration": "1525305600",
+    "duration": 1527282000000,
     "rewards": [
       {
         "id": 1,
@@ -79,7 +79,7 @@
         "cost": 59,
         "desc":
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-        "estimatedDelivery": "1525305600"
+        "estimatedDelivery": 1525305600
       },
       {
         "id": 2,
@@ -87,7 +87,7 @@
         "cost": 100,
         "desc":
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-        "estimatedDelivery": "1525305600"
+        "estimatedDelivery": 1525305600
       },
       {
         "id": 3,
@@ -95,7 +95,7 @@
         "cost": 155,
         "desc":
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-        "estimatedDelivery": "1525305600"
+        "estimatedDelivery": 1525305600
       }
     ],
     "owner": {
@@ -109,7 +109,7 @@
     "pledges": [{
       "userId": "22222",
       "rewardsId": "1",
-      "pledgedAt": "1525347324",
+      "pledgedAt": 1525347324,
       "pledgedAmuont": "59"
     }]
   },
@@ -127,7 +127,7 @@
     "location": "Israel",
     "fundingGoal": 10000,
     "fundsRaised": 5000,
-    "duration": "1525305600",
+    "duration": 1525305600,
     "rewards": [
       {
         "id": 1,
@@ -135,7 +135,7 @@
         "cost": 59,
         "desc":
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-        "estimatedDelivery": "1525305600"
+        "estimatedDelivery": 1525305600
       },
       {
         "id": 2,
@@ -143,7 +143,7 @@
         "cost": 150,
         "desc":
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-        "estimatedDelivery": "1525305600"
+        "estimatedDelivery": 1525305600
       },
       {
         "id": 3,
@@ -151,7 +151,7 @@
         "cost": 250,
         "desc":
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-        "estimatedDelivery": "1525305600"
+        "estimatedDelivery": 1525305600
       }
     ],
     "owner": {
@@ -166,7 +166,7 @@
     "pledges": [{
       "userId": "22222",
       "rewardsId": "1",
-      "pledgedAt": "1525347324",
+      "pledgedAt": 1525347324,
       "pledgedAmuont": "59"
     }]
   }
