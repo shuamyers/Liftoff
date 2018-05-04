@@ -2,7 +2,7 @@
   <div class="sidebar">
           <p class="text-xs-left headline mt-3 hidden-sm-and-down">Filter results</p>
           <div>
-            <p class="headlinefont text-xs-left  filter-title">CATEGORY</p>
+            <p class="headlinefont text-xs-left hidden-sm-and-down  filter-title">CATEGORY</p>
             <ul class="clean-list text-xs-left filter hidden-sm-and-down">
               <li >All Categories</li>
               <li>Tech & Innovation</li>
@@ -14,7 +14,7 @@
 
 
           <div>
-            <p class="headlinefont text-xs-left  filter-title">PROJECT TIMING</p>
+            <p class="headlinefont text-xs-left  hidden-sm-and-down filter-title">PROJECT TIMING</p>
             <ul class="clean-list text-xs-left filter hidden-sm-and-down">
               <li >All </li>
               <li>Launching soon</li>
@@ -38,7 +38,7 @@ export default {
   display: inline;
 }
 .sidebar ul{
-  width: 150px;
+  width: 180px;
 }
 .filter li{
   margin: 20px 0;
