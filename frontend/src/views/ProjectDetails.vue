@@ -40,11 +40,11 @@
                               </v-list-tile-content>
                             </v-list-tile>
                           </div>
-                          
+
                           <div class="time-left">
                                 <p class="body-2 mb-0">Days left</p>
                                 <v-progress-circular :size="50" :width="7" :rotate="360" :value="(daysLeft/30)*100" color="teal">
-                                   {{daysLeft}}
+                                   {{proj.duration | daysRemaining}}
                                 </v-progress-circular>
                           </div>            
 
