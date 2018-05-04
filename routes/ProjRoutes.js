@@ -2,16 +2,6 @@ const ProjService = require("../services/ProjService");
 const PROJ_URL = "/proj";
 
 module.exports = app => {
-  //Query
-  app.get(PROJ_URL, (req, res) => {
-    console.log("PROJ: ", req);
-
-    // ProjService.query(req.session.user._id).then(projs => {
-    ProjService.query(req.query).then(projs => {
-      console.log("PROJS: ", projs);
-      res.json(projs);
-    });
-  });
 
   //ADD
   app.post(PROJ_URL, (req, res) => {
@@ -43,10 +33,19 @@ module.exports = app => {
   // Update
   app.put(PROJ_URL, (req, res) => {
     const proj = req.body;
-    console.log('proj',proj)
+    console.log('proj', proj)
     if (!proj._id) res.status(500).send("You have to bring me Proj Object.");
     ProjService.update(proj)
       .then(_ => res.json())
       .catch(err => res.status(500).send(`proj delete failed, ERROR: ${err}`));
   });
+
+    // Query
+    app.get(PROJ_URL, (req, res) => {
+      ProjService.query(req.query)
+        .then(projs => {
+          res.json(projs);
+        })
+        .catch(err => res.status(500).send(err.message));
+    });
 };

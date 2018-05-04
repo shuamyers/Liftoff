@@ -2,18 +2,22 @@ import axios from "axios"
 
 const PROJ_URL = 'http://localhost:3000/proj';
 
-function getProjs() {
+function query(criteria = '') {
+    criteria = Object
+                .keys(criteria)
+                .map(key => `?${key}=${criteria[key]}`)
+                .join('&')
     return axios
-            .get(PROJ_URL)
-            .then(res => {
-                return res.data;
-                })
-            .catch(e => console.log('No Projs', e))
+        .get(PROJ_URL + criteria)
+        .then(res => {
+            return res.data;
+        })
+        .catch(err => console.log('No Projs', err))
 }
 
 function saveProj(proj) {
     if (proj._id) return axios.put(_getProjUrl(proj._id), proj)
-    else return axios.post(PROJ_URL, proj);  
+    else return axios.post(PROJ_URL, proj);
 }
 
 function deleteProj(projId) {
@@ -23,8 +27,8 @@ function deleteProj(projId) {
 
 function getById(projId) {
     return axios
-    .get(_getProjUrl(projId))
-    .then(res => res.data)
+        .get(_getProjUrl(projId))
+        .then(res => res.data)
 }
 
 
@@ -33,7 +37,7 @@ function _getProjUrl(projId) {
 }
 
 export default {
-    getProjs,
+    query,
     saveProj,
     deleteProj,
     getById,
