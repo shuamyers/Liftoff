@@ -20,11 +20,15 @@
                   </div>
                 <v-progress-linear :value="procentRasied" height="5" color="info"></v-progress-linear>
               </div>
-              <div class="text-xs-left">{{proj.desc}}</div>
+              <div class="my-flex space-between">
+                <v-chip  label outline color="black">{{proj.category}}</v-chip>
+                <div></div>
+              </div>
+              <div class="text-xs-left mt-2">{{proj.desc}}</div>
             </div>
           </v-card-title>
           <v-card-actions class="card-footer">
-            <p>30 days left</p>
+            <p>{{proj.duration | daysRemaining}}</p>
             <v-btn flat color="blue" @click="goToProj(proj._id)">Explore</v-btn>
           </v-card-actions>
         </v-card>
@@ -68,6 +72,12 @@ export default {
    }
    .card-footer{
        display: flex;
+       justify-content: space-between;
+   }
+   .my-flex{
+       display: flex;
+   }
+   .space-between{
        justify-content: space-between;
    }
 </style>
