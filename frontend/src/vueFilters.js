@@ -15,3 +15,9 @@ Vue.filter('daysRemaining', function(date) {
         else str = 'closed'
         return str;
 });
+Vue.filter('monthYear', (date) =>{
+        var str;
+        var endDate = moment(date,'x').format('MMM YYYY');
+
+        return endDate;
+});

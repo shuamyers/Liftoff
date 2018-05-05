@@ -17,11 +17,15 @@
     "rewards": [
       {
         "id": 1,
-        "title": "basic",
+        "title": "Basic",
         "cost": 59,
         "desc":
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-        "estimatedDelivery": 1525305600
+		"estimatedDelivery": 1525305600,
+		"imgUrl" : "https://vuetifyjs.com/static/doc-images/cards/desert.jpg",
+		"claimed": 1,
+		"featured":true,
+		"itemsIndcluded": ["Cool Jacket","Cool T-shirt","Cool pants"]
       },
       {
         "id": 2,
@@ -29,7 +33,11 @@
         "cost": 100,
         "desc":
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-        "estimatedDelivery": 1525305600
+        "estimatedDelivery": 1525305600,
+		"imgUrl" : "http://www.kickassfacts.com/wp-content/uploads/2017/01/moldy-sloth.jpg",
+		"claimed": 1,
+		"featured":false,
+		"itemsIndcluded": ["Cool Jacket","Cool T-shirt","Cool pants"]
       },
       {
         "id": 3,
@@ -37,7 +45,11 @@
         "cost": 155,
         "desc":
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-        "estimatedDelivery": 1525305600
+        "estimatedDelivery": 1525305600,
+		"imgUrl" : "https://pre00.deviantart.net/a57f/th/pre/i/2010/188/d/2/sometimes_sun__sometimes_rain_by_kelhus.jpg",
+		"claimed": 1,
+		"featured":false,
+		"itemsIndcluded": ["Cool Jacket","Cool T-shirt","Cool pants"]
       }
     ],
     "owner": {
@@ -73,30 +85,42 @@
     "fundsRaised": 5000,
     "duration": 1527282000000,
     "rewards": [
-      {
-        "id": 1,
-        "title": "basic",
-        "cost": 59,
-        "desc":
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-        "estimatedDelivery": 1525305600
-      },
-      {
-        "id": 2,
-        "title": "Gold",
-        "cost": 100,
-        "desc":
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-        "estimatedDelivery": 1525305600
-      },
-      {
-        "id": 3,
-        "title": "Platinum",
-        "cost": 155,
-        "desc":
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-        "estimatedDelivery": 1525305600
-      }
+		{
+			"id": 1,
+			"title": "Basic",
+			"cost": 59,
+			"desc":
+			  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+			"estimatedDelivery": 1525305600,
+			"imgUrl" : "https://vuetifyjs.com/static/doc-images/cards/desert.jpg",
+			"claimed": 1,
+			"featured":true,
+			"itemsIndcluded": ["Cool Jacket","Cool T-shirt","Cool pants"]
+		  },
+		  {
+			"id": 2,
+			"title": "Gold",
+			"cost": 100,
+			"desc":
+			  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+			"estimatedDelivery": 1525305600,
+			"imgUrl" : "http://www.kickassfacts.com/wp-content/uploads/2017/01/moldy-sloth.jpg",
+			"claimed": 1,
+			"featured":false,
+			"itemsIndcluded": ["Cool Jacket","Cool T-shirt","Cool pants"]
+		  },
+		  {
+			"id": 3,
+			"title": "Platinum",
+			"cost": 155,
+			"desc":
+			  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+			"estimatedDelivery": 1525305600,
+			"imgUrl" : "https://pre00.deviantart.net/a57f/th/pre/i/2010/188/d/2/sometimes_sun__sometimes_rain_by_kelhus.jpg",
+			"claimed": 1,
+			"featured":false,
+			"itemsIndcluded": ["Cool Jacket","Cool T-shirt","Cool pants"]
+		  }
     ],
     "owner": {
       "userID": "12321312",
@@ -129,30 +153,42 @@
     "fundsRaised": 5000,
     "duration": 1525305600,
     "rewards": [
-      {
-        "id": 1,
-        "title": "basic",
-        "cost": 59,
-        "desc":
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-        "estimatedDelivery": 1525305600
-      },
-      {
-        "id": 2,
-        "title": "Gold",
-        "cost": 150,
-        "desc":
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-        "estimatedDelivery": 1525305600
-      },
-      {
-        "id": 3,
-        "title": "Platinum",
-        "cost": 250,
-        "desc":
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-        "estimatedDelivery": 1525305600
-      }
+		{
+			"id": 1,
+			"title": "Basic",
+			"cost": 59,
+			"desc":
+			  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+			"estimatedDelivery": 1525305600,
+			"imgUrl" : "https://vuetifyjs.com/static/doc-images/cards/desert.jpg",
+			"claimed": 1,
+			"featured":true,
+			"itemsIndcluded": ["Cool Jacket","Cool T-shirt","Cool pants"]
+		  },
+		  {
+			"id": 2,
+			"title": "Gold",
+			"cost": 100,
+			"desc":
+			  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+			"estimatedDelivery": 1525305600,
+			"imgUrl" : "http://www.kickassfacts.com/wp-content/uploads/2017/01/moldy-sloth.jpg",
+			"claimed": 2,
+			"featured":false,
+			"itemsIndcluded": ["Cool Jacket","Cool T-shirt","Cool pants"]
+		  },
+		  {
+			"id": 3,
+			"title": "Platinum",
+			"cost": 155,
+			"desc":
+			  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+			"estimatedDelivery": 1525305600,
+			"imgUrl" : "https://pre00.deviantart.net/a57f/th/pre/i/2010/188/d/2/sometimes_sun__sometimes_rain_by_kelhus.jpg",
+			"claimed": 0,
+			"featured":false,
+			"itemsIndcluded": ["Cool Jacket","Cool T-shirt","Cool pants"]
+		  }
     ],
     "owner": {
       "userID": "12321312",
