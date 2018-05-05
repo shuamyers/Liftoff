@@ -1,8 +1,9 @@
 [
   {
     "title": "Proj1 title",
-    "desc":
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
+    "tagLine": "Tagline of pro!Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pari",
+	"desc":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
+	"story" : "<p style=\"text-align: center; font-size: 15px;\"><img title=\"TinyMCE Logo\" src=\"//www.tinymce.com/images/glyph-tinymce@2x.png\" alt=\"TinyMCE Logo\" width=\"110\" height=\"97\" />  </p>  <h1 style=\"text-align: center;\">Welcome to the TinyMCE Cloud demo!</h1>  <h5 style=\"text-align: center;\">Note, this includes some \"enterprise/premium\" features.<br>Visit the <a href=\"https://www.tinymce.com/pricing/#demo-enterprise\">pricing page</a> to learn more about our premium plugins.</h5>  <p>Please try out the features provided in this full featured example.</p>  <h2>Got questions or need help?</h2>  <ul>    <li>Our <a href=\"//www.tinymce.com/docs/\">documentation</a> is a great resource for learning how to configure TinyMCE.</li>    <li>Have a specific question? Visit the <a href=\"https://community.tinymce.com/forum/\">Community Forum</a>.</li>    <li>We also offer enterprise grade support as part of <a href=\"https://tinymce.com/pricing\">TinyMCE premium subscriptions</a>.</li>  </ul>  <h2>A simple table to play with</h2>  <table style=\"text-align: center;\">    <thead>      <tr>        <th>Product</th>        <th>Cost</th>        <th>Really?</th>      </tr>    </thead>    <tbody>      <tr>        <td>TinyMCE Cloud</td>        <td>Get started for free</td>        <td>YES!</td>      </tr>      <tr>        <td>Plupload</td>        <td>Free</td>        <td>YES!</td>      </tr>    </tbody>  </table>  <h2>Found a bug?</h2>  <p>If you think you have found a bug please create an issue on the <a href=\"https://github.com/tinymce/tinymce/issues\">GitHub repo</a> to report it to the developers.</p>  <h2>Finally ...</h2>  <p>Don't forget to check out our other product <a href=\"http://www.plupload.com\" target=\"_blank\">Plupload</a>, your ultimate upload solution featuring HTML5 upload support.</p>  <p>Thanks for supporting TinyMCE! We hope it helps you and your users create great content.<br>All the best from the TinyMCE team.</p>",
     "projImgUrls": [
       "http://yourshot.nationalgeographic.com/u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDNebW9lmdkTC3lV_ac9jTmHd1M5xScukEU1oY94kJ4kvBwa9CO25dp1K9cgh1TLoXw-2vbO1W7p42NgGKFi7kz20Zij66OE2hgXzZGeUvZAlTWOWSKd-H9J_Omkt9tX1AfidXFa3ObSS-schF38jJoEsfIz9w2awfwTvjdXQWmvmQ/",
       "https://i.pinimg.com/736x/9e/3c/29/9e3c299ff4073ff34f711f0ef3596cbb--rain-storm-the-storm.jpg"
@@ -10,10 +11,55 @@
     "featuredImgUrl":
       "https://ksr-ugc.imgix.net/assets/021/057/608/7eb31893f9290bf30a1f5d0988717312_original.jpg?w=680&fit=max&v=1525027427&auto=format&q=92&s=8d7d1c31d877d70eb58e3f270518bf41",
     "category": "Tech",
-    "location": "Israel",
+	"location": "Israel",
+	"overView" : "OverView!!!!! Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
     "fundingGoal": 10000,
     "fundsRaised": 5000,
-    "duration": 1527022800000,
+	"duration": 1527022800000,
+	"updates": [
+		{
+			"createdAt":1527022800000,
+			"userId" : 9,
+			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+			"userName" : "John Terry",
+			"desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat."
+		
+		},
+		{
+			"createdAt":1527022800000,
+			"userId" : 9,
+			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+			"userName" : "REFE MARR",
+			"desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat."
+		}
+	],
+	"comments": [
+		{
+			"createdAt":1527022800000,
+			"userId" : 9,
+			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+			"userName" : "REFE MARR",
+			"desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
+			"replys" : []
+		}
+	],
+	"backers": [
+		{
+			"createdAt":1527022800000,
+			"userId" : 9,
+			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+			"userName" : "bla bku",
+			"amount" : 15
+		},
+		{
+			"createdAt":1527022800000,
+			"userId" : 9,
+			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+			"userName" : "Rlo lae",
+			"amount" : 15
+		}
+
+	],
     "rewards": [
       {
         "id": 1,
@@ -71,56 +117,102 @@
   },
   {
     "title": "Proj2 title",
-    "desc":
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
+    "tagLine": "Tagline of pro!Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pari",
+	"desc":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
+	"story" : "<p style=\"text-align: center; font-size: 15px;\"><img title=\"TinyMCE Logo\" src=\"//www.tinymce.com/images/glyph-tinymce@2x.png\" alt=\"TinyMCE Logo\" width=\"110\" height=\"97\" />  </p>  <h1 style=\"text-align: center;\">Welcome to the TinyMCE Cloud demo!</h1>  <h5 style=\"text-align: center;\">Note, this includes some \"enterprise/premium\" features.<br>Visit the <a href=\"https://www.tinymce.com/pricing/#demo-enterprise\">pricing page</a> to learn more about our premium plugins.</h5>  <p>Please try out the features provided in this full featured example.</p>  <h2>Got questions or need help?</h2>  <ul>    <li>Our <a href=\"//www.tinymce.com/docs/\">documentation</a> is a great resource for learning how to configure TinyMCE.</li>    <li>Have a specific question? Visit the <a href=\"https://community.tinymce.com/forum/\">Community Forum</a>.</li>    <li>We also offer enterprise grade support as part of <a href=\"https://tinymce.com/pricing\">TinyMCE premium subscriptions</a>.</li>  </ul>  <h2>A simple table to play with</h2>  <table style=\"text-align: center;\">    <thead>      <tr>        <th>Product</th>        <th>Cost</th>        <th>Really?</th>      </tr>    </thead>    <tbody>      <tr>        <td>TinyMCE Cloud</td>        <td>Get started for free</td>        <td>YES!</td>      </tr>      <tr>        <td>Plupload</td>        <td>Free</td>        <td>YES!</td>      </tr>    </tbody>  </table>  <h2>Found a bug?</h2>  <p>If you think you have found a bug please create an issue on the <a href=\"https://github.com/tinymce/tinymce/issues\">GitHub repo</a> to report it to the developers.</p>  <h2>Finally ...</h2>  <p>Don't forget to check out our other product <a href=\"http://www.plupload.com\" target=\"_blank\">Plupload</a>, your ultimate upload solution featuring HTML5 upload support.</p>  <p>Thanks for supporting TinyMCE! We hope it helps you and your users create great content.<br>All the best from the TinyMCE team.</p>",
     "projImgUrls": [
-      "http://www.citizensfiber.com/assets/fullPage/examples/imgs/iphone-blue.png",
-      "http://www.citizensfiber.com/assets/fullPage/examples/imgs/iphone1.jpg"
+      "http://yourshot.nationalgeographic.com/u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDNebW9lmdkTC3lV_ac9jTmHd1M5xScukEU1oY94kJ4kvBwa9CO25dp1K9cgh1TLoXw-2vbO1W7p42NgGKFi7kz20Zij66OE2hgXzZGeUvZAlTWOWSKd-H9J_Omkt9tX1AfidXFa3ObSS-schF38jJoEsfIz9w2awfwTvjdXQWmvmQ/",
+      "https://i.pinimg.com/736x/9e/3c/29/9e3c299ff4073ff34f711f0ef3596cbb--rain-storm-the-storm.jpg"
     ],
     "featuredImgUrl":
       "https://ksr-ugc.imgix.net/assets/021/057/608/7eb31893f9290bf30a1f5d0988717312_original.jpg?w=680&fit=max&v=1525027427&auto=format&q=92&s=8d7d1c31d877d70eb58e3f270518bf41",
     "category": "Tech",
-    "location": "Israel",
+	"location": "Israel",
+	"overView" : "OverView!!!!! Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
     "fundingGoal": 10000,
     "fundsRaised": 5000,
-    "duration": 1527282000000,
-    "rewards": [
+	"duration": 1527022800000,
+	"updates": [
 		{
-			"id": 1,
-			"title": "Basic",
-			"cost": 59,
-			"desc":
-			  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-			"estimatedDelivery": 1525305600,
-			"imgUrl" : "https://vuetifyjs.com/static/doc-images/cards/desert.jpg",
-			"claimed": 1,
-			"featured":true,
-			"itemsIndcluded": ["Cool Jacket","Cool T-shirt","Cool pants"]
-		  },
-		  {
-			"id": 2,
-			"title": "Gold",
-			"cost": 100,
-			"desc":
-			  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-			"estimatedDelivery": 1525305600,
-			"imgUrl" : "http://www.kickassfacts.com/wp-content/uploads/2017/01/moldy-sloth.jpg",
-			"claimed": 1,
-			"featured":false,
-			"itemsIndcluded": ["Cool Jacket","Cool T-shirt","Cool pants"]
-		  },
-		  {
-			"id": 3,
-			"title": "Platinum",
-			"cost": 155,
-			"desc":
-			  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-			"estimatedDelivery": 1525305600,
-			"imgUrl" : "https://pre00.deviantart.net/a57f/th/pre/i/2010/188/d/2/sometimes_sun__sometimes_rain_by_kelhus.jpg",
-			"claimed": 1,
-			"featured":false,
-			"itemsIndcluded": ["Cool Jacket","Cool T-shirt","Cool pants"]
-		  }
+			"createdAt":1527022800000,
+			"userId" : 9,
+			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+			"userName" : "John Terry",
+			"desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat."
+		
+		},
+		{
+			"createdAt":1527022800000,
+			"userId" : 9,
+			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+			"userName" : "REFE MARR",
+			"desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat."
+		}
+	],
+	"comments": [
+		{
+			"createdAt":1527022800000,
+			"userId" : 9,
+			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+			"userName" : "REFE MARR",
+			"desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
+			"replys" : []
+		}
+	],
+	"backers": [
+		{
+			"createdAt":1527022800000,
+			"userId" : 9,
+			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+			"userName" : "RblRR",
+			"amount" : 15
+		},
+		{
+			"createdAt":1527022800000,
+			"userId" : 9,
+			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+			"userName" : "REbaRR",
+			"amount" : 15
+		}
+
+	],
+    "rewards": [
+      {
+        "id": 1,
+        "title": "Basic",
+        "cost": 59,
+        "desc":
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+		"estimatedDelivery": 1525305600,
+		"imgUrl" : "https://vuetifyjs.com/static/doc-images/cards/desert.jpg",
+		"claimed": 1,
+		"featured":true,
+		"itemsIndcluded": ["Cool Jacket","Cool T-shirt","Cool pants"]
+      },
+      {
+        "id": 2,
+        "title": "Gold",
+        "cost": 100,
+        "desc":
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+        "estimatedDelivery": 1525305600,
+		"imgUrl" : "http://www.kickassfacts.com/wp-content/uploads/2017/01/moldy-sloth.jpg",
+		"claimed": 1,
+		"featured":false,
+		"itemsIndcluded": ["Cool Jacket","Cool T-shirt","Cool pants"]
+      },
+      {
+        "id": 3,
+        "title": "Platinum",
+        "cost": 155,
+        "desc":
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+        "estimatedDelivery": 1525305600,
+		"imgUrl" : "https://pre00.deviantart.net/a57f/th/pre/i/2010/188/d/2/sometimes_sun__sometimes_rain_by_kelhus.jpg",
+		"claimed": 1,
+		"featured":false,
+		"itemsIndcluded": ["Cool Jacket","Cool T-shirt","Cool pants"]
+      }
     ],
     "owner": {
       "userID": "12321312",
@@ -128,67 +220,115 @@
       "bio":
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
 	  "avatarUrl": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
-	  "location":"Minneapolis, United States"
+	  "location":"Tel Aviv, Israel"
     },
-    "pledges": [{
-      "userId": "22222",
-      "rewardsId": "1",
-      "pledgedAt": 1525347324,
-      "pledgedAmuont": "59"
-    }]
+    "pledges": [
+      {
+        "userId": "22222",
+        "rewardsId": "1",
+        "pledgedAt": 1525347324,
+        "pledgedAmuont": "59"
+      }
+    ]
   },
   {
     "title": "Proj3 title",
-    "desc":
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit place.",
+    "tagLine": "Tagline of pro!Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pari",
+	"desc":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
+	"story" : "<p style=\"text-align: center; font-size: 15px;\"><img title=\"TinyMCE Logo\" src=\"//www.tinymce.com/images/glyph-tinymce@2x.png\" alt=\"TinyMCE Logo\" width=\"110\" height=\"97\" />  </p>  <h1 style=\"text-align: center;\">Welcome to the TinyMCE Cloud demo!</h1>  <h5 style=\"text-align: center;\">Note, this includes some \"enterprise/premium\" features.<br>Visit the <a href=\"https://www.tinymce.com/pricing/#demo-enterprise\">pricing page</a> to learn more about our premium plugins.</h5>  <p>Please try out the features provided in this full featured example.</p>  <h2>Got questions or need help?</h2>  <ul>    <li>Our <a href=\"//www.tinymce.com/docs/\">documentation</a> is a great resource for learning how to configure TinyMCE.</li>    <li>Have a specific question? Visit the <a href=\"https://community.tinymce.com/forum/\">Community Forum</a>.</li>    <li>We also offer enterprise grade support as part of <a href=\"https://tinymce.com/pricing\">TinyMCE premium subscriptions</a>.</li>  </ul>  <h2>A simple table to play with</h2>  <table style=\"text-align: center;\">    <thead>      <tr>        <th>Product</th>        <th>Cost</th>        <th>Really?</th>      </tr>    </thead>    <tbody>      <tr>        <td>TinyMCE Cloud</td>        <td>Get started for free</td>        <td>YES!</td>      </tr>      <tr>        <td>Plupload</td>        <td>Free</td>        <td>YES!</td>      </tr>    </tbody>  </table>  <h2>Found a bug?</h2>  <p>If you think you have found a bug please create an issue on the <a href=\"https://github.com/tinymce/tinymce/issues\">GitHub repo</a> to report it to the developers.</p>  <h2>Finally ...</h2>  <p>Don't forget to check out our other product <a href=\"http://www.plupload.com\" target=\"_blank\">Plupload</a>, your ultimate upload solution featuring HTML5 upload support.</p>  <p>Thanks for supporting TinyMCE! We hope it helps you and your users create great content.<br>All the best from the TinyMCE team.</p>",
     "projImgUrls": [
-      "http://www.citizensfiber.com/assets/fullPage/examples/imgs/iphone-blue.png",
-      "http://www.citizensfiber.com/assets/fullPage/examples/imgs/iphone1.jpg"
+      "http://yourshot.nationalgeographic.com/u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDNebW9lmdkTC3lV_ac9jTmHd1M5xScukEU1oY94kJ4kvBwa9CO25dp1K9cgh1TLoXw-2vbO1W7p42NgGKFi7kz20Zij66OE2hgXzZGeUvZAlTWOWSKd-H9J_Omkt9tX1AfidXFa3ObSS-schF38jJoEsfIz9w2awfwTvjdXQWmvmQ/",
+      "https://i.pinimg.com/736x/9e/3c/29/9e3c299ff4073ff34f711f0ef3596cbb--rain-storm-the-storm.jpg"
     ],
     "featuredImgUrl":
       "https://ksr-ugc.imgix.net/assets/021/057/608/7eb31893f9290bf30a1f5d0988717312_original.jpg?w=680&fit=max&v=1525027427&auto=format&q=92&s=8d7d1c31d877d70eb58e3f270518bf41",
-    "category": "Hardware",
-    "location": "Israel",
+    "category": "Tech",
+	"location": "Israel",
+	"overView" : "OverView!!!!! Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
     "fundingGoal": 10000,
     "fundsRaised": 5000,
-    "duration": 1525305600,
-    "rewards": [
+	"duration": 1527022800000,
+	"updates": [
 		{
-			"id": 1,
-			"title": "Basic",
-			"cost": 59,
-			"desc":
-			  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-			"estimatedDelivery": 1525305600,
-			"imgUrl" : "https://vuetifyjs.com/static/doc-images/cards/desert.jpg",
-			"claimed": 1,
-			"featured":true,
-			"itemsIndcluded": ["Cool Jacket","Cool T-shirt","Cool pants"]
-		  },
-		  {
-			"id": 2,
-			"title": "Gold",
-			"cost": 100,
-			"desc":
-			  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-			"estimatedDelivery": 1525305600,
-			"imgUrl" : "http://www.kickassfacts.com/wp-content/uploads/2017/01/moldy-sloth.jpg",
-			"claimed": 2,
-			"featured":false,
-			"itemsIndcluded": ["Cool Jacket","Cool T-shirt","Cool pants"]
-		  },
-		  {
-			"id": 3,
-			"title": "Platinum",
-			"cost": 155,
-			"desc":
-			  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
-			"estimatedDelivery": 1525305600,
-			"imgUrl" : "https://pre00.deviantart.net/a57f/th/pre/i/2010/188/d/2/sometimes_sun__sometimes_rain_by_kelhus.jpg",
-			"claimed": 0,
-			"featured":false,
-			"itemsIndcluded": ["Cool Jacket","Cool T-shirt","Cool pants"]
-		  }
+			"createdAt":1527022800000,
+			"userId" : 9,
+			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+			"userName" : "John Terry",
+			"desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat."
+		
+		},
+		{
+			"createdAt":1527022800000,
+			"userId" : 9,
+			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+			"userName" : "REFE MARR",
+			"desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat."
+		}
+	],
+	"comments": [
+		{
+			"createdAt":1527022800000,
+			"userId" : 9,
+			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+			"userName" : "REFba R",
+			"desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
+			"replys" : []
+		}
+	],
+	"backers": [
+		{
+			"createdAt":1527022800000,
+			"userId" : 9,
+			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+			"userName" : "REFE MARR",
+			"amount" : 15
+		},
+		{
+			"createdAt":1527022800000,
+			"userId" : 9,
+			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+			"userName" : "REba RR",
+			"amount" : 15
+		}
+
+	],
+    "rewards": [
+      {
+        "id": 1,
+        "title": "Basic",
+        "cost": 59,
+        "desc":
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+		"estimatedDelivery": 1525305600,
+		"imgUrl" : "https://vuetifyjs.com/static/doc-images/cards/desert.jpg",
+		"claimed": 1,
+		"featured":true,
+		"itemsIndcluded": ["Cool Jacket","Cool T-shirt","Cool pants"]
+      },
+      {
+        "id": 2,
+        "title": "Gold",
+        "cost": 100,
+        "desc":
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+        "estimatedDelivery": 1525305600,
+		"imgUrl" : "http://www.kickassfacts.com/wp-content/uploads/2017/01/moldy-sloth.jpg",
+		"claimed": 1,
+		"featured":false,
+		"itemsIndcluded": ["Cool Jacket","Cool T-shirt","Cool pants"]
+      },
+      {
+        "id": 3,
+        "title": "Platinum",
+        "cost": 155,
+        "desc":
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
+        "estimatedDelivery": 1525305600,
+		"imgUrl" : "https://pre00.deviantart.net/a57f/th/pre/i/2010/188/d/2/sometimes_sun__sometimes_rain_by_kelhus.jpg",
+		"claimed": 1,
+		"featured":false,
+		"itemsIndcluded": ["Cool Jacket","Cool T-shirt","Cool pants"]
+      }
     ],
     "owner": {
       "userID": "12321312",
@@ -196,14 +336,16 @@
       "bio":
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
 	  "avatarUrl": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
-	  "location":"La More, Paris"
-	  
+	  "location":"Tel Aviv, Israel"
     },
-    "pledges": [{
-      "userId": "22222",
-      "rewardsId": "1",
-      "pledgedAt": 1525347324,
-      "pledgedAmuont": "59"
-    }]
+    "pledges": [
+      {
+        "userId": "22222",
+        "rewardsId": "1",
+        "pledgedAt": 1525347324,
+        "pledgedAmuont": "59"
+      }
+    ]
   }
+  
 ]

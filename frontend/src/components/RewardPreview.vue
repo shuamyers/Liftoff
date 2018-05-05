@@ -7,10 +7,10 @@
           </v-card-media>
           <v-card-title class="flex-col align-baseline"  primary-title>
             <div class="align-self-center">
-                <v-chip v-show="reward.featured" label color="red200">FEATURED</v-chip>
+                <v-chip v-show="reward.featured" label color="orange">FEATURED</v-chip>
             </div>
-            <p class="reward-price mb-1">${{reward.cost}}</p>
-            <p class="reward-title mb-1 align-self-center">{{reward.title}}</p>
+            <!-- <p class="reward-price mb-1">${{reward.cost}}</p> -->
+            <p class="reward-title mb-1 align-self-center">{{reward.title}} - ${{reward.cost}}</p>
             <p class="mb-1">{{reward.desc}}</p>
             <p class="mb-0 reward-title mb-1" style="font-size:16px">Items Included</p>
             <ul class="mb-3">
@@ -70,5 +70,6 @@ font-size: 20px;
 font-weight: 500;
 font-size: 20px;
 }
+
 
 </style>
