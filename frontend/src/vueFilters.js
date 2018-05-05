@@ -21,14 +21,11 @@ Vue.filter('monthYear', (date) =>{
 
         return endDate;
 });
-Vue.filter('shortDay', (date) =>{
-        var str;
+Vue.filter('shortDay', (date) =>{     
         var endDate = moment(date,'x').format('DD MMM YYYY');
-
         return endDate;
 });
 Vue.filter('timePassed', (date) =>{
-        var str;
         var timePassed = moment(date,'x').fromNow()
         return timePassed;
 });

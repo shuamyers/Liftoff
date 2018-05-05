@@ -66,7 +66,7 @@
         <v-layout class="proj-down" wrap justify-content>
           <v-flex xs12 sm7 md8 lg8 wrap>
              <v-container grid-list-md text-xs-left class="proj-down-media" style="width:100%;"> 
-               <p class="grey--text mt-1 mb-1">OverView</p>
+               <p class="grey--text mt-1 mb-1">Overview</p>
                <v-divider></v-divider>
                <v-container grid-list-md text-xs-left class="proj-overview" style="width:100%;">   
                      <v-layout wrap>
@@ -93,7 +93,9 @@
                     <v-tab-item :id="`tab-updates`">
                       <proj-update v-for="update in proj.updates" :key="update.userName" :update="update" class="my-flex flex-col proj-update mt-2 mb-2"></proj-update>
                     </v-tab-item>
-                    <v-tab-item :id="`tab-comments`">Comments</v-tab-item>
+                    <v-tab-item :id="`tab-comments`">
+                       <proj-comment v-for="comment in proj.comments" :key="comment.userName" :comment="comment" class="my-flex flex-col proj-comment mt-0 mb-0"></proj-comment>
+                    </v-tab-item>
                     <v-tab-item :id="`tab-backers`">
                        <proj-backer v-for="backer in proj.backers" :key="backer.userName" :backer="backer" class="my-flex flex-col proj-backer mt-2 mb-2"></proj-backer>
                     </v-tab-item>
@@ -121,6 +123,7 @@ import { SET_SELECTED_PROJ, DELETE_PROJ } from "../store/ProjStore.js";
 import RewardPreview from '../components/RewardPreview'
 import ProjUpdate from '../components/ProjUpdate'
 import ProjBacker from '../components/ProjBacker'
+import ProjComment from '../components/ProjComment'
 
 export default {
   data() {
@@ -171,7 +174,8 @@ export default {
   components: {
     RewardPreview,
     ProjUpdate,
-    ProjBacker
+    ProjBacker,
+    ProjComment
   }
 
 };
