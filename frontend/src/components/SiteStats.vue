@@ -1,5 +1,5 @@
 <template>
-  <p>SiteStats</p>
+
 </template>
 
 <script>
