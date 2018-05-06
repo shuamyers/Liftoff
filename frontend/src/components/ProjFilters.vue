@@ -1,21 +1,19 @@
 <template>
   <div class="sidebar">
-          <p class="text-xs-left headline mt-3 hidden-sm-and-down">Filter results</p>
+          <p class="text-xs-left headline mt-3">Filter results</p>
           <div>
-            <p class="headlinefont text-xs-left hidden-sm-and-down  filter-title">CATEGORY</p>
-            <ul class="clean-list text-xs-left filter hidden-sm-and-down">
-              <li>All Categories</li>
-              <li>Tech & Innovation</li>
-              <li>Art</li>
-              <li>Community Projects</li>
+            <p class="headlinefont text-xs-left  filter-title">CATEGORY</p>
+            <ul class="clean-list text-xs-left filter">
+              <li @click="emitfilter('All')">All Categories</li>
+              <li @click="emitfilter('Tech')">Tech & Innovation</li>
+              <li @click="emitfilter('Art')">Art</li>
+              <li @click="emitfilter('Community')">Community Projects</li>
             </ul>
             <v-divider ></v-divider>
           </div>
-
-
           <div>
-            <p class="headlinefont text-xs-left  hidden-sm-and-down filter-title">PROJECT TIMING</p>
-            <ul class="clean-list text-xs-left filter hidden-sm-and-down">
+            <p class="headlinefont text-xs-left  filter-title">PROJECT TIMING</p>
+            <ul class="clean-list text-xs-left filter">
               <li >All </li>
               <li>Launching soon</li>
               <li>Just launched</li>
@@ -30,6 +28,12 @@
 <script>
 export default {
 
+methods: {
+    emitfilter(filter) {
+        console.log('hi',filter)
+        // this.$emit('filterCategory',filter)
+    }
+},
 }
 </script>
 

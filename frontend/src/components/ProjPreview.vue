@@ -28,7 +28,7 @@
             </div>
           </v-card-title>
           <v-card-actions class="card-footer">
-            <p>{{proj.duration | daysRemaining}}</p>
+            <p>{{proj.duration | daysRemainingAndTxt}}</p>
             <v-btn flat color="blue" @click="goToProj(proj._id)">Explore</v-btn>
           </v-card-actions>
         </v-card>

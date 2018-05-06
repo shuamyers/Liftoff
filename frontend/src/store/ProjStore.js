@@ -12,7 +12,7 @@ export default {
     selectedProj: null,
     filterBy:{
       searchTxt:'',
-      // category:null,
+      category: '',
       // status:null,
     },
     numOfProjs:0
@@ -56,13 +56,21 @@ export default {
     },
     setFilterBySearchTxt(state,{searchTxt}){
       state.filterBy.searchTxt = searchTxt
+    },
+    setFilterByCategory(state,{category}){
+      state.filterBy.category = category
     }
   },
   actions: {  
     [LOAD_PROJS](store) {
         var criteria = {
           skip: 0,
-          filterBySearchTxt: store.state.filterBy.searchTxt,
+          // filterBySearchTxt: store.state.filterBy.searchTxt,
+          filterBy:{
+               searchTxt: store.state.filterBy.searchTxt,
+               category: store.state.filterBy.category,
+            // status:null,
+          }
         }
       return projService.query(criteria).then(projs => {
         store.commit({ type: "setProjs", projs });

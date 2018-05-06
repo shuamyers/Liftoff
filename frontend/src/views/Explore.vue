@@ -1,43 +1,19 @@
 <template>
 <section>
-    <v-navigation-drawer
-      v-model="drawer"
-      temporary
-      absolute
-    >
-      <v-list class="pa-1">
-        <v-list-tile avatar>
-          <v-list-tile-avatar>
-            <img src="https://randomuser.me/api/portraits/men/85.jpg" >
-          </v-list-tile-avatar>
-          <v-list-tile-content>
-            <v-list-tile-title>John Leider</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-      <v-list class="pt-0" dense>
-        <v-divider></v-divider>
-        <v-list-tile v-for="item in items" :key="item.title" @click="">
-          <v-list-tile-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-   <v-container grid-list-md text-xs-center> 
+   <v-container grid-list-md text-xs-center v-scroll="onScroll"> 
      <div class="cmp-title">
-       <p class="display-3 mt-4">Invest in the Future</p>
+       <p class="display-3 mt-4" id="top">Invest in the Future</p>
      </div>
      <div class="my-flex">
-       <proj-filters></proj-filters>
+       <proj-filters class="hidden-sm-and-down"></proj-filters>
         <!-- main -->
         <div>
-          <div class="serch-wrapper">
-              <v-container grid-list-sm wrap> 
-                      <div class="serch-div">
+          <div class="search-wrapper">
+              <v-container grid-list-sm wrap class="my-flex-mobile"> 
+                      <div class="filter-btn-mobile hidden-md-and-up">
+                          <v-btn flat color="black" @click="drawer=true"><v-icon>list</v-icon> Filter</v-btn>
+                      </div>
+                      <div class="search-div">
                           <v-text-field solo label="Search" color="black" @input="search" v-model="searchTxt" prepend-icon="search"></v-text-field>
                       </div>
              </v-container>
@@ -50,117 +26,162 @@
             <v-layout wrap>
                <proj-preview class="proj-preview" :proj="proj" v-for="proj in projs"
                    :key="proj._id" @click.native="goToProj(proj._id)"></proj-preview>
-                <infinite-loading @infinite="infiniteHandler" ref="infiniteLoading" class="centered">
-                    <div slot="no-more">
-                        There is no more :(
-                    </div>
+                <infinite-loading @infinite="infiniteHandler" ref="infiniteLoading" class="centered" v-show="false">
+    
                </infinite-loading>
             </v-layout>
           </v-container>
-        </div>
+        </div>  
     </div>  
+   <v-navigation-drawer
+      v-model="drawer"
+      temporary
+      absolute
+      clipped
+    >
+      <div class="filter-mobile">
+        <proj-filters  ></proj-filters>
+      </div>
+    </v-navigation-drawer>
+    <v-fab-transition>
+      <v-btn
+        v-show="showBtn"
+        color="primary"
+        bottom
+        right
+        fab
+        fixed
+        @click="$vuetify.goTo(target, options)"
+      >
+        <v-icon>expand_less</v-icon>
+      </v-btn>
+    </v-fab-transition>
   </v-container>
+  
 </section>
 </template>
 
 <script>
-
-import ProjPreview from '../components/ProjPreview'
-import {LOAD_PROJS,LOAD_MORE_PROJS} from '../store/ProjStore'
-import ProjFilters from '../components/ProjFilters.vue';
-import InfiniteLoading from 'vue-infinite-loading';
-
+import ProjPreview from "../components/ProjPreview";
+import { LOAD_PROJS, LOAD_MORE_PROJS } from "../store/ProjStore";
+import ProjFilters from "../components/ProjFilters.vue";
+import InfiniteLoading from "vue-infinite-loading";
 
 export default {
-  created(){
-    this.$store.dispatch({ type: LOAD_PROJS })
+  created() {
+    this.$store.dispatch({ type: LOAD_PROJS });
   },
   data() {
     return {
-      searchTxt:null,
-      drawer:null
-    }
+      searchTxt: null,
+      drawer: false,
+      target: "#top",
+      Option: {
+        duration: 1000,
+        offset: 0,
+        easing: 'easeInOutCubic',
+      },
+      offsetTop: 0
+    };
   },
   methods: {
-   goToProj(projId) {
-            this.$router.push('project/' + projId)
+    onScroll() {
+      this.offsetTop = window.pageYOffset || document.documentElement.scrollTop;
     },
-    search(){
-       this.$store.commit('setFilterBySearchTxt',{searchTxt:this.searchTxt})
+    goToProj(projId) {
+      this.$router.push("project/" + projId);
     },
-   infiniteHandler($state) {
-    this.$store.dispatch({ type: LOAD_MORE_PROJS})
-    .then((length => {
+    search() {
+      this.$store.commit("setFilterBySearchTxt", { searchTxt: this.searchTxt })
+      this.$store.dispatch(LOAD_PROJS)
+    },
+    infiniteHandler($state) {
+      this.$store.dispatch({ type: LOAD_MORE_PROJS }).then(length => {
         if (length) {
           $state.loaded();
-          if (length < 12 ) {
+          if (length < 12) {
             $state.complete();
           }
         } else {
           $state.complete();
         }
-      })
-    )},
+      });
+    },
     changeFilter() {
-      this.$nextTick(() => {
-        this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset');
-      })
+      console.log('hidasdlsa')
+      // this.$nextTick(() => {
+      //   this.$refs.infiniteLoading.$emit("$InfiniteLoading:reset");
+      // });
     }
   },
   computed: {
-    projs() {
-      return this.$store.getters.projsForDisplay 
+    showBtn() {
+      return this.offsetTop > 500;
     },
-    numOfProjs(){
-      return  this.$store.getters.numOfProjs
+    projs() {
+      return this.$store.getters.projsForDisplay;
+    },
+    numOfProjs() {
+      return this.$store.getters.numOfProjs;
     }
   },
-  components:{
+  components: {
     ProjPreview,
     ProjFilters,
     InfiniteLoading
   }
-
-}
+};
 </script>
 
 <style scoped>
-
-.serch-container{
-  display:flex;
-  justify-content: center;
+.filter-mobile {
+  margin: 50px 0 0 25px;
 }
- /* .serch-div{
-  width: 80%;
-  display: inline;
-} */
-.filter-div{
+.filter-div {
   display: flex;
   justify-content: space-between;
-} 
+}
 
-.divder{
+.my-flex-mobile {
+  display: block;
+}
+
+.search-div {
+  display: block;
+  width: 100%;
+}
+@media only screen and (max-width: 960px) {
+  .my-flex-mobile {
+    display: flex;
+  }
+  .search-div {
+    width: 70%;
+    display: inline;
+  }
+  .filter-btn-mobile {
+    display: inline;
+    width: 30%;
+  }
+}
+.divder {
   margin: 20px 0 10px;
   width: 100%;
 }
 
-
-.my-flex{
+.my-flex {
   display: flex;
 }
 
-.proj-preview{
+.proj-preview {
   cursor: pointer;
 }
 
-
-.inline{
+.inline {
   display: inline;
   width: 80%;
 }
 
-.centered{
+.centered {
   margin: 0 auto;
 }
-
 </style>
