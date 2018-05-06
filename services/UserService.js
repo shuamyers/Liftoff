@@ -1,15 +1,16 @@
 const mongo = require('mongodb');
 var DBService = require('./DBService');
 
-module.exports.checkLogin = user => {
+function checkLogin (user) {
   return new Promise((resolve, reject) => {
+    console.log('check login user!',user)
     DBService.dbConnect().then(db => {
       db
         .collection('user')
-        .findOne({ name: user.name, password: user.password }, function(
+        .findOne({ email: user.email, pass: user.pass }, (
           err,
           userFromDB
-        ) {
+        ) => {
           if (err) reject(err)
           else resolve(userFromDB)
           db.close();
@@ -23,18 +24,18 @@ function validateDetails(user) {
   return user.name !== 'puki';
 }
 
-module.exports.addUser = user => {
+function addUser (user ) {
   return new Promise((resolve, reject) => {
     let isValidate = validateDetails(user);
     if (!isValidate) reject('Validate failed!');
     DBService.dbConnect().then(db => {
       db
         .collection('user')
-        .findOne({ name: user.name }, function(err, userFromDB) {
+        .findOne({ name: user.email }, (err, userFromDB) => {
           // If name is already used!
           if (userFromDB) {
-            console.log('Name is already used!');
-            reject('Name is already used!');
+            console.log('Email is already used!');
+            reject('Email is already used!');
             db.close();
           } else {
             db.collection('user').insert(user, (err, res) => {
@@ -48,3 +49,11 @@ module.exports.addUser = user => {
     });
   });
 };
+
+module.exports = {
+ checkLogin,
+ addUser
+}
+
+
+

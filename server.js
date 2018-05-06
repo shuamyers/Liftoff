@@ -15,12 +15,11 @@ var http = require('http').Server(app);
 var bodyParser = require('body-parser')
 const clientSessions = require('client-sessions');
 
-var UserService = require('./services/UserService')
+// var UserService = require('./services/UserService')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 // app.use(express.static('front'));
-
 
 app.use(clientSessions({
   cookieName: 'session',
@@ -30,7 +29,6 @@ app.use(clientSessions({
   
 }));
 
-
 global.isLoggedIn = (req, res, next) => {
   if (!req.session || !req.session.user) {
     res.end('Not allowed');
@@ -38,7 +36,6 @@ global.isLoggedIn = (req, res, next) => {
     next();
   }
 }
-
 
 const addUserRoutes = require('./routes/UserRoutes.js')
 addUserRoutes(app)

@@ -20,14 +20,14 @@ module.exports = app => {
     });
   });
 
-  app.post('/register', function (req, res) {
+  app.post('/register', (req, res) => {
     var user = req.body;
     UserService.addUser(user)
       .then(addedUser => res.json(addedUser))
       .catch(err => res.status(403).send({ error: `Register failed, ERROR:${err}` }));
   });
 
-  app.post('/logout', function (req, res) {
+  app.post('/logout', (req, res) => {
     req.session.reset();
     res.end('Loggedout');
   });
@@ -35,8 +35,6 @@ module.exports = app => {
   app.get('/profile', isLoggedIn, (req, res) => {
     res.end(`Profile of ${req.session.user.name}`);
   });
-
-
 
 };
 
