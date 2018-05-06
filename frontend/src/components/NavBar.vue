@@ -17,16 +17,21 @@
       <v-btn :to="{name: 'explore'}">Explore</v-btn>
       <v-btn :to="{name: 'startCampaign'}">Start a Campaign</v-btn>
       
-      <template v-if="loggedInUser.name">
+      <!-- <template v-if="loggedInUser">
         <v-btn 
           :to="{name: 'userProfile', params: {userId: loggedInUser.id}}"
           >{{ loggedInUser.name }}</v-btn>
       </template>
-
       <template v-else>
         <v-btn :to="{name: 'login'}">Log in</v-btn>
         <v-btn :to="{name: 'signup'}">Sign up</v-btn>
+      </template> -->
+      <template>
+        <v-btn :to="{name: 'login'}">Log in</v-btn>
+        <v-btn :to="{name: 'signup'}">Sign up</v-btn>
       </template>
+      <!-- <v-btn v-if="loggedInUser">{{loggedInUser.name}}</v-btn>
+      <v-btn>123</v-btn> -->
 
     </v-toolbar-items>
 
@@ -37,14 +42,12 @@
 export default {
   computed: {
     // just for dev, change when user store ready
-    loggedInUser() {
-      return {
-        name: "Ophir",
-        id: 123
-      };
-    }
-  }
-};
+     loggedinUser() {
+            return this.$store.getters.loggedinUser;
+        }
+    },
+  
+}
 </script>
 
 <style scoped>
