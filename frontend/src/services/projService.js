@@ -6,11 +6,10 @@ function query(criteria = '') {
     criteria = flattenNestedObj(criteria);
     criteria = Object
         .keys(criteria)
-        .map(key => `?${key}=${criteria[key]}`)
+        .map(key => `${key}=${criteria[key]}`)
         .join('&')
-        console.log(criteria);
     return axios
-        .get(PROJ_URL + criteria)
+        .get(PROJ_URL + '?' + criteria)
         .then(res => {
             return res.data;
         })
