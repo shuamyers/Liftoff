@@ -3,6 +3,7 @@ import axios from "axios"
 const PROJ_URL = 'http://localhost:3000/proj';
 
 function query(criteria = '') {
+    console.log(criteria)
     criteria = Object
                 .keys(criteria)
                 .map(key => `?${key}=${criteria[key]}`)

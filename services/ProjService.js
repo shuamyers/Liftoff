@@ -65,15 +65,25 @@ function update(proj) {
 }
 
 function query(criteria) {
+  console.log (criteria)
+
   var skip = +criteria.skip
   if(skip||skip === 0) delete criteria.skip
   else skip = 0
-  console.log('criteria',criteria)
+
+
+  // var regex = RegExp("/.*" + criteria.filterBySearchTxt + ".*/i")
+  var regex = RegExp("/.*p.*/i")
+     
+ 
+  var filter = {"title" : regex} 
+  
+  
   return new Promise((resolve, reject) => {
     DBService.dbConnect().then(db => {
       db
         .collection("proj")
-        .find(criteria,{title:1,desc:1,category:1,fundingGoal:1,fundsRaised:1,duration:1,featuredImgUrl:1})
+        .find(filter,{title:1,desc:1,category:1,fundingGoal:1,fundsRaised:1,duration:1,featuredImgUrl:1})
         .skip(skip)
         .limit(12)
         .toArray((err, projs) => {

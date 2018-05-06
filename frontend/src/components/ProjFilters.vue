@@ -4,7 +4,7 @@
           <div>
             <p class="headlinefont text-xs-left hidden-sm-and-down  filter-title">CATEGORY</p>
             <ul class="clean-list text-xs-left filter hidden-sm-and-down">
-              <li >All Categories</li>
+              <li>All Categories</li>
               <li>Tech & Innovation</li>
               <li>Art</li>
               <li>Community Projects</li>

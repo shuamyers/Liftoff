@@ -45,7 +45,6 @@ import InfiniteLoading from 'vue-infinite-loading';
 export default {
   created(){
     this.$store.dispatch({ type: LOAD_PROJS })
-  
   },
   data() {
     return {
@@ -57,10 +56,10 @@ export default {
             this.$router.push('project/' + projId)
     },
     search(){
-        console.log("serching")
+       this.$store.commit('setFilterBySearchTxt',{searchTxt:this.searchTxt})
     },
    infiniteHandler($state) {
-    this.$store.dispatch({ type: LOAD_MORE_PROJS, criteria:{skip:this.numOfProjs}})
+    this.$store.dispatch({ type: LOAD_MORE_PROJS})
     .then((length => {
         if (length) {
           $state.loaded();
