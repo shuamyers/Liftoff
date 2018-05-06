@@ -18,7 +18,7 @@
 	"duration": 1527022800000,
 	"updates": [
 		{
-			"createdAt":1527022800000,
+			"createdAt":1525002800000,
 			"userId" : 9,
 			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 			"userName" : "John Terry",
@@ -26,7 +26,7 @@
 		
 		},
 		{
-			"createdAt":1527022800000,
+			"createdAt":1525002800000,
 			"userId" : 9,
 			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 			"userName" : "REFE MARR",
@@ -35,24 +35,40 @@
 	],
 	"comments": [
 		{
-			"createdAt":1527022800000,
+			"createdAt":1525002800000,
 			"userId" : 9,
 			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 			"userName" : "REFE MARR",
+			"desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
+			"replys" : []
+		},
+		{
+			"createdAt":1525002800000,
+			"userId" : 6,
+			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+			"userName" : "Superman",
+			"desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
+			"replys" : []
+		},
+		{
+			"createdAt":1525002800000,
+			"userId" : 2,
+			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+			"userName" : "Borat",
 			"desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
 			"replys" : []
 		}
 	],
 	"backers": [
 		{
-			"createdAt":1527022800000,
+			"createdAt":1525002800000,
 			"userId" : 9,
 			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 			"userName" : "bla bku",
 			"amount" : 15
 		},
 		{
-			"createdAt":1527022800000,
+			"createdAt":1525002800000,
 			"userId" : 9,
 			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 			"userName" : "Rlo lae",
@@ -134,7 +150,7 @@
 	"duration": 1527022800000,
 	"updates": [
 		{
-			"createdAt":1527022800000,
+			"createdAt":1525002800000,
 			"userId" : 9,
 			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 			"userName" : "John Terry",
@@ -142,7 +158,7 @@
 		
 		},
 		{
-			"createdAt":1527022800000,
+			"createdAt":1525002800000,
 			"userId" : 9,
 			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 			"userName" : "REFE MARR",
@@ -151,27 +167,43 @@
 	],
 	"comments": [
 		{
-			"createdAt":1527022800000,
+			"createdAt":1525002800000,
 			"userId" : 9,
 			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 			"userName" : "REFE MARR",
+			"desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
+			"replys" : []
+		},
+		{
+			"createdAt":1525002800000,
+			"userId" : 6,
+			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+			"userName" : "Superman",
+			"desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
+			"replys" : []
+		},
+		{
+			"createdAt":1525002800000,
+			"userId" : 2,
+			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+			"userName" : "Borat",
 			"desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
 			"replys" : []
 		}
 	],
 	"backers": [
 		{
-			"createdAt":1527022800000,
+			"createdAt":1525002800000,
 			"userId" : 9,
 			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
-			"userName" : "RblRR",
+			"userName" : "bla bku",
 			"amount" : 15
 		},
 		{
-			"createdAt":1527022800000,
+			"createdAt":1525002800000,
 			"userId" : 9,
 			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
-			"userName" : "REbaRR",
+			"userName" : "Rlo lae",
 			"amount" : 15
 		}
 
@@ -250,7 +282,7 @@
 	"duration": 1527022800000,
 	"updates": [
 		{
-			"createdAt":1527022800000,
+			"createdAt":1525002800000,
 			"userId" : 9,
 			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 			"userName" : "John Terry",
@@ -258,7 +290,7 @@
 		
 		},
 		{
-			"createdAt":1527022800000,
+			"createdAt":1525002800000,
 			"userId" : 9,
 			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 			"userName" : "REFE MARR",
@@ -267,27 +299,43 @@
 	],
 	"comments": [
 		{
-			"createdAt":1527022800000,
+			"createdAt":1525002800000,
 			"userId" : 9,
 			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
-			"userName" : "REFba R",
+			"userName" : "REFE MARR",
+			"desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
+			"replys" : []
+		},
+		{
+			"createdAt":1525002800000,
+			"userId" : 6,
+			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+			"userName" : "Superman",
+			"desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
+			"replys" : []
+		},
+		{
+			"createdAt":1525002800000,
+			"userId" : 2,
+			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+			"userName" : "Borat",
 			"desc" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
 			"replys" : []
 		}
 	],
 	"backers": [
 		{
-			"createdAt":1527022800000,
+			"createdAt":1525002800000,
 			"userId" : 9,
 			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
-			"userName" : "REFE MARR",
+			"userName" : "bla bku",
 			"amount" : 15
 		},
 		{
-			"createdAt":1527022800000,
+			"createdAt":1525002800000,
 			"userId" : 9,
 			"userImg" : "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
-			"userName" : "REba RR",
+			"userName" : "Rlo lae",
 			"amount" : 15
 		}
 
