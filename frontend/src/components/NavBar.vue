@@ -1,7 +1,11 @@
 <template>
   <v-toolbar>
     
-    <v-toolbar-title>
+    <span class="hidden-md-and-up ma-0">
+    <v-toolbar-side-icon></v-toolbar-side-icon>
+    </span>
+
+    <v-toolbar-title class="ml-1">
       <router-link 
         tag="img"
         src="https://upload.wikimedia.org/wikipedia/commons/2/24/GitHub_logo_2013_padded.svg"
@@ -49,8 +53,9 @@ export default {
 
 <style scoped>
 .logo {
-  height: 50px;
+  height: 35px;
   width: 150px;
   cursor: pointer;
+  vertical-align: middle;
 }
 </style>

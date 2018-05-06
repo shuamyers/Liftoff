@@ -33,20 +33,36 @@ import projService from "../services/projService.js";
 export default {
   data() {
     return {
-      featuredProjs: null
+      featuredProjs: null,
+      testCriteria: {
+        skip: 12,
+        filterBy: {
+          searchTxt: 'searchTxt',
+          catergory: 'categoryTxt',
+          status: 'statusTxt'
+
+        }
+      }
     };
   },
   created() {
     //TODO: query top 5 'fundsRaised'
-    projService.query({ category: "Tech" }).then(projs => {
+    projService.query(this.testCriteria).then(projs => {
       this.featuredProjs = projs;
     });
   },
   updated() {
       const imgs = document.querySelectorAll('.jumbotron__image');
       imgs.forEach(img => {
-        img.setAttribute('style', 'filter: brightness(50%)')
+        img.style.filter = 'brightness(50%)';
         });
+      // const rightNavArrow = document.querySelector('.carousel__right');
+      // const leftNavArrow = document.querySelector('.carousel__left');
+      // rightNavArrow.style.top = '95%';
+      // leftNavArrow.style.top = '95%';
+      // rightNavArrow.style.right = '45%';
+      // leftNavArrow.style.left = '45%';
+      
     }
 };
 </script>
