@@ -60,9 +60,10 @@ export default {
   },
   actions: {  
     [LOAD_PROJS](store) {
-      var criteria = {
-        filterBySearchTxt: store.state.filterBy.searchTxt,
-      }
+        var criteria = {
+          skip: 0,
+          filterBySearchTxt: store.state.filterBy.searchTxt,
+        }
       return projService.query(criteria).then(projs => {
         store.commit({ type: "setProjs", projs });
         store.commit({ type: "setNumOfProjs", projs });
