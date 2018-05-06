@@ -35,6 +35,10 @@ export default new Router({
         {
           path: ':projId',
           component: ProjectDetails
+        },
+        {
+          path: ':projId/:tab',
+          component: ProjectDetails
         }
       ]
     },

@@ -22,6 +22,11 @@
             <v-layout wrap>
                <proj-preview class="proj-preview" :proj="proj" v-for="proj in projs"
                    :key="proj._id" @click.native="goToProj(proj._id)"></proj-preview>
+                   <infinite-loading @infinite="infiniteHandler">
+                      <span slot="no-more">
+                        There is no more :(
+                      </span>
+                    </infinite-loading>
             </v-layout>
           </v-container>
         </div>
@@ -34,6 +39,7 @@
 import ProjPreview from '../components/ProjPreview'
 import {LOAD_PROJS} from '../store/ProjStore'
 import ProjFilters from '../components/ProjFilters.vue';
+import InfiniteLoading from 'vue-infinite-loading';
 
 
 export default {
@@ -47,7 +53,24 @@ export default {
   methods: {
    goToProj(projId) {
             this.$router.push('project/' + projId)
+    },
+   infiniteHandler($state) {
+      axios.get(api, {
+        params: {
+          page: this.list.length / 20 + 1,
+        },
+      }).then(({ data }) => {
+        if (data.hits.length) {
+          this.list = this.list.concat(data.hits);
+          $state.loaded();
+          if (this.list.length / 20 === 10) {
+            $state.complete();
+          }
+        } else {
+          $state.complete();
         }
+      });
+    },
   },
   computed: {
     projs() {
@@ -56,7 +79,8 @@ export default {
   },
   components:{
     ProjPreview,
-    ProjFilters
+    ProjFilters,
+    InfiniteLoading
   }
 
 }

@@ -42,6 +42,7 @@ export default {
     [LOAD_PROJS](store) {
       return projService.query().then(projs => {
         store.commit({ type: "setProjs", projs });
+        return projs.length
       });
     },
 

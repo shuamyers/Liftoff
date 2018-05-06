@@ -65,18 +65,22 @@ function update(proj) {
 }
 
 function query(criteria) {
+  var skip = +criteria.skip
+  delete criteria.skip
   return new Promise((resolve, reject) => {
     DBService.dbConnect().then(db => {
       db
-        .collection('proj')
-        .find(criteria)
+        .collection("proj")
+        .find(criteria,{title:1,desc:1,category:1,fundingGoal:1,fundsRaised:1,duration:1,featuredImgUrl:1})
+        .skip(skip)
+        .limit(12)
         .toArray((err, projs) => {
           if (err) reject(err);
           else resolve(projs);
           db.close();
-        })
+        });
     });
-  })
+  });
 }
 
 module.exports = {

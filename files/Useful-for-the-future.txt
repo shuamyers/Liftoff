@@ -1,0 +1,12 @@
+setup for jason 
+
+var str = 'I want to replace "this" and words, but not the one "here"';
+str = str.replace(/"/g,"\\\"");
+console.log(str);
+
+becomes this:
+I want to replace \"this\" and words, but not the one \"here\"
+
+str.replace(/(\r\n\t|\n|\r\t)/gm,""); // remove all line breakers - to paste it in jason
+
+https://www.tinymce.com/docs/demo/full-featured/
