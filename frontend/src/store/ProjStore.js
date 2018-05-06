@@ -82,7 +82,11 @@ export default {
     [LOAD_MORE_PROJS](store){
       var criteria = {
         skip: store.state.numOfProjs,
-        filterBySearchTxt: store.state.filterBy.searchTxt,
+        filterBy:{
+          searchTxt: store.state.filterBy.searchTxt,
+          category: store.state.filterBy.category,
+       // status:null,
+     }
       }
       console.log('criteria',criteria);
       return projService.query(criteria).then(projs => {

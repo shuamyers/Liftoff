@@ -26,7 +26,7 @@
             <v-layout wrap>
                <proj-preview class="proj-preview" :proj="proj" v-for="proj in projs"
                    :key="proj._id" @click.native="goToProj(proj._id)"></proj-preview>
-                <infinite-loading @infinite="infiniteHandler" ref="infiniteLoading" class="centered" v-show="false">
+                <infinite-loading @infinite="infiniteHandler" ref="infiniteLoading" class="centered" >
     
                </infinite-loading>
             </v-layout>

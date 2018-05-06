@@ -66,8 +66,13 @@ function query(criteria) {
   console.log(criteria);
 
   var skip = +criteria.skip;
-  if (skip || skip === 0) delete criteria.skip;
-  else skip = 0;
+  if (!skip || skip === 0)
+  {
+    delete criteria.skip;
+    skip = 0
+  }
+  
+  console.log(skip)
 
   var regex = new RegExp(".*" + criteria.searchTxt + ".*", "i");
   
