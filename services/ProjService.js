@@ -19,7 +19,6 @@ function add(proj) {
   return new Promise((resolve, reject) => {
     DBService.dbConnect().then(db => {
       db.collection("proj").insertOne(proj, (err, res) => {
-        console.log("resresresresresres", res);
         db
           .collection("proj")
           .findOne(
@@ -50,7 +49,6 @@ function remove(projId) {
 
 function update(proj) {
   proj._id = new mongo.ObjectID(proj._id);
-  // console.log(proj._id)
   return new Promise((resolve, reject) => {
     DBService.dbConnect().then(db => {
       db
@@ -65,15 +63,44 @@ function update(proj) {
 }
 
 function query(criteria) {
-  var skip = +criteria.skip
-  if(skip||skip === 0) delete criteria.skip
-  else skip = 0
-  console.log('criteria',criteria)
+  console.log(criteria);
+
+  var skip = +criteria.skip;
+  if (!skip || skip === 0)
+  {
+    delete criteria.skip;
+    skip = 0
+  }
+  
+  console.log(skip)
+
+  var regex = new RegExp(".*" + criteria.searchTxt + ".*", "i");
+  
+  var query =  {$or: [{ title: regex }, { desc: regex }, { category: regex }]}
+
+  if(criteria.category !== ''){
+     query = {$and:
+      [
+        {$or: [{ title: regex }, { desc: regex }, { category: regex }]},
+        {category:criteria.category}
+   ]};
+  }
+
+  
+
   return new Promise((resolve, reject) => {
     DBService.dbConnect().then(db => {
       db
         .collection("proj")
-        .find(criteria,{title:1,desc:1,category:1,fundingGoal:1,fundsRaised:1,duration:1,featuredImgUrl:1})
+        .find(query, {
+          title: 1,
+          desc: 1,
+          category: 1,
+          fundingGoal: 1,
+          fundsRaised: 1,
+          duration: 1,
+          featuredImgUrl: 1
+        })
         .skip(skip)
         .limit(12)
         .toArray((err, projs) => {

@@ -11,10 +11,11 @@ export default {
     projs: [],
     selectedProj: null,
     filterBy:{
-      searchTxt:null,
-      category:null,
-      status:null,
+      searchTxt:'',
+      category: '',
+      // status:null,
     },
+    numOfProjs:0
    
   },
   getters: {
@@ -38,6 +39,9 @@ export default {
     setSelectedProj(state, { proj }) {
       state.selectedProj = proj;
     },
+    setNumOfProjs(state,{projs}){
+      state.numOfProjs = projs.length;
+    },
     updateProj(state, { proj }) {
       var idx = state.projs.findIndex(currProj => proj._id === currProj._id);
       state.projs.splice(idx, 1, proj);
@@ -49,20 +53,45 @@ export default {
       state.projs = state.projs.filter(currProj => {
         return currProj._id !== projId;
       });
+    },
+    setFilterBySearchTxt(state,{searchTxt}){
+      state.filterBy.searchTxt = searchTxt
+    },
+    setFilterByCategory(state,{category}){
+      state.filterBy.category = category
     }
   },
-  actions: {
+  actions: {  
     [LOAD_PROJS](store) {
-      return projService.query().then(projs => {
+        var criteria = {
+          skip: 0,
+          // filterBySearchTxt: store.state.filterBy.searchTxt,
+          filterBy:{
+               searchTxt: store.state.filterBy.searchTxt,
+               category: store.state.filterBy.category,
+            // status:null,
+          }
+        }
+      return projService.query(criteria).then(projs => {
         store.commit({ type: "setProjs", projs });
+        store.commit({ type: "setNumOfProjs", projs });
         return projs.length
       });
     },
 
-    [LOAD_MORE_PROJS](store,{criteria}){
+    [LOAD_MORE_PROJS](store){
+      var criteria = {
+        skip: store.state.numOfProjs,
+        filterBy:{
+          searchTxt: store.state.filterBy.searchTxt,
+          category: store.state.filterBy.category,
+       // status:null,
+     }
+      }
       console.log('criteria',criteria);
       return projService.query(criteria).then(projs => {
         store.commit({ type: "setMorePorj", projs });
+        store.commit({ type: "setNumOfProjs",projs:store.state.projs });
         return projs.length
       });
     },
