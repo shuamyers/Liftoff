@@ -55,15 +55,12 @@ export default {
             this.$router.push('project/' + projId)
     },
    infiniteHandler($state) {
-      axios.get(api, {
-        params: {
-          page: this.list.length / 20 + 1,
-        },
-      }).then(({ data }) => {
-        if (data.hits.length) {
-          this.list = this.list.concat(data.hits);
+    this.$store.dispatch({ type: LOAD_PROJS })
+    .then((length) => {
+      console.log(length)
+        if (length) {
           $state.loaded();
-          if (this.list.length / 20 === 10) {
+          if (length < 12 ) {
             $state.complete();
           }
         } else {

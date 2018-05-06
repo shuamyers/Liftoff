@@ -4,6 +4,7 @@ export const LOAD_PROJS = "loadProjs";
 export const SAVE_PROJ = "saveProj";
 export const SET_SELECTED_PROJ = "setSelectedProj";
 export const DELETE_PROJ = "deleteProj";
+export const LOAD_MORE_PROJS = "loadMoreProjs"
 
 export default {
   state: {
@@ -40,6 +41,13 @@ export default {
   },
   actions: {
     [LOAD_PROJS](store) {
+      return projService.query().then(projs => {
+        store.commit({ type: "setProjs", projs });
+        return projs.length
+      });
+    },
+
+    [LOAD_MORE_PROJS](store){
       return projService.query().then(projs => {
         store.commit({ type: "setProjs", projs });
         return projs.length
