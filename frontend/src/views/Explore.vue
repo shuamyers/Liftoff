@@ -10,7 +10,7 @@
           <div class="serch-wrapper">
               <v-container grid-list-sm wrap> 
                       <div class="serch-div">
-                          <v-text-field solo label="Serch" color="black" prepend-icon="search"></v-text-field>
+                          <v-text-field solo label="Search" color="black" @input="search" v-model="searchTxt" prepend-icon="search"></v-text-field>
                       </div>
              </v-container>
           </div>
@@ -22,11 +22,11 @@
             <v-layout wrap>
                <proj-preview class="proj-preview" :proj="proj" v-for="proj in projs"
                    :key="proj._id" @click.native="goToProj(proj._id)"></proj-preview>
-                   <infinite-loading @infinite="infiniteHandler">
-                      <span slot="no-more">
+                <infinite-loading @infinite="infiniteHandler" ref="infiniteLoading" class="centered">
+                    <div slot="no-more">
                         There is no more :(
-                      </span>
-                    </infinite-loading>
+                    </div>
+               </infinite-loading>
             </v-layout>
           </v-container>
         </div>
@@ -37,7 +37,7 @@
 <script>
 
 import ProjPreview from '../components/ProjPreview'
-import {LOAD_PROJS} from '../store/ProjStore'
+import {LOAD_PROJS,LOAD_MORE_PROJS} from '../store/ProjStore'
 import ProjFilters from '../components/ProjFilters.vue';
 import InfiniteLoading from 'vue-infinite-loading';
 
@@ -45,19 +45,23 @@ import InfiniteLoading from 'vue-infinite-loading';
 export default {
   created(){
     this.$store.dispatch({ type: LOAD_PROJS })
+  
   },
   data() {
     return {
+      searchTxt:null
     }
   },
   methods: {
    goToProj(projId) {
             this.$router.push('project/' + projId)
     },
+    search(){
+        console.log("serching")
+    },
    infiniteHandler($state) {
-    this.$store.dispatch({ type: LOAD_PROJS })
-    .then((length) => {
-      console.log(length)
+    this.$store.dispatch({ type: LOAD_MORE_PROJS, criteria:{skip:this.numOfProjs}})
+    .then((length => {
         if (length) {
           $state.loaded();
           if (length < 12 ) {
@@ -66,12 +70,20 @@ export default {
         } else {
           $state.complete();
         }
-      });
-    },
+      })
+    )},
+    changeFilter() {
+      this.$nextTick(() => {
+        this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset');
+      })
+    }
   },
   computed: {
     projs() {
       return this.$store.getters.projsForDisplay 
+    },
+    numOfProjs(){
+      return  this.$store.getters.numOfProjs
     }
   },
   components:{
@@ -116,6 +128,10 @@ export default {
 .inline{
   display: inline;
   width: 80%;
+}
+
+.centered{
+  margin: 0 auto;
 }
 
 </style>

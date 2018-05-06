@@ -66,7 +66,9 @@ function update(proj) {
 
 function query(criteria) {
   var skip = +criteria.skip
-  delete criteria.skip
+  if(skip||skip === 0) delete criteria.skip
+  else skip = 0
+  console.log('criteria',criteria)
   return new Promise((resolve, reject) => {
     DBService.dbConnect().then(db => {
       db
