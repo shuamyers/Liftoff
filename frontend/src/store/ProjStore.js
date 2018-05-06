@@ -9,11 +9,20 @@ export const LOAD_MORE_PROJS = "loadMoreProjs"
 export default {
   state: {
     projs: [],
-    selectedProj: null
+    selectedProj: null,
+    filterBy:{
+      searchTxt:null,
+      category:null,
+      status:null,
+    },
+   
   },
   getters: {
     projsForDisplay(state) {
       return state.projs;
+    },
+    numOfProjs(state){
+      return state.projs.length
     },
     selectedProj(state) {
       return state.selectedProj;
@@ -22,6 +31,9 @@ export default {
   mutations: {
     setProjs(state, { projs }) {
       state.projs = projs;
+    },
+    setMorePorj(state,{projs}){
+        state.projs.push(...projs)
     },
     setSelectedProj(state, { proj }) {
       state.selectedProj = proj;
@@ -47,9 +59,10 @@ export default {
       });
     },
 
-    [LOAD_MORE_PROJS](store){
-      return projService.query().then(projs => {
-        store.commit({ type: "setProjs", projs });
+    [LOAD_MORE_PROJS](store,{criteria}){
+      console.log('criteria',criteria);
+      return projService.query(criteria).then(projs => {
+        store.commit({ type: "setMorePorj", projs });
         return projs.length
       });
     },
@@ -63,7 +76,6 @@ export default {
 
     [SAVE_PROJ](store, { proj }) {
       const isEdit = !!proj._id;
-
       return projService.saveProj(proj).then(proj => {
         if (isEdit) {
           store.commit({ type: "updateProj", proj });
