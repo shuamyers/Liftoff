@@ -75,31 +75,27 @@ export default {
         "fab fa-linkedin",
         "fab fa-instagram"
       ],
-      links: [
-        'About Us',
-        'Terms of Use',
-        'Privacy Policy'
-      ],
+      links: ["About Us", "Terms of Use", "Privacy Policy"],
       loader: null,
       loading: false,
       email: null
     };
   },
   watch: {
-      loader () {
-        const l = this.loader
-        this[l] = !this[l]
-        setTimeout(() => (this[l] = false), 3000)
-        this.loader = null
-      }
+    loader() {
+      const l = this.loader;
+      this[l] = !this[l];
+      setTimeout(() => (this[l] = false), 3000);
+      this.loader = null;
     }
+  }
 };
 </script>
 
 <style scoped>
 li {
   display: inline;
-  line-height: 3rem;  
+  line-height: 3rem;
   cursor: pointer;
 }
 </style>

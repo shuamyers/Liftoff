@@ -2,34 +2,35 @@
   <section>
 
     <v-navigation-drawer 
-      fixed
       clipped
       app
+      fixed
+      disable-resize-watcher
       v-model="drawer">
 
       <v-list two-line>
-        <v-list-tile :to="{name: 'home'}">
-          <v-list-tile-action>
-            <v-icon>home</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Home</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+          <v-list-tile 
+              v-for="tile in tiles"
+              :key="tile.txt"
+              :to="{name: tile.routeName}"
+              exact>
 
-      <v-list-tile :to="{name: 'startCampaign'}">
-        <v-list-tile-action>
-          <v-icon>create</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>Start Campaign</v-list-tile-title>
-        </v-list-tile-content>
-        </v-list-tile>
+              <v-list-tile-action>
+                  <v-icon>{{tile.icon}}</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>
+                  <v-list-tile-title>{{tile.txt}}</v-list-tile-title>
+              </v-list-tile-content>
+
+          </v-list-tile>
       </v-list>
 
-    </v-navigation-drawer>
-    
-    <v-toolbar app fixed clipped-left>
+    </v-navigation-drawer> 
+
+    <v-toolbar 
+      app 
+      fixed 
+      clipped-left>
       
       <span class="ma-0 hidden-md-and-up">
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
@@ -44,27 +45,32 @@
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
-        
-      <v-toolbar-items class="hidden-sm-and-down">
-        
-        <!-- Update all links when components are ready -->
+      
+      <v-toolbar-items>     
         <v-btn :to="{name: 'explore'}">Explore</v-btn>
-        <v-btn :to="{name: 'startCampaign'}">Start Campaign</v-btn>
+        <v-btn 
+          :to="{name: 'startCampaign'}"
+          class="hidden-sm-and-down">Start Campaign</v-btn>
         
-        <template v-if="loggedInUser.name">
+        <template v-if="loggedInUser">
           <v-btn 
-            :to="{name: 'userProfile', params: {userId: loggedInUser.id}}"
+            :to="{name: 'userProfile', params: {userId: loggedInUser._id}}"
+            class="hidden-sm-and-down"
             >{{ loggedInUser.name }}</v-btn>
         </template>
 
         <template v-else>
-          <v-btn :to="{name: 'login'}">Log in</v-btn>
-          <v-btn :to="{name: 'signup'}">Sign up</v-btn>
+          <v-btn 
+            :to="{name: 'login'}"
+            class="hidden-sm-and-down">Log in</v-btn>
+          <v-btn 
+            :to="{name: 'signup'}"
+            class="hidden-sm-and-down">Sign up</v-btn>
         </template>
-
       </v-toolbar-items>
 
     </v-toolbar>
+
   </section>
 </template>
 
@@ -72,16 +78,29 @@
 export default {
   data() {
     return {
-      drawer: false
-    }
+      drawer: false,
+      tiles: [
+        {
+          txt: "Home",
+          icon: "home",
+          routeName: "home"
+        },
+        {
+          txt: "Explore",
+          icon: "explore",
+          routeName: "explore"
+        },
+        {
+          txt: "Start Campaign",
+          icon: "create",
+          routeName: "startCampaign"
+        }
+      ]
+    };
   },
   computed: {
-    // just for dev, change when user store ready
     loggedInUser() {
-      return {
-        name: "Ophir",
-        id: 123
-      };
+      return this.$store.getters.loggedInUser;
     }
   }
 };
@@ -89,7 +108,7 @@ export default {
 
 <style scoped>
 .logo {
-  height: 35px;
+  height: 40px;
   width: 150px;
   cursor: pointer;
   vertical-align: middle;

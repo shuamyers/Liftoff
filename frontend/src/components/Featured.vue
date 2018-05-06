@@ -38,27 +38,24 @@ export default {
   },
   created() {
     //TODO: query top 5 'fundsRaised'
-    projService.query({category: 'Tech'}).then(projs => {
+    projService.query({ category: "Tech" }).then(projs => {
       this.featuredProjs = projs;
     });
   },
   updated() {
-      const imgs = document.querySelectorAll('.jumbotron__image');
-      imgs.forEach(img => {
-        img.style.filter = 'brightness(50%)';
-        });
-      // const rightNavArrow = document.querySelector('.carousel__right');
-      // const leftNavArrow = document.querySelector('.carousel__left');
-      // rightNavArrow.style.top = '95%';
-      // leftNavArrow.style.top = '95%';
-      // rightNavArrow.style.right = '45%';
-      // leftNavArrow.style.left = '45%';
-      
-    }
+    const imgs = document.querySelectorAll(".jumbotron__image");
+    imgs.forEach(img => {
+      img.style.filter = "brightness(50%)";
+    });
+  }
 };
 </script>
 
 <style scoped>
+.carousel {
+  height: 100%;
+}
+
 a {
   text-decoration: none;
 }
@@ -70,6 +67,6 @@ a {
 }
 
 .campaign-link {
-  text-transform: uppercase;  
+  text-transform: uppercase;
 }
 </style>

@@ -1,0 +1,16 @@
+[
+  {
+    "name": "normal",
+    "email":"to@gmail.com",
+    "pass":"1234",
+		"admin": false,
+		"createdAt": 1525002800000
+  },
+  {
+    "name": "admin",
+    "email":"admin@a.com",
+    "pass":"1234",
+		"admin": true,
+		"createdAt": 1525002800000
+  }
+]
