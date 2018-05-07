@@ -10,3 +10,4 @@ I want to replace \"this\" and words, but not the one \"here\"
 str.replace(/(\r\n\t|\n|\r\t)/gm,""); // remove all line breakers - to paste it in jason
 
 https://www.tinymce.com/docs/demo/full-featured/
+https://vuejsfeed.com/blog/tinymce-editor-component-for-vue-js
