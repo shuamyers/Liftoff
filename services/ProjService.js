@@ -63,7 +63,7 @@ function update(proj) {
 }
 
 function query(criteria) {
-  console.log(criteria);
+  // console.log(criteria);
 
   var skip = +criteria.skip;
   if (!skip || skip === 0)
@@ -72,7 +72,7 @@ function query(criteria) {
     skip = 0
   }
   
-  console.log(skip)
+  console.log(criteria)
 
   var regex = new RegExp(".*" + criteria.searchTxt + ".*", "i");
   
