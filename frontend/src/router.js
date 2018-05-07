@@ -3,8 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Explore from './views/Explore.vue'
 import Project from './views/Project.vue'
-import Login from './views/Login.vue'
-import Signup from './views/Signup.vue'
+import UserConnect from './views/UserConnect.vue'
 import User from './views/User.vue'
 import UserProfile from './views/UserProfile.vue'
 import StartCampaign from './views/StartCampaign.vue'
@@ -45,12 +44,12 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
-      component: Login
+      component: UserConnect
     },
     {
       path: '/signup',
       name: 'signup',
-      component: Signup
+      component: UserConnect
     },
     {
       path: '/start-campaign',
