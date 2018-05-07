@@ -33,12 +33,21 @@ import projService from "../services/projService.js";
 export default {
   data() {
     return {
-      featuredProjs: null
+      featuredProjs: null,
+      testCriteria: {
+        skip: 0,
+        filterBy: {
+          searchTxt: '',
+          catergory: 'Tech',
+          // status: ''
+
+        }
+      }
     };
   },
   created() {
     //TODO: query top 5 'fundsRaised'
-    projService.query({ category: "Tech" }).then(projs => {
+    projService.query(this.testCriteria).then(projs => {
       this.featuredProjs = projs;
     });
   },

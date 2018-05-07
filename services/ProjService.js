@@ -63,30 +63,31 @@ function update(proj) {
 }
 
 function query(criteria) {
-  console.log(criteria);
+  // console.log(criteria);
 
   var skip = +criteria.skip;
-  if (!skip || skip === 0)
-  {
+  if (!skip || skip === 0) {
     delete criteria.skip;
-    skip = 0
+    skip = 0;
   }
-  
-  console.log(skip)
+
 
   var regex = new RegExp(".*" + criteria.searchTxt + ".*", "i");
-  
-  var query =  {$or: [{ title: regex }, { desc: regex }, { category: regex }]}
 
-  if(criteria.category !== ''){
-     query = {$and:
-      [
-        {$or: [{ title: regex }, { desc: regex }, { category: regex }]},
-        {category:criteria.category}
-   ]};
-  }
 
-  
+  // var query = { $or: [{ title: regex }, { desc: regex }, { category: regex }] };
+
+  var category = (criteria.category)? criteria.category : new RegExp('[\s\S]*')
+ 
+    query = {
+      $and: [
+        {
+          $or: [{ title: regex }, { desc: regex }, { category: regex }]
+        },
+        { category },
+      ]
+    };
+ 
 
   return new Promise((resolve, reject) => {
     DBService.dbConnect().then(db => {
