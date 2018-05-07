@@ -9,16 +9,16 @@ export const SIGNUP = "signup";
 
 export default {
     state: {
-        loggedinUser: null
+        loggedInUser: null
+      },
+      getters: {
+        loggedInUser(state) {
+          return state.loggedInUser;
+        }
       },
       mutations: {
         setUser(state, {user}) {
-          state.loggedinUser = user;
-        }
-      },
-      getters: {
-        loggedinUser(state) {
-          return state.loggedinUser;
+          state.loggedInUser = user;
         }
       },
       actions: {

@@ -1,62 +1,114 @@
 <template>
-  <v-toolbar>
-    
-    <span class="hidden-md-and-up ma-0">
-    <v-toolbar-side-icon></v-toolbar-side-icon>
-    </span>
+  <section>
 
-    <v-toolbar-title class="ml-1">
-      <router-link 
-        tag="img"
-        src="https://upload.wikimedia.org/wikipedia/commons/2/24/GitHub_logo_2013_padded.svg"
-        :to="{name: 'home'}"
-        class="logo"></router-link>
-    </v-toolbar-title>
+    <v-navigation-drawer 
+      clipped
+      app
+      fixed
+      disable-resize-watcher
+      v-model="drawer">
 
-    <v-spacer></v-spacer>
+      <v-list two-line>
+          <v-list-tile 
+              v-for="tile in tiles"
+              :key="tile.txt"
+              :to="{name: tile.routeName}"
+              exact>
+
+              <v-list-tile-action>
+                  <v-icon>{{tile.icon}}</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>
+                  <v-list-tile-title>{{tile.txt}}</v-list-tile-title>
+              </v-list-tile-content>
+
+          </v-list-tile>
+      </v-list>
+
+    </v-navigation-drawer> 
+
+    <v-toolbar 
+      app 
+      fixed 
+      clipped-left>
       
-    <v-toolbar-items class="hidden-sm-and-down">
+      <span class="ma-0 hidden-md-and-up">
+      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      </span>
+
+      <v-toolbar-title class="ml-1">
+        <router-link 
+          tag="img"
+          src="https://upload.wikimedia.org/wikipedia/commons/2/24/GitHub_logo_2013_padded.svg"
+          :to="{name: 'home'}"
+          class="logo"></router-link>
+      </v-toolbar-title>
+
+      <v-spacer></v-spacer>
       
-      <!-- Update all links when components are ready -->
-      <v-btn :to="{name: 'explore'}">Explore</v-btn>
-      <v-btn :to="{name: 'startCampaign'}">Start a Campaign</v-btn>
-      
-      <!-- <template v-if="loggedInUser">
+      <v-toolbar-items>     
+        <v-btn :to="{name: 'explore'}">Explore</v-btn>
         <v-btn 
-          :to="{name: 'userProfile', params: {userId: loggedInUser.id}}"
-          >{{ loggedInUser.name }}</v-btn>
-      </template>
-      <template v-else>
-        <v-btn :to="{name: 'login'}">Log in</v-btn>
-        <v-btn :to="{name: 'signup'}">Sign up</v-btn>
-      </template> -->
-      <template>
-        <v-btn :to="{name: 'login'}">Log in</v-btn>
-        <v-btn :to="{name: 'signup'}">Sign up</v-btn>
-      </template>
-      <!-- <v-btn v-if="loggedInUser">{{loggedInUser.name}}</v-btn>
-      <v-btn>123</v-btn> -->
+          :to="{name: 'startCampaign'}"
+          class="hidden-sm-and-down">Start Campaign</v-btn>
+        
+        <template v-if="loggedInUser">
+          <v-btn 
+            :to="{name: 'userProfile', params: {userId: loggedInUser._id}}"
+            class="hidden-sm-and-down"
+            >{{ loggedInUser.name }}</v-btn>
+        </template>
 
-    </v-toolbar-items>
+        <template v-else>
+          <v-btn 
+            :to="{name: 'login'}"
+            class="hidden-sm-and-down">Log in</v-btn>
+          <v-btn 
+            :to="{name: 'signup'}"
+            class="hidden-sm-and-down">Sign up</v-btn>
+        </template>
+      </v-toolbar-items>
 
-  </v-toolbar>
+    </v-toolbar>
+
+  </section>
 </template>
 
 <script>
 export default {
-  computed: {
-    // just for dev, change when user store ready
-     loggedinUser() {
-            return this.$store.getters.loggedinUser;
+  data() {
+    return {
+      drawer: false,
+      tiles: [
+        {
+          txt: "Home",
+          icon: "home",
+          routeName: "home"
+        },
+        {
+          txt: "Explore",
+          icon: "explore",
+          routeName: "explore"
+        },
+        {
+          txt: "Start Campaign",
+          icon: "create",
+          routeName: "startCampaign"
         }
-    },
-  
-}
+      ]
+    };
+  },
+  computed: {
+    loggedInUser() {
+      return this.$store.getters.loggedInUser;
+    }
+  }
+};
 </script>
 
 <style scoped>
 .logo {
-  height: 35px;
+  height: 40px;
   width: 150px;
   cursor: pointer;
   vertical-align: middle;
