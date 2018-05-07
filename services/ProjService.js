@@ -75,20 +75,20 @@ function query(criteria) {
 
   var regex = new RegExp(".*" + criteria.searchTxt + ".*", "i");
 
-  // var query = { $or: [{ title: regex }, { desc: regex }, { category: regex }] };
-  var category = (criteria.category)? criteria.category : new RegExp('[\s\S]*')
 
-  // if (criteria.category) {
+  // var query = { $or: [{ title: regex }, { desc: regex }, { category: regex }] };
+
+  var category = (criteria.category)? criteria.category : new RegExp('[\s\S]*')
+ 
     query = {
       $and: [
         {
           $or: [{ title: regex }, { desc: regex }, { category: regex }]
         },
         { category },
-
       ]
     };
-  // }
+ 
 
   return new Promise((resolve, reject) => {
     DBService.dbConnect().then(db => {

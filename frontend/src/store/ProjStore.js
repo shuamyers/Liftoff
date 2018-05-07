@@ -58,6 +58,7 @@ export default {
       state.filterBy.searchTxt = searchTxt
     },
     setFilterByCategory(state,{category}){
+      console.log(category)
       state.filterBy.category = category
     }
   },
