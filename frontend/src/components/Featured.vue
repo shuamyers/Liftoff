@@ -37,9 +37,9 @@ export default {
       testCriteria: {
         skip: 12,
         filterBy: {
-          searchTxt: 'searchTxt',
-          catergory: 'categoryTxt',
-          status: 'statusTxt'
+          searchTxt: '',
+          catergory: '',
+          // status: ''
 
         }
       }
