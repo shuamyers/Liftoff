@@ -10,7 +10,8 @@
                 <div class="comment-info full-width">
                     <div class="mb-2">
                         <!-- <span class="user-name">{{user.name}}</span> -->
-                        <v-text-field
+                        <form v-on:submit.prevent="addComment">
+                            <v-text-field
                            class="pt-0"
                             placeholder="Add a public comment..."
                             v-model="commentTxt"
@@ -20,12 +21,13 @@
                             :maxlength="10" 
                             @focus="onComment = true"
                             ></v-text-field> 
-                          <transition duration="100" name="fade">
-                            <div v-show="onComment" class="comments-buttons">
-                              <v-btn  style="float:right" color="primary" @click="addComment">Comment</v-btn>
-                              <v-btn  style="float:right" @click="onComment = false">Cancel</v-btn>
-                            </div>
-                          </transition>
+                        </form>
+                        <transition duration="100" name="fade">
+                          <div v-show="onComment" class="comments-buttons">
+                            <v-btn  style="float:right" color="primary" @click="addComment">Comment</v-btn>
+                            <v-btn  style="float:right" @click="onComment = false">Cancel</v-btn>
+                          </div>
+                        </transition>
                     </div>
                 </div>
             </div>

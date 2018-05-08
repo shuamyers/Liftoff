@@ -12,7 +12,8 @@
                 </v-list-tile-content>
                 </v-list-tile>
             </div>
-            <p class="basic-bold">${{backer.amount}}</p>
+            <p class="basic-bold">${{backer.pledgedAmount
+}}</p>
         </div>
         <v-divider></v-divider>
      </div>

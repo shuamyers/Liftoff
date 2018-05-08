@@ -1,5 +1,5 @@
 <template>
-  <v-container grid-list-md v-if="proj">
+  <v-container grid-list-md v-if="reward">
     <div>
       <h1 class="display-1 my-title">Checkout</h1>
     </div>

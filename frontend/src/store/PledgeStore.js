@@ -12,20 +12,21 @@ export default {
 	},
 	getters: {
 		pledgesForDisplay(state) {
-			return state.projs;
+			return state.pledges;
 		},
 	},
 	mutations: {
 		addPledge(state, { pledge }) {
 			state.pledges.push(pledge);
 		},
-		setPledge(state,{pledges}){
+		setPledges(state,{pledges}){
 			state.pledges = pledges;
 		}
 	},
 	actions: {
 		[SAVE_PLEDGE](store, { pledge }) {
 			console.log('front store', pledge);
+			pledge.createdAt = Date.now();
 			return pledgesService.savePledge(pledge).then(pledge => {
 				store.commit({ type: 'addPledge', pledge });
 				return pledge;
@@ -35,13 +36,13 @@ export default {
 			console.log('front userId store', userId);
 			return pledgesService.getByUserId(userId).then(pledges => {
 				console.log('got proj', pledges);
-				store.commit({ type: 'setPledge',  pledges });
+				store.commit({ type: 'setPledges',  pledges });
 			});
 		},
 		[LOAD_PLEDGES_BY_PROJ_ID](store, { projId }) {
-			return projService.getById(projId).then(proj => {
-				console.log('got proj', proj);
-				store.commit({ type: 'setPledge', pledges });
+			return pledgesService.getByProjId(projId).then(pledges => {
+				console.log('got pledges by projId',projId,':', pledges);
+				store.commit({ type: 'setPledges', pledges });
 			});
 		},
 
