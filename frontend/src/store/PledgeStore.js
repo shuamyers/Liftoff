@@ -40,9 +40,15 @@ export default {
 			});
 		},
 		[LOAD_PLEDGES_BY_PROJ_ID](store, { projId }) {
+<<<<<<< HEAD
 			return pledgesService.getByProjId(projId).then(pledges => {
 				console.log('got pledges by projId',projId,':', pledges);
 				store.commit({ type: 'setPledges', pledges });
+=======
+			return pledgesService.getById(projId).then(proj => {
+				console.log('got proj', proj);
+				store.commit({ type: 'setPledge', pledges });
+>>>>>>> 867407504d3a908ad5638d7383991c82db8b86dd
 			});
 		},
 
