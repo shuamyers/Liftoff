@@ -7,6 +7,7 @@ import UserConnect from './views/UserConnect.vue'
 import User from './views/User.vue'
 import UserProfile from './views/UserProfile.vue'
 import StartCampaign from './views/StartCampaign.vue'
+import checkout from './views/Checkout.vue'
 import ProjectDetails from './views/ProjectDetails.vue'
 import Basics from './components/open-proj/Basics.vue'
 import Story from './components/open-proj/Story.vue'
@@ -38,6 +39,10 @@ export default new Router({
         {
           path: ':projId',
           component: ProjectDetails
+        },
+        {
+          path: ':projId/new/:rewordId/checkout',
+          component: checkout
         },
         {
           path: ':projId/:tab',

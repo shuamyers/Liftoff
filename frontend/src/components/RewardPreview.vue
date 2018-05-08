@@ -22,7 +22,7 @@
           </v-card-title>
           <v-card-actions class="card-footer justify-center">
             <p></p>
-            <v-btn class="align-self-center reward-title mt-2 mb-2" outline flat color="blue" @click="openPerk">Get This Perk</v-btn>
+            <v-btn class="align-self-center reward-title mt-2 mb-2" outline flat color="blue" @click="emitOpenPerk">Get This Perk</v-btn>
           </v-card-actions>
         </v-card>
    </v-flex>
@@ -38,8 +38,9 @@ export default {
         },
     },
     methods: {
-        openPerk() {
-            console.log('clicked perk!')
+        emitOpenPerk() {
+            console.log('clicked perk!',this.reward.id)
+            this.$emit('openPerk', this.reward.id )
         }
     },
 

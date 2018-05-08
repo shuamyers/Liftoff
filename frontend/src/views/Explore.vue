@@ -97,9 +97,7 @@ export default {
 		changeFilter(category) {
 			this.$store.commit('setFilterByCategory', { category });
 			this.$store.dispatch(LOAD_PROJS);
-			// this.$nextTick(() => {
-			//   this.$refs.infiniteLoading.$emit("$InfiniteLoading:reset");
-			// });
+			this.$refs.infiniteLoading.$emit("$InfiniteLoading:reset");
 		}
 	},
 	computed: {

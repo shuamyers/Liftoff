@@ -107,7 +107,7 @@
                   <p class="grey--text mt-1 mb-1">Rewards</p>
                     <v-divider></v-divider>
                  <v-layout wrap>
-                 <reward-preview class="proj-reward" v-for="reward in proj.rewards" :key="reward.id" :reward="reward" >
+                 <reward-preview @openPerk="openPerk" class="proj-reward" v-for="reward in proj.rewards" :key="reward.id" :reward="reward" >
                  </reward-preview>
                </v-layout>
             </v-container>
@@ -148,6 +148,9 @@ export default {
     },
     goBack() {
       this.$router.go(-1);
+    },
+    openPerk(rewardId){
+      this.$router.push('/project/'+this.$route.params.projId+'/new/'+rewardId+'/checkout')
     }
   },
 
@@ -214,6 +217,5 @@ font-size: 17px;
 .proj-update{
   border:1px solid lightgrey;
   border-radius: 3px;
-  
 }
 </style>
