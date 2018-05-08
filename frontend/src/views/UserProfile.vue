@@ -33,14 +33,7 @@
                         <v-card-title primary-title>
                           <div class="headline">proj title</div>
                           <div>Listen to your favorite artists and albums whenever and wherever, online and offline.</div>
-
                           <v-layout justify-end row>
-                            <!-- <v-btn outline small class="hidden-sm-and-down">
-                              See more
-                            </v-btn>
-                            <v-btn block outline small class="hidden-md-and-up">
-                              See more
-                            </v-btn> -->
                             <v-btn 
                               outline 
                               small 

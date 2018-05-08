@@ -1,5 +1,5 @@
 <template>
-  <v-container grid-list-md>
+  <v-container grid-list-md v-if="proj">
     <div>
       <h1 class="display-1 my-title">Checkout</h1>
     </div>
@@ -41,7 +41,7 @@
           <v-container grid-list-md>
             <v-layout row wrap>
               <v-flex xs12 sm6>
-                <v-text-field class="my-border" v-model="shippingInfo.fullName" box label="Full Name"></v-text-field>
+                <v-text-field class="my-border" v-model="shippingInfo.fullName" autofocus box label="Full Name"></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
                 <v-text-field v-model="shippingInfo.phone" box label="Phone number"></v-text-field>
@@ -90,6 +90,8 @@
 
 <script>
 import { SET_SELECTED_PROJ } from '../store/ProjStore.js';
+import { SAVE_PLEDGE } from '../store/PledgeStore.js';
+
 export default {
 	data() {
 		return {
@@ -101,6 +103,14 @@ export default {
 				country: '',
 				city: '',
 				postalCode: ''
+			},
+			pledge: {
+				userId: '5af197f9f6d0a90aa07c3c84',
+				projId: '',
+				rewardsId: '',
+        pledgedAmount: 0,
+        userName:'normal',
+        userImg:'http://www.avglobalservices.in/img/testimonial/02.jpg',
 			}
 		};
 	},
@@ -109,12 +119,15 @@ export default {
 		const rewordId = this.$route.params.rewordId;
 		this.$store.dispatch({ type: SET_SELECTED_PROJ, projId }).then(_ => {
 			this.reward = this.proj.rewards.find(reward => reward.id === rewordId);
-			console.log('this.reward', this.reward);
+      this.pledge.pledgedAmount = this.reward.cost;
+      this.pledge.rewardsId = rewordId;
+      this.pledge.projId = projId;
 		});
 	},
 	methods: {
 		pay() {
 			console.log('paying');
+			this.$store.dispatch({ type: SAVE_PLEDGE, pledge: this.pledge });
 		}
 	},
 	computed: {

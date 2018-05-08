@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import ProjStore from './ProjStore.js'
 import UserStore from './UserStore.js'
-import PledgesStore from './Pledges.js'
+import PledgesStore from './PledgeStore.js'
 
 
 Vue.use(Vuex)

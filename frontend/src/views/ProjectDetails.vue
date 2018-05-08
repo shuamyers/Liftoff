@@ -122,6 +122,7 @@
 
 <script>
 import { SET_SELECTED_PROJ, DELETE_PROJ } from "../store/ProjStore.js";
+import {LOAD_PLEDGES_BY_USER_ID} from '../store/PledgeStore.js'
 import RewardPreview from '../components/RewardPreview'
 import ProjUpdate from '../components/ProjUpdate'
 import ProjBacker from '../components/ProjBacker'
@@ -136,6 +137,7 @@ export default {
   created() {
     const projId = this.$route.params.projId;
     this.$store.dispatch({ type: SET_SELECTED_PROJ, projId });
+    this.$store.dispatch({ type: LOAD_PLEDGES_BY_USER_ID, userId:'5af197f9f6d0a90aa07c3c84' });
   },
 
   methods: {
