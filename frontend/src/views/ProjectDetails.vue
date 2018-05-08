@@ -89,12 +89,13 @@
                     <v-tab :to="`tab-backers`"> BACKERS</v-tab>
 
                     <v-tab-item :id="`tab-story`">
-                      <p v-html="proj.story"></p>
+                      <div v-html="proj.story"></div>
                     </v-tab-item>
                     <v-tab-item :id="`tab-updates`">
                       <proj-update v-for="update in proj.updates" :key="update.userName" :update="update" class="my-flex flex-col proj-update mt-2 mb-2"></proj-update>
                     </v-tab-item>
                     <v-tab-item :id="`tab-comments`">
+                       <proj-new-comment></proj-new-comment>
                        <proj-comment v-for="comment in proj.comments" :key="comment.userName" :comment="comment" class="my-flex flex-col proj-comment mt-0 mb-0"></proj-comment>
                     </v-tab-item>
                     <v-tab-item :id="`tab-backers`">
@@ -125,6 +126,7 @@ import RewardPreview from '../components/RewardPreview'
 import ProjUpdate from '../components/ProjUpdate'
 import ProjBacker from '../components/ProjBacker'
 import ProjComment from '../components/ProjComment'
+import ProjNewComment from '../components/ProjNewComment'
 
 export default {
   data() {
@@ -179,7 +181,8 @@ export default {
     RewardPreview,
     ProjUpdate,
     ProjBacker,
-    ProjComment
+    ProjComment,
+    ProjNewComment
   }
 
 };
