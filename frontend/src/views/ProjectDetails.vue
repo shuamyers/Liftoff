@@ -107,8 +107,7 @@
                   <p class="grey--text mt-1 mb-1">Rewards</p>
                     <v-divider></v-divider>
                  <v-layout wrap>
-                 <reward-preview class="proj-reward" v-for="reward in proj.rewards" :key="reward.id" :reward="reward" >
-                 </reward-preview>
+                 <reward-preview class="proj-reward" v-for="reward in proj.rewards" :key="reward.id" :reward="reward" ></reward-preview>
                </v-layout>
             </v-container>
           </v-flex>
