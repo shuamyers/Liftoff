@@ -39,7 +39,7 @@
       <v-toolbar-title class="ml-1">
         <router-link 
           tag="img"
-          src="https://upload.wikimedia.org/wikipedia/commons/2/24/GitHub_logo_2013_padded.svg"
+          src="http://www.kinnidesign.co/images/portfolio/identity-liftoff.png"
           :to="{name: 'home'}"
           class="logo"></router-link>
       </v-toolbar-title>

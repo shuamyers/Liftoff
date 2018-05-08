@@ -1,5 +1,5 @@
-// var DB_URL = "mongodb://Admin:Admin@ds261929.mlab.com:61929/chat_app";
-var DB_URL = 'mongodb://localhost:27017/liftoff_db';
+var DB_URL = "mongodb://admin:admin@ds117730.mlab.com:17730/liftoff_db";
+// var DB_URL = 'mongodb://localhost:27017/liftoff_db';
 
 const mongo = require("mongodb");
 

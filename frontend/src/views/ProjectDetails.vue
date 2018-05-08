@@ -45,7 +45,8 @@
                     <div class="proj-status">
                         <span class="body-1 p-0"> 
                           <span class="title">${{proj.fundsRaised}}</span>
-                          <span> Raised by {{proj.pledges.length}} backers</span>  
+                          <span> Raised by 5 backers</span>  
+                          <!-- <span> Raised by {{proj.pledges.length}} backers</span>   -->
                         </span>
                         <v-progress-linear class="prog-bar" v-model="raisedPercent" color="success"></v-progress-linear>
                         <p class="ma-0"><span class="raised-percent">{{raisedPercent}}%</span> of {{proj.fundingGoal}}$ flexible goal</p>  

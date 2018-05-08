@@ -9,10 +9,7 @@ import UserProfile from './views/UserProfile.vue'
 import StartCampaign from './views/StartCampaign.vue'
 import checkout from './views/Checkout.vue'
 import ProjectDetails from './views/ProjectDetails.vue'
-import Basics from './components/open-proj/Basics.vue'
-import Story from './components/open-proj/Story.vue'
-import Rewards from './components/open-proj/Rewards.vue'
-import Items from './components/open-proj/Items.vue'
+
 
 Vue.use(Router)
 
@@ -64,25 +61,6 @@ export default new Router({
       path: '/start-campaign',
       name: 'startCampaign',
       component: StartCampaign,
-      children: [
-        {
-          path: '/basics',
-          component: Basics
-        },
-        {
-          path: '/story',
-          component: Story
-        },
-        {
-          path: '/rewards',
-          component: Rewards
-        },
-        {
-          path: '/items',
-          component: Items
-        }
-
-      ]
     },
     {
       path: '/user',
