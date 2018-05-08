@@ -39,7 +39,7 @@ export default {
 			});
 		},
 		[LOAD_PLEDGES_BY_PROJ_ID](store, { projId }) {
-			return projService.getById(projId).then(proj => {
+			return pledgesService.getById(projId).then(proj => {
 				console.log('got proj', proj);
 				store.commit({ type: 'setPledge', pledges });
 			});

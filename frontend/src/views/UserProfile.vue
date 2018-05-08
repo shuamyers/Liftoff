@@ -34,20 +34,12 @@
                           <div class="headline">proj title</div>
                           <div>Listen to your favorite artists and albums whenever and wherever, online and offline.</div>
                           <v-layout justify-end row>
-                            <v-btn 
-                              outline 
-                              small 
-                              :block="$vuetify.breakpoint.smAndDown">
+                            <v-btn outline small :block="$vuetify.breakpoint.smAndDown">
                               See more
                             </v-btn>
                           </v-layout>
                         </v-card-title>
                       </v-flex>
-
-                      <!-- <v-card-actions>
-                      <v-btn flat>Listen now</v-btn>
-                    </v-card-actions> -->
-
                     </v-layout>
                   </v-container>
                 </v-card>
@@ -57,10 +49,64 @@
           </div>
         </v-tab-item>
         <v-tab-item :id="`tab-pledge`">
-          <h1>COMMENTS</h1>
+           <div class="my-proj">
+            <v-layout row wrap>
+              <v-flex xs12>
+                <v-card color="transparent">
+                  <v-container grid-list-md>
+                    <v-layout>
+                      <v-flex xs5>
+                        <v-card-media src="https://ksr-ugc.imgix.net/assets/021/057/608/7eb31893f9290bf30a1f5d0988717312_original.jpg?w=680&fit=max&v=1525027427&auto=format&q=92&s=8d7d1c31d877d70eb58e3f270518bf41'" height="125px" contain>
+                        </v-card-media>
+                      </v-flex>
+                      <v-flex xs7>
+                        <v-card-title primary-title>
+                          <div class="headline">proj title</div>
+                          <div>Listen to your favorite artists and albums whenever and wherever, online and offline.</div>
+                          <v-layout justify-end row>
+                            <v-btn outline small :block="$vuetify.breakpoint.smAndDown">
+                              See more
+                            </v-btn>
+                          </v-layout>
+                        </v-card-title>
+                      </v-flex>
+                    </v-layout>
+                  </v-container>
+                </v-card>
+
+              </v-flex>
+            </v-layout>
+          </div>
         </v-tab-item>
         <v-tab-item :id="`tab-favorites`">
-          <h1>BACKERS</h1>
+          <div class="my-proj">
+            <v-layout row wrap>
+              <v-flex xs12>
+                <v-card color="transparent">
+                  <v-container grid-list-md>
+                    <v-layout>
+                      <v-flex xs5>
+                        <v-card-media src="https://ksr-ugc.imgix.net/assets/021/057/608/7eb31893f9290bf30a1f5d0988717312_original.jpg?w=680&fit=max&v=1525027427&auto=format&q=92&s=8d7d1c31d877d70eb58e3f270518bf41'" height="125px" contain>
+                        </v-card-media>
+                      </v-flex>
+                      <v-flex xs7>
+                        <v-card-title primary-title>
+                          <div class="headline">proj title</div>
+                          <div>Listen to your favorite artists and albums whenever and wherever, online and offline.</div>
+                          <v-layout justify-end row>
+                            <v-btn outline small :block="$vuetify.breakpoint.smAndDown">
+                              See more
+                            </v-btn>
+                          </v-layout>
+                        </v-card-title>
+                      </v-flex>
+                    </v-layout>
+                  </v-container>
+                </v-card>
+
+              </v-flex>
+            </v-layout>
+          </div>
         </v-tab-item>
       </v-tabs>
     </v-layout>
@@ -70,12 +116,17 @@
 </template>
 
 <script>
-import {LOAD_PLEDGES_BY_USER_ID} from '../store/PledgeStore.js'
+import { LOAD_PLEDGES_BY_USER_ID } from '../store/PledgeStore.js';
 
 export default {
-  created() {
-    const userId = this. this.$route.params.userId;
-		this.$store.dispatch({ type: LOAD_PLEDGES_BY_USER_ID , userId }) ;
+	created() {
+		const userId = this.$route.params.userId;
+		this.$store.dispatch({ type: LOAD_PLEDGES_BY_USER_ID, userId });
+	},
+	computed: {
+		pledges() {
+			return this.$store.getters.pledgesForDisplay;
+		}
 	}
 };
 </script>
