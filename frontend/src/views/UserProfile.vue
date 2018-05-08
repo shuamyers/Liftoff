@@ -70,7 +70,14 @@
 </template>
 
 <script>
-export default {};
+import {LOAD_PLEDGES_BY_USER_ID} from '../store/PledgeStore.js'
+
+export default {
+  created() {
+    const userId = this. this.$route.params.userId;
+		this.$store.dispatch({ type: LOAD_PLEDGES_BY_USER_ID , userId }) ;
+	}
+};
 </script>
 
 <style scoped>
