@@ -83,23 +83,23 @@
                 <v-tabs color="transparent">
                     <!-- <v-tab :to="{path:`${this.$route.params.projId}/tab-story`}">STORY</v-tab> -->
                     <!-- <v-tab :to="{path:`tab-story`,params:{projId : this.$route.params.projId}}">STORY</v-tab> -->
-                    <v-tab :to="`tab-story`">STORY</v-tab>
-                    <v-tab :to="`tab-updates`">UPDATES</v-tab>
-                    <v-tab :to="`tab-comments`">Comments</v-tab>
-                    <v-tab :to="`tab-backers`"> BACKERS</v-tab>
+                    <v-tab :to="`/project/${this.$route.params.projId}/tab-story`">STORY</v-tab>
+                    <v-tab :to="`/project/${this.$route.params.projId}/tab-updates`">UPDATES</v-tab>
+                    <v-tab :to="`/project/${this.$route.params.projId}/tab-comments`" @click="openComments">Comments</v-tab>
+                    <v-tab :to="`/project/${this.$route.params.projId}/tab-backers`" @click="openBackers"> BACKERS</v-tab>
 
-                    <v-tab-item :id="`tab-story`">
+                    <v-tab-item :id="`/project/${this.$route.params.projId}/tab-story`">
                       <div v-html="proj.story"></div>
                     </v-tab-item>
-                    <v-tab-item :id="`tab-updates`">
+                    <v-tab-item :id="`/project/${this.$route.params.projId}/tab-updates`">
                       <proj-update v-for="update in proj.updates" :key="update.userName" :update="update" class="my-flex flex-col proj-update mt-2 mb-2"></proj-update>
                     </v-tab-item>
-                    <v-tab-item :id="`tab-comments`">
-                       <proj-new-comment></proj-new-comment>
-                       <proj-comment v-for="comment in proj.comments" :key="comment.userName" :comment="comment" class="my-flex flex-col proj-comment mt-0 mb-0"></proj-comment>
+                    <v-tab-item :id="`/project/${this.$route.params.projId}/tab-comments`">
+                       <proj-new-comment :user="user" @addComment="validateComment"></proj-new-comment>
+                       <proj-comment v-if="comments.length" v-for="comment in comments" :key="comment._id" :comment="comment" class="my-flex flex-col proj-comment mt-0 mb-0"></proj-comment>
                     </v-tab-item>
-                    <v-tab-item :id="`tab-backers`">
-                       <proj-backer v-for="backer in proj.backers" :key="backer.userName" :backer="backer" class="my-flex flex-col proj-backer mt-2 mb-2"></proj-backer>
+                    <v-tab-item :id="`/project/${this.$route.params.projId}/tab-backers`">
+                       <proj-backer v-if="backers.length" v-for="backer in backers" :key="backer._id" :backer="backer" class="my-flex flex-col proj-backer mt-2 mb-2"></proj-backer>
                     </v-tab-item>
                 </v-tabs>
             </v-container>
@@ -122,22 +122,50 @@
 
 <script>
 import { SET_SELECTED_PROJ, DELETE_PROJ } from "../store/ProjStore.js";
-import {LOAD_PLEDGES_BY_PROJ_ID} from '../store/PledgeStore.js'
-import RewardPreview from '../components/RewardPreview'
-import ProjUpdate from '../components/ProjUpdate'
-import ProjBacker from '../components/ProjBacker'
-import ProjComment from '../components/ProjComment'
-import ProjNewComment from '../components/ProjNewComment'
+import {
+  LOAD_PLEDGES_BY_USER_ID,
+  LOAD_PLEDGES_BY_PROJ_ID
+} from "../store/PledgeStore.js";
+import {
+  LOAD_COMMENTS_BY_PROJ_ID,
+  SAVE_COMMENT,
+  LOAD_MORE_COMMENTS
+} from "../store/CommentStore.js";
+import RewardPreview from "../components/RewardPreview";
+import ProjUpdate from "../components/ProjUpdate";
+import ProjBacker from "../components/ProjBacker";
+import ProjComment from "../components/ProjComment";
+import ProjNewComment from "../components/ProjNewComment";
 
 export default {
   data() {
-    return {};
+    return {
+      projId: this.$route.params.projId,
+      user: {
+        _id: "5af197f9f6d0a90aa07c3c84",
+        name: "normal",
+        email: "to@gmail.com",
+        imgUrl: "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+        admin: false,
+        createdAt: 1525002800000,
+        digitalWallet: 1000
+      },
+      clicked: {
+        comments: false,
+        backers: false
+      }
+    };
   },
 
   created() {
-    const projId = this.$route.params.projId;
+    if(this.$route.params.tab === 'tab-comments'){
+      this.openComments()
+    }
+    else if(this.$route.params.tab === 'tab-backers') {
+      this.openBackers()
+    }
+    const projId = this.projId;
     this.$store.dispatch({ type: SET_SELECTED_PROJ, projId });
-    this.$store.dispatch({ type: LOAD_PLEDGES_BY_PROJ_ID, projId });
   },
 
   methods: {
@@ -151,17 +179,52 @@ export default {
           this.$router.push("/");
         });
     },
+    validateComment(commentTxt) {
+      console.log(commentTxt);
+      let comment = { projId: this.projId, user: this.user, desc: commentTxt };
+      this.$store.dispatch({ type: SAVE_COMMENT, comment });
+    },
     goBack() {
       this.$router.go(-1);
     },
-    openPerk(rewardId){
-      this.$router.push('/project/'+this.$route.params.projId+'/new/'+rewardId+'/checkout')
+    openPerk(rewardId) {
+      this.$router.push(
+        "/project/" +
+          this.$route.params.projId +
+          "/new/" +
+          rewardId +
+          "/checkout"
+      );
+    },
+    openComments() {
+      if (!this.clicked.comments) {
+        this.$store.dispatch({
+          type: LOAD_COMMENTS_BY_PROJ_ID,
+          projId: this.projId
+        });
+        this.clicked.comments = true;
+      }
+    },
+    openBackers() {
+      if(!this.clicked.backers) {
+        this.$store.dispatch({
+          type: LOAD_PLEDGES_BY_PROJ_ID,
+          projId: this.projId
+        });
+        this.clicked.backers = true;
+      }
     }
   },
 
   computed: {
     proj() {
       return this.$store.getters.selectedProj;
+    },
+    comments() {
+      return this.$store.getters.commentsForDisplay;
+    },
+    backers() {
+      return this.$store.getters.pledgesForDisplay;
     },
     raisedPercent() {
       return (this.proj.fundsRaised / this.proj.fundingGoal * 100).toFixed(0);
@@ -170,14 +233,14 @@ export default {
       var today = new Date();
       var endDate = this.proj.duration;
       var one_day = 1000 * 60 * 60 * 24;
-      return(
-        Math.ceil((endDate - today.getTime()) / one_day)
-      );
+      return Math.ceil((endDate - today.getTime()) / one_day);
     }
   },
 
   destroyed() {
     this.$store.commit({ type: "setSelectedProj", selectedProj: null });
+    this.$store.commit({ type: "setPledges", pledges: [] });
+    this.$store.commit({ type: "setComments", comments: [] });
   },
   components: {
     RewardPreview,
@@ -186,7 +249,6 @@ export default {
     ProjComment,
     ProjNewComment
   }
-
 };
 </script>
 
@@ -198,10 +260,10 @@ export default {
   align-items: baseline !important;
 }
 .my-flex {
-  display: flex
+  display: flex;
 }
-.justify-space-between{
-  justify-content: space-between
+.justify-space-between {
+  justify-content: space-between;
 }
 .clr-flex-grow {
   flex-grow: 0;
@@ -216,12 +278,12 @@ export default {
 .backme-btn {
   /* align-self: center; */
 }
-.raised-percent{
-font-weight: 700;
-font-size: 17px;
+.raised-percent {
+  font-weight: 700;
+  font-size: 17px;
 }
-.proj-update{
-  border:1px solid lightgrey;
+.proj-update {
+  border: 1px solid lightgrey;
   border-radius: 3px;
 }
 </style>
