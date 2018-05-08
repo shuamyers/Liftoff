@@ -1,5 +1,4 @@
 <template>
-  
    <v-flex  xs12 sm12 md12 wrap >
         <!-- <h1>{{reward}}}</h1> -->
         <v-card class="ma-2">
@@ -26,7 +25,6 @@
           </v-card-actions>
         </v-card>
    </v-flex>
-  
 </template>
 
 <script>

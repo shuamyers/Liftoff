@@ -17,6 +17,7 @@
 		"duration": 1527022800000,
 		"updates": [
 			{
+				"id": ObjectId(),
 				"createdAt": 1525002800000,
 				"userId":  ObjectId("5af197f9f6d0a90aa07c3c85"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
@@ -24,6 +25,7 @@
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat."
 			},
 			{
+				"id": ObjectId(),
 				"createdAt": 1525002800000,
 				"userId":  ObjectId("5af197f9f6d0a90aa07c3c85"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
