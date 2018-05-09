@@ -36,12 +36,19 @@
 </template>
 
 <script>
+import EventBusService,{ CLEAR_COMMET } from '../services/EventBusService.js'
 export default {
   props: {
     user: {
         type: Object,
         required:true
     },
+  },
+  created() {
+    EventBusService.$on(CLEAR_COMMET, ()=> {
+      this.commentTxt = "";
+      this.onComment = false;
+    })
   },
   data() {
     return {

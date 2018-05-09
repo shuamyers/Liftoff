@@ -33,6 +33,18 @@
             <v-flex xs12 wrap>
               <v-container class="proj-edit-header" grid-list-md text-xl-left>
                   <v-layout wrap justify-content>
+                      <v-flex xs12 wrap class="edit-menu-horizantal">
+                          <div class="ml-2 my-flex">
+                          <div class="labels-wrapper-horizantal">
+                              <!-- <p class="title-label ma-0 mb-1" >Contents</p> -->
+                              <div class="my-flex ">
+                                  <p class="edit-label ma-0 mr-1" v-for="(type,idx) in editType" :key="type.title"
+                                  @click="labelChosen(type,idx)" :class="{currLabel: idx === activeLabel}">{{type.title}}
+                                  </p>         
+                              </div>
+                           </div>                 
+                        </div>
+                      </v-flex>
                       <v-flex xs12 sm10 md10 wrap class="">
 
                         <div v-for="(type,idx) in editType" :key="type.title"
@@ -46,12 +58,14 @@
                         </div>
                       </v-flex>
                       <v-flex xs12 sm2 md2 wrap class="my-flex flex-row edit-menu flex-end" style="height:100%">
-                        <div class="seperate-line"></div>
+                        <!-- <div class="seperate-line"></div> -->
                         <div class="ml-2 my-flex flex-col">
-                          <p class="title-label ma-0 mb-1" >Contents</p>
-                          <p class="edit-label ma-0 mb-1" v-for="(type,idx) in editType" :key="type.title"
-                           @click="labelChosen(type,idx)" :class="{currLabel: idx === activeLabel}">{{type.title}}
-                           </p>                          
+                          <div class="labels-wrapper">
+                              <p class="title-label ma-0 mb-1" >Contents</p>
+                              <p class="edit-label ma-0 mb-1" v-for="(type,idx) in editType" :key="type.title"
+                              @click="labelChosen(type,idx)" :class="{currLabel: idx === activeLabel}">{{type.title}}
+                              </p>         
+                           </div>                 
                         </div>
                       </v-flex>
                   </v-layout>
@@ -87,7 +101,7 @@ export default {
         { title: "Basics", icon: "dashboard", to: "basics" },
         { title: "Story", icon: "question_answer", to: "story" },
         { title: "Rewards", icon: "question_answer", to: "rewards" },
-        { title: "Items", icon: "question_answer", to: "items" }
+        { title: "Items", icon: "question_answer", to: "items" },
       ],
       mini: true,
       activeLabel: 1
@@ -148,22 +162,22 @@ export default {
 .flex-end {
   justify-content: flex-end;
 }
-.seperate-line {
-  height: 120px;
+/* .seperate-line {
+  height: 100%;
   width: 3px;
   background-color: rgb(32, 138, 224);
   border-radius: 7px;
-}
+} */
 .edit-label {
   cursor: pointer;
   color: grey;
-  font-size: 13px;
+  font-size: 16px;
 }
 .currLabel {
   color: rgb(32, 138, 224);
 }
 .title-label {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
 }
 .edit-label:hover {
@@ -173,4 +187,31 @@ export default {
   position: sticky;
   top: 100px;
 }
+.edit-menu-horizantal {
+  position: sticky;
+  /* top: 60px; */
+  top: 0;
+  z-index: 5;
+}
+.labels-wrapper {
+  padding-left: 20px;
+  border-left: 4px solid rgb(32, 138, 224);
+  border-radius: 6px;
+}
+.labels-wrapper-horizantal {
+  padding-bottom: 5px;
+   border-bottom: 4px solid rgb(32, 138, 224);
+  border-radius: 6px; 
+}
+
+
+/* .labels-wrapper-horizantal:before, .labels-wrapper-horizantal:after {
+    content: "";
+    height: 1px;
+background: linear-gradient(to right,  rgba(0,0,0,0) 0%,rgba(147,147,147,1) 50%,rgba(0,0,0,0) 100%);
+
+display: block;
+margin-bottom: 10px;
+    margin-top: 10px;
+} */
 </style>

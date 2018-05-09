@@ -85,8 +85,8 @@
                     <!-- <v-tab :to="{path:`tab-story`,params:{projId : this.$route.params.projId}}">STORY</v-tab> -->
                     <v-tab :to="`/project/${this.$route.params.projId}/tab-story`">STORY</v-tab>
                     <v-tab :to="`/project/${this.$route.params.projId}/tab-updates`">UPDATES</v-tab>
-                    <v-tab :to="`/project/${this.$route.params.projId}/tab-comments`" @click="openComments">Comments</v-tab>
-                    <v-tab :to="`/project/${this.$route.params.projId}/tab-backers`" @click="openBackers"> BACKERS</v-tab>
+                    <v-tab :to="`/project/${this.$route.params.projId}/tab-comments`" @click="loadComments">Comments</v-tab>
+                    <v-tab :to="`/project/${this.$route.params.projId}/tab-backers`" @click="loadBackers"> BACKERS</v-tab>
 
                     <v-tab-item :id="`/project/${this.$route.params.projId}/tab-story`">
                       <div v-html="proj.story"></div>
@@ -131,6 +131,7 @@ import {
   SAVE_COMMENT,
   LOAD_MORE_COMMENTS
 } from "../store/CommentStore.js";
+import EventBusService,{ CLEAR_COMMET } from '../services/EventBusService.js'
 import RewardPreview from "../components/RewardPreview";
 import ProjUpdate from "../components/ProjUpdate";
 import ProjBacker from "../components/ProjBacker";
@@ -143,9 +144,9 @@ export default {
       projId: this.$route.params.projId,
       user: {
         _id: "5af197f9f6d0a90aa07c3c84",
-        name: "normal",
+        name: "Borat",
         email: "to@gmail.com",
-        imgUrl: "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
+        imgUrl: "http://www.yosmusic.com/images/articles/big/borat3-b.jpg",
         admin: false,
         createdAt: 1525002800000,
         digitalWallet: 1000
@@ -159,10 +160,10 @@ export default {
 
   created() {
     if(this.$route.params.tab === 'tab-comments'){
-      this.openComments()
+      this.loadComments()
     }
     else if(this.$route.params.tab === 'tab-backers') {
-      this.openBackers()
+      this.loadBackers()
     }
     const projId = this.projId;
     this.$store.dispatch({ type: SET_SELECTED_PROJ, projId });
@@ -182,7 +183,10 @@ export default {
     validateComment(commentTxt) {
       console.log(commentTxt);
       let comment = { projId: this.projId, user: this.user, desc: commentTxt };
-      this.$store.dispatch({ type: SAVE_COMMENT, comment });
+      this.$store.dispatch({ type: SAVE_COMMENT, comment })
+      .then(_ => {
+        EventBusService.$emit(CLEAR_COMMET);
+      })
     },
     goBack() {
       this.$router.go(-1);
@@ -196,7 +200,7 @@ export default {
           "/checkout"
       );
     },
-    openComments() {
+    loadComments() {
       if (!this.clicked.comments) {
         this.$store.dispatch({
           type: LOAD_COMMENTS_BY_PROJ_ID,
@@ -205,7 +209,7 @@ export default {
         this.clicked.comments = true;
       }
     },
-    openBackers() {
+    loadBackers() {
       if(!this.clicked.backers) {
         this.$store.dispatch({
           type: LOAD_PLEDGES_BY_PROJ_ID,
