@@ -58,6 +58,11 @@ export default new Router({
       component: UserConnect
     },
     {
+      path: '/logout',
+      name: 'logout',
+      component: UserConnect
+    },
+    {
       path: '/start-campaign',
       name: 'startCampaign',
       component: StartCampaign,
