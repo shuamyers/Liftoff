@@ -20,7 +20,7 @@
                         prepend-icon="lock" 
                         label="Password" 
                         type="password"
-                        v-model="user.password"></v-text-field>
+                        v-model="user.pass"></v-text-field>
                 </v-form>
             </v-card-text>
             <v-card-actions>
@@ -28,7 +28,7 @@
                 <v-btn 
                     outline 
                     color="primary"
-                    type="submit">Sign up</v-btn>
+                    @click="register">Sign up</v-btn>
             </v-card-actions>
 
         </v-card>
@@ -38,15 +38,29 @@
 </template>
 
 <script>
+import { REGISTER } from "../store/UserStore.js";
+
 export default {
   data() {
     return {
       user: {
         name: null,
         email: null,
-        password: null
+        pass: null
       }
     };
+  },
+  methods: {
+    register() {
+      this.$store
+        .dispatch({type: REGISTER, registerDetails: this.user})
+        .then(() => {
+          this.$router.push({ name: "home" });
+        })
+        .catch(err => {
+           throw new Error("Registration Failed");
+        })
+    }
   }
 };
 </script>

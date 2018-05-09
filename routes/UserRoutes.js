@@ -1,29 +1,31 @@
-var UserService = require('../services/UserService')
+const UserService = require('../services/UserService');
 
 module.exports = app => {
-  app.post('/login', (req, res) => {
 
+  app.post('/login', (req, res) => {
+    if (req.session.user) {
+      res.json(req.session.user);
+    }
     const user = req.body;
     UserService.checkLogin(user).then(userFromDB => {
-      console.log('userFromDB', userFromDB)
       if (userFromDB) {
-        console.log('Login!', req.session);
-        delete userFromDB.password;
+        delete userFromDB.pass;
         req.session.user = userFromDB;
-
-        res.json({ token: 'Beareloginr: puk115th@b@5t', user: userFromDB });
+        res.json(userFromDB);
       } else {
-        console.log('Login NOT Successful');
         req.session.user = null;
-        res.status(403).send({ error: 'Login failed!' });
       }
-    });
+    }).catch(err => res.status(403).send({ error: `Login failed, ERROR:${err}` }));
   });
 
   app.post('/register', (req, res) => {
-    var user = req.body;
+    const user = req.body;
     UserService.addUser(user)
-      .then(addedUser => res.json(addedUser))
+      .then(addedUser => {
+        delete addedUser.pass;
+        req.session.user = addedUser;
+        res.json(addedUser);
+      })
       .catch(err => res.status(403).send({ error: `Register failed, ERROR:${err}` }));
   });
 
@@ -32,10 +34,8 @@ module.exports = app => {
     res.end('Loggedout');
   });
 
-  app.get('/profile', isLoggedIn, (req, res) => {
-    res.end(`Profile of ${req.session.user.name}`);
-  });
+  // app.get('/profile', isLoggedIn, (req, res) => {
+  //   res.end(`Profile of ${req.session.user.name}`);
+  // });
 
 };
-
-

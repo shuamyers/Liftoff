@@ -1,6 +1,4 @@
-import axios from "axios"
-
-const PROJ_URL = 'http://localhost:3000/proj';
+const BASE_URL = 'http://localhost:3000/proj';
 
 function query(criteria = '') {
     criteria = flattenNestedObj(criteria);
@@ -10,7 +8,7 @@ function query(criteria = '') {
         .map(key => key + '=' + criteria[key])
         .join('&')
     return axios
-        .get(PROJ_URL + '?' + criteria)
+        .get(BASE_URL + '?' + criteria)
         .then(res => {
             return res.data;
         })
@@ -33,7 +31,7 @@ function flattenNestedObj(obj) {
 
 function saveProj(proj) {
     if (proj._id) return axios.put(_getProjUrl(proj._id), proj)
-    else return axios.post(PROJ_URL, proj);
+    else return axios.post(BASE_URL, proj);
 }
 
 function deleteProj(projId) {
@@ -49,7 +47,7 @@ function getById(projId) {
 
 
 function _getProjUrl(projId) {
-    return `${PROJ_URL}/${projId}`;
+    return `${BASE_URL}/${projId}`;
 }
 
 export default {

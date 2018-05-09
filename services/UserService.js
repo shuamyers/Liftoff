@@ -1,59 +1,57 @@
 const mongo = require('mongodb');
-var DBService = require('./DBService');
+const DBService = require('./DBService');
+
+const COLLECTION_NAME = 'user';
 
 function checkLogin (user) {
   return new Promise((resolve, reject) => {
-    console.log('check login user!',user)
     DBService.dbConnect().then(db => {
       db
-        .collection('user')
+        .collection(COLLECTION_NAME)
         .findOne({ email: user.email, pass: user.pass }, (
           err,
           userFromDB
         ) => {
           if (err) reject(err)
-          else resolve(userFromDB)
+          else resolve(userFromDB);
           db.close();
         });
     });
   });
 };
 
-function validateDetails(user) {
-  console.log(user);
-  return user.name !== 'puki';
-}
-
-function addUser (user ) {
+function addUser (user) {
+  user.admin = false;
+  user.createdAt = Date.now();
   return new Promise((resolve, reject) => {
-    let isValidate = validateDetails(user);
+    const isValidate = validateDetails(user);
     if (!isValidate) reject('Validate failed!');
     DBService.dbConnect().then(db => {
       db
-        .collection('user')
-        .findOne({ name: user.email }, (err, userFromDB) => {
-          // If name is already used!
+        .collection(COLLECTION_NAME)
+        .findOne({ email: user.email }, (err, userFromDB) => {
           if (userFromDB) {
-            console.log('Email is already used!');
             reject('Email is already used!');
             db.close();
           } else {
-            db.collection('user').insert(user, (err, res) => {
+            db.collection(COLLECTION_NAME).insert(user, (err, res) => {
               if (err) reject(err);
-              else resolve(res.ops);
+              else{
+                resolve(res.ops[0]);
+              } 
               db.close();
             });
           }
-          
         });
     });
   });
 };
 
+function validateDetails(user) {
+  return user.name !== 'puki';
+}
+
 module.exports = {
  checkLogin,
  addUser
 }
-
-
-

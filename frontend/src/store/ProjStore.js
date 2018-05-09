@@ -99,7 +99,6 @@ export default {
 
     [SET_SELECTED_PROJ](store, { projId }) {
       return projService.getById(projId).then(proj => {
-        console.log("got proj", proj);
         store.commit({ type: "setSelectedProj", proj });
       });
     },

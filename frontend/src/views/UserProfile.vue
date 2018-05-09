@@ -14,7 +14,7 @@
       </v-flex>
     </v-layout>
     <v-layout justify-center align-center class="mt-5 white">
-      <v-tabs color="transparent" grow centered v-tabs-item>
+      <v-tabs color="transparent" grow centered>
         <v-tab :to="`tab-my-proj`">My Projects</v-tab>
         <v-tab :to="`tab-pledge`">My Pledgs</v-tab>
         <v-tab :to="`tab-favorites`"> Favorites</v-tab>

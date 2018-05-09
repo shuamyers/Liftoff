@@ -15,7 +15,7 @@
                         prepend-icon="lock" 
                         label="Password" 
                         type="password"
-                        v-model="user.password"></v-text-field>
+                        v-model="user.pass"></v-text-field>
                 </v-form>
             </v-card-text>
             <v-card-actions>
@@ -23,7 +23,7 @@
                 <v-btn 
                     outline 
                     color="primary"
-                    type="submit">Log in</v-btn>
+                    @click="checkLogin">Log in</v-btn>
             </v-card-actions>
 
         </v-card>
@@ -33,14 +33,28 @@
 </template>
 
 <script>
+import { LOGIN } from "../store/UserStore.js";
+
 export default {
   data() {
     return {
       user: {
         email: null,
-        password: null
+        pass: null
       }
     };
+  },
+  methods: {
+    checkLogin() {
+      this.$store
+        .dispatch({ type: LOGIN, userCredentials: this.user })
+        .then(() => {
+          this.$router.push({ name: "home" });
+        })
+        .catch(err => {
+          throw new Error("Login Failed");
+        });
+    }
   }
 };
 </script>

@@ -7,7 +7,6 @@ module.exports = app => {
   //ADD
   app.post(PROJ_URL, (req, res) => {
     const proj = req.body;
-    console.log("newProj", proj);
     // proj.userId = req.session.user._id;
     ProjService.add(proj).then(addedProj => {
       res.json(addedProj);
@@ -34,7 +33,6 @@ module.exports = app => {
   // Update
   app.put(PROJ_URL, (req, res) => {
     const proj = req.body;
-    console.log('proj', proj)
     if (!proj._id) res.status(500).send("You have to bring me Proj Object.");
     ProjService.update(proj)
       .then(_ => res.json())
