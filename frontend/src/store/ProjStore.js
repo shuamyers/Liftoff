@@ -5,6 +5,7 @@ export const SAVE_PROJ = 'saveProj';
 export const SET_SELECTED_PROJ = 'setSelectedProj';
 export const DELETE_PROJ = 'deleteProj';
 export const LOAD_MORE_PROJS = 'loadMoreProjs';
+export const UPDATE_FUNDS_RAISED = 'updateFundsRaised';
 
 function _addFavoriteToProj(proj, user) {
 	var userLikes = [
@@ -62,6 +63,9 @@ export default {
 		setSelectedProj(state, { proj }) {
 			state.selectedProj = proj;
 		},
+		updateFundsRaised(state, { fundsRaised }) {
+			state.selectedProj.fundsRaised = fundsRaised;
+		},
 		setNumOfProjs(state, { projs }) {
 			state.numOfProjs = projs.length;
 		},
@@ -83,7 +87,8 @@ export default {
 		setFilterByCategory(state, { category }) {
 			console.log(category);
 			state.filterBy.category = category;
-		}
+		},
+
 	},
 	actions: {
 		[LOAD_PROJS](store) {
@@ -144,6 +149,12 @@ export default {
 			projService.deleteProj(projId).then(_ => {
 				store.commit({ type: 'deleteProj', projId });
 			});
-		}
+		},
+		[UPDATE_FUNDS_RAISED](store,{proj}){
+			projService.updateFundsRaised(proj) 
+			.then(projDb => {
+			  store.commit({type: 'updateFundsRaised', fundsRaised: projDb.fundsRaised});
+			})
+		 } 
 	}
 };

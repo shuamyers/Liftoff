@@ -55,7 +55,7 @@ export default {
     },
     computed: {
         procentRasied() {
-            return (this.proj.fundsRaised/this.proj.fundingGoal)*100
+            return ((this.proj.fundsRaised/this.proj.fundingGoal)*100).toFixed(0);
         }
     },
 

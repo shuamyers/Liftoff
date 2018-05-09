@@ -28,6 +28,12 @@ module.exports = app => {
       })
       .catch(err => res.status(403).send({ error: `Register failed, ERROR:${err}` }));
   });
+  app.put('/updateWallet', (req, res) => {
+    var user = req.body;
+    UserService.updateWallet(user)
+      .then(updatedUser => res.json(updatedUser))
+      .catch(err => res.status(403).send({ error: `Register failed, ERROR:${err}` }));
+  });
 
   app.post('/logout', (req, res) => {
     req.session.reset();

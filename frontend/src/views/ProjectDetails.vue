@@ -1,60 +1,59 @@
 <template>
   <section class="project-details">
-    <!-- <v-btn  :to="{name: 'explore'}">Go Back</v-btn> -->
-    <!-- <v-btn color="error" @click="deleteProj">Delete Proj</v-btn> -->
-    <v-container v-if="proj" grid-list-md text-xl-center style="max-width:1200px">
-      <!-- Start Of Proj Main! -->
-      <v-layout class="proj-main" wrap justify-content>
-        <v-flex xs12 sm7 md7 wrap>
-          <v-container grid-list-md text-xs-center class="proj-main-media" style="width:100%;">
-            <v-carousel style="max-height:500px">
-              <v-carousel-item v-for="(item,i) in proj.projImgUrls" :key="i" :src="item">
-              </v-carousel-item>
-            </v-carousel>
-          </v-container>
-        </v-flex>
-        <v-flex xs12 sm5 md5 wrap>
-          <v-container grid-list-md text-xs-left style="height:100%">
-            <v-layout justify-space-between class="proj-main-info flex-col flex-baseline" style="height:100%">
-              <div class="upper-content">
-                <p class="grey--text mt-1 mb-1">Funding</p>
-                <v-divider class="clr-flex-grow"></v-divider>
-                <p class=" display-1 mt-2 mb-2">{{proj.title}}</p>
-                <p class="grey--text proj-tagline inset mt-2">{{proj.tagLine}}</p>
-                <v-layout class="mb-4" wrap justify-space-between style="width:100%">
-                  <div class="proj-owner">
-                    <span class="body-2">PROJECT OWNER</span>
-                    <v-list-tile avatar :key="proj.title" class="">
-                      <v-list-tile-avatar>
-                        <img :src="proj.owner.avatarUrl">
-                      </v-list-tile-avatar>
-                      <v-list-tile-content>
-                        <v-list-tile-title>{{proj.owner.name}}</v-list-tile-title>
-                        <v-list-tile-sub-title>{{proj.owner.location}}</v-list-tile-sub-title>
-                      </v-list-tile-content>
-                    </v-list-tile>
-                  </div>
-                  <div class="time-left">
-                    <p class="body-2 mb-0">Days left</p>
-                    <v-progress-circular :size="50" :width="7" :rotate="360" :value="(daysLeft/30)*100" color="teal">
-                      {{proj.duration | daysRemaining}}
-                    </v-progress-circular>
-                  </div>
-                </v-layout>
-              </div>
-              <div class="proj-status">
-                <span class="body-1 p-0">
-                  <span class="title">${{proj.fundsRaised}}</span>
-                  <span> Raised by 5 backers</span>
-                  <!-- <span> Raised by {{proj.pledges.length}} backers</span>   -->
-                </span>
-                <v-progress-linear class="prog-bar" v-model="raisedPercent" color="success"></v-progress-linear>
-                <p class="ma-0">
-                  <span class="raised-percent">{{raisedPercent}}%</span> of {{proj.fundingGoal}}$ flexible goal</p>
-                <p class="caption">All or nothing. This project will only be funded if it reaches its goal by {{new Date(proj.duration).toLocaleString()}}</p>
-                <v-btn large color="primary backme-btn" @click="dialog = true ">Back Me Up!</v-btn>
-              </div>
-              <!-- <v-layout>            
+      <!-- <v-btn  :to="{name: 'explore'}">Go Back</v-btn> -->
+      <!-- <v-btn color="error" @click="deleteProj">Delete Proj</v-btn> -->
+      <v-container v-if="proj" grid-list-md text-xl-center style="max-width:1200px">
+        <!-- Start Of Proj Main! -->
+        <v-layout class="proj-main" wrap justify-content>
+          <v-flex xs12 sm7 md7 wrap>
+            <v-container grid-list-md text-xs-center class="proj-main-media" style="width:100%;">   
+              <v-carousel style="max-height:500px">
+                <v-carousel-item  v-for="(item,i) in proj.projImgUrls" :key="i" :src="item">
+                </v-carousel-item>
+              </v-carousel>
+            </v-container>
+          </v-flex>
+          <v-flex xs12 sm5 md5 wrap>
+            <v-container grid-list-md text-xs-left  style="height:100%"> 
+              <v-layout justify-space-between class="proj-main-info flex-col flex-baseline" style="height:100%">
+                <div class="upper-content">
+                    <p class="grey--text mt-1 mb-1">Funding</p>
+                    <v-divider class="clr-flex-grow"></v-divider>
+                    <p class=" display-1 mt-2 mb-2">{{proj.title}}</p>    
+                    <p class="grey--text proj-tagline inset mt-2">{{proj.tagLine}}</p> 
+                    <v-layout class="mb-4" wrap justify-space-between style="width:100%">
+                          <div class="proj-owner">
+                             <span class="body-2">PROJECT OWNER</span>
+                             <v-list-tile avatar :key="proj.title" class="">
+                              <v-list-tile-avatar>
+                                <img :src="proj.owner.avatarUrl">
+                              </v-list-tile-avatar>
+                              <v-list-tile-content>
+                                <v-list-tile-title >{{proj.owner.name}}</v-list-tile-title>
+                                <v-list-tile-sub-title>{{proj.owner.location}}</v-list-tile-sub-title>
+                              </v-list-tile-content>
+                            </v-list-tile>
+                          </div>
+                          <div class="time-left">
+                                <p class="body-2 mb-0">Days left</p>
+                                <v-progress-circular :size="50" :width="7" :rotate="360" :value="(daysLeft/30)*100" color="teal">
+                                   {{daysLeft}}
+                                </v-progress-circular>
+                          </div>            
+                    </v-layout>
+                    </div>
+                    <div class="proj-status">
+                        <span class="body-1 p-0"> 
+                          <span class="title">${{proj.fundsRaised}}</span>
+                          <span> Raised by {{backers.length}} backers</span>  
+                          <!-- <span> Raised by {{proj.pledges.length}} backers</span>   -->
+                        </span>
+                        <v-progress-linear class="prog-bar" v-model="raisedPercent" color="success"></v-progress-linear>
+                        <p class="ma-0"><span class="raised-percent">{{raisedPercent}}%</span> of {{proj.fundingGoal}}$ flexible goal</p>  
+                        <p class="caption">All or nothing. This project will only be funded if it reaches its goal by {{new Date(proj.duration).toLocaleString()}}</p>
+                        <v-btn large color="primary backme-btn" @click="dialog = true ">Back Me Up!</v-btn>
+                    </div>
+                    <!-- <v-layout>            
                        <v-icon color="info">fab fa-facebook-f</v-icon>
                        <v-icon>fab fa-twitter</v-icon>
                     </v-layout> -->
@@ -158,35 +157,29 @@ import ProjComment from '../components/ProjComment';
 import ProjNewComment from '../components/ProjNewComment';
 
 export default {
-	data() {
-		return {
-			projId: this.$route.params.projId,
-			user: {
-				_id: '5af197f9f6d0a90aa07c3c84',
-				name: 'Borat',
-				email: 'to@gmail.com',
-				imgUrl: 'http://www.yosmusic.com/images/articles/big/borat3-b.jpg',
-				admin: false,
-				createdAt: 1525002800000,
-				digitalWallet: 1000
-			},
-			clicked: {
-				comments: false,
-				backers: false
+  data() {
+    // console.log(filters)
+    return {
+      projId: this.$route.params.projId,
+      clicked: {
+        comments: false,
+        backers: false
       },
-       dialog: false
-		};
-	},
+      dialog:false
+    };
+  },
 
-	created() {
-		if (this.$route.params.tab === 'tab-comments') {
-			this.loadComments();
-		} else if (this.$route.params.tab === 'tab-backers') {
-			this.loadBackers();
-		}
-		const projId = this.projId;
-		this.$store.dispatch({ type: SET_SELECTED_PROJ, projId });
-	},
+  created() {
+    this.loadBackers();
+    if(this.$route.params.tab === 'tab-comments'){
+      this.loadComments()
+    }
+    // else if(this.$route.params.tab === 'tab-backers') {
+    //   this.loadBackers()
+    // }
+    const projId = this.projId;
+    this.$store.dispatch({ type: SET_SELECTED_PROJ, projId });
+  },
 
 	methods: {
 		edit() {
@@ -238,26 +231,30 @@ export default {
 		}
 	},
 
-	computed: {
-		proj() {
-			return this.$store.getters.selectedProj;
-		},
-		comments() {
-			return this.$store.getters.commentsForDisplay;
-		},
-		backers() {
-			return this.$store.getters.pledgesForDisplay;
-		},
-		raisedPercent() {
-			return (this.proj.fundsRaised / this.proj.fundingGoal * 100).toFixed(0);
-		},
-		daysLeft() {
-			var today = new Date();
-			var endDate = this.proj.duration;
-			var one_day = 1000 * 60 * 60 * 24;
-			return Math.ceil((endDate - today.getTime()) / one_day);
-		}
-	},
+  computed: {
+    proj() {
+      return this.$store.getters.selectedProj;
+    },
+    user() {
+      return this.$store.getters.loggedInUser;
+    },
+    comments() {
+      return this.$store.getters.commentsForDisplay;
+    },
+    backers() {
+      return this.$store.getters.pledgesForDisplay;
+    },
+    raisedPercent() {
+      return (this.proj.fundsRaised / this.proj.fundingGoal * 100).toFixed(0);
+    },
+    daysLeft() {
+      var today = new Date();
+      var endDate = this.proj.duration;
+      var one_day = 1000 * 60 * 60 * 24;
+      var daysLeft = Math.ceil((endDate - today.getTime()) / one_day);
+      return (daysLeft > 0) ? daysLeft : 0;
+      }
+  },
 
 	destroyed() {
 		this.$store.commit({ type: 'setSelectedProj', selectedProj: null });

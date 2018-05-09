@@ -3,7 +3,7 @@ const DBService = require('./DBService');
 
 const COLLECTION_NAME = 'user';
 
-function checkLogin (user) {
+function checkLogin(user) {
   return new Promise((resolve, reject) => {
     DBService.dbConnect().then(db => {
       db
@@ -18,7 +18,7 @@ function checkLogin (user) {
         });
     });
   });
-};
+}
 
 function addUser (user) {
   user = (createNewUser(user));
@@ -58,6 +58,33 @@ function createNewUser(user) {
     favourites: []
   }
 }
+function updateWallet(user) {
+  return new Promise((resolve, reject) => {
+    // let isValidate = validateDetails(user);
+    // if (!isValidate) reject('Validate failed!');
+    user._id = new mongo.ObjectID(user._id);
+    DBService.dbConnect().then(db => {
+      db.collection("user").updateOne(
+        { _id: user._id },
+        {
+          $inc: {
+            digitalWallet: user.diff
+          }
+        },
+        (err, updatedInfo) => {
+          if (err) reject(err);
+          else{
+            db.collection("user").findOne({ _id: user._id },{digitalWallet:1,_id:0}, (err, updatedUserFromDB) => {
+              // console.log('updated user!',updatedUserFromDB)
+              resolve(updatedUserFromDB);
+            })
+          }
+          db.close();
+        }
+      );
+    });
+  });
+}
 
 function validateDetails(user) {
   return user.name !== 'puki';
@@ -65,5 +92,6 @@ function validateDetails(user) {
 
 module.exports = {
  checkLogin,
- addUser
+ addUser,
+ updateWallet
 }

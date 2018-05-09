@@ -3,6 +3,8 @@ import UserService from '../services/UserService.js'
 export const LOGIN = "login";
 export const LOGOUT = "logout";
 export const REGISTER = "register";
+export const UPDATE_WALLET_DIFF = "update-wallaet-diff";
+
 
 export default {
   state: {
@@ -16,6 +18,9 @@ export default {
   mutations: {
     setUser(state, { user }) {
       state.loggedInUser = user;
+    },
+    updateWallet(state,{walletVal}){
+      state.loggedInUser.digitalWallet = walletVal;
     }
   },
   actions: {
@@ -37,6 +42,12 @@ export default {
         .then(() => {
           store.commit({ type: 'setUser', user: null });
         })
-    }
+    },
+    [UPDATE_WALLET_DIFF](store,{user}){
+      UserService.updateWallet(user) 
+      .then(userDb => {
+        store.commit({type: 'updateWallet', walletVal: userDb.digitalWallet});
+      })
+   } 
   }
 }

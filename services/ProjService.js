@@ -111,10 +111,39 @@ function query(criteria) {
 	});
 }
 
+function updateFundsRaised(proj) {
+  return new Promise((resolve, reject) => {
+    // let isValidate = validateDetails(user);
+    // if (!isValidate) reject('Validate failed!');
+    proj._id = new mongo.ObjectID(proj._id);
+    DBService.dbConnect().then(db => {
+      db.collection("proj").updateOne(
+        { _id: proj._id },
+        {
+          $inc: {
+            fundsRaised: proj.diff
+          }
+        },
+        (err, updatedInfo) => {
+          if (err) reject(err);
+          else{
+            db.collection("proj").findOne({ _id: proj._id },{fundsRaised:1,_id:0}, (err, updatedUserFromDB) => {
+              // console.log('updated user!',updatedUserFromDB)
+              resolve(updatedUserFromDB);
+            })
+          }
+          db.close();
+        }
+      );
+    });
+  });
+}
+
 module.exports = {
-	query,
-	add,
-	remove,
-	update,
-	getById
+  query,
+  add,
+  remove,
+  update,
+  getById,
+  updateFundsRaised
 };
