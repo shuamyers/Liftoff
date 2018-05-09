@@ -2,14 +2,14 @@
   {
     "name": "admin",
     "email": "admin@admin.com",
-    "password": "123",
+    "pass": "123",
     "admin": true,
     "createdAt": 1525002800000
   },
   {
     "name": "demo",
     "email": "demo@demo.com",
-    "password": "123",
+    "pass": "123",
     "admin": false,
     "createdAt": 1525002800000
   }
