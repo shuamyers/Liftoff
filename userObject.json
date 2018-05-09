@@ -3,16 +3,31 @@
     "name": "user",
     "email": "user@user.com",
     "pass": "1234",
-    "admin": false,
+    "isAdmin": false,
     "createdAt": 1525002800000,
-    "digitalWallet": 1000
+    "imgUrl": "http://www.avglobalservices.in/img/testimonial/02.jpg",
+    "digitalWallet": 1000,
+    "favourites": [
+      {
+        "projId": "5af1a19df6d0a90aa07c403a"
+      }
+    ]
   },
   {
     "name": "admin",
     "email": "admin@admin.com",
     "pass": "1234",
-    "admin": true,
+    "isAdmin": true,
     "createdAt": 1525002800000,
-    "digitalWallet": 1000
+    "imgUrl": "http://www.avglobalservices.in/img/testimonial/02.jpg",
+    "digitalWallet": 1000,
+    "favourites": [
+      {
+        "projId": "5af1a1cef6d0a90aa07c4088"
+      },
+      {
+        "projId": "af1a19df6d0a90aa07c403b"
+      }
+    ]
   }
 ]

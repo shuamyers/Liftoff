@@ -42,10 +42,14 @@ export default {
             type: Object,
             required:true
         },
+        favorite:{
+             type: Boolean,
+             default:false
+        }
     },
     data() {
         return {
-            favorite: false
+          
         }
     },
     methods: {

@@ -21,9 +21,7 @@ function checkLogin (user) {
 };
 
 function addUser (user) {
-  user.admin = false;
-  user.createdAt = Date.now();
-  user.digitalWallet = 1000;
+  user = (createNewUser(user));
   return new Promise((resolve, reject) => {
     const isValidate = validateDetails(user);
     if (!isValidate) reject('Validate failed!');
@@ -47,6 +45,19 @@ function addUser (user) {
     });
   });
 };
+
+function createNewUser(user) {
+  return {
+    name: user.name,
+    email: user.email,
+    pass: user.pass,
+    isAdmin: false,
+    createdAt: Date.now(),
+    imgUrl: 'http://www.avglobalservices.in/img/testimonial/02.jpg',
+    digitalWallet: 1000,
+    favourites: []
+  }
+}
 
 function validateDetails(user) {
   return user.name !== 'puki';
