@@ -6,6 +6,25 @@ export const SET_SELECTED_PROJ = 'setSelectedProj';
 export const DELETE_PROJ = 'deleteProj';
 export const LOAD_MORE_PROJS = 'loadMoreProjs';
 
+function _addFavoriteToProj(proj) {
+	var userLikes = [
+		{ projId: '5af1a19df6d0a90aa07c403a' },
+		{ projId: '5af1a19df6d0a90aa07c403b' }
+	];
+	var index = userLikes.findIndex(like => {
+		return like.projId === proj._id;
+	});
+	return proj;
+}
+
+function _checkIfFavorite(projs) {
+	console.log(projs);
+	var newProjs = projs.map(proj => {
+		return _addFavoriteToProj(proj);
+	});
+	return newProjs;
+}
+
 export default {
 	state: {
 		projs: [],
@@ -30,6 +49,7 @@ export default {
 	},
 	mutations: {
 		setProjs(state, { projs }) {
+			_checkIfFavorite(projs);
 			state.projs = projs;
 		},
 		setMorePorj(state, { projs }) {

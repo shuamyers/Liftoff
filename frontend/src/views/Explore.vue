@@ -1,10 +1,10 @@
 <template>
   <section>
     <v-container grid-list-md text-xs-center v-scroll="onScroll">
-      <div class="cmp-title">
+      <!-- <div class="cmp-title">
         <p class="display-3 mt-4" id="top">Invest in the Future</p>
-      </div>
-      <div class="my-flex">
+      </div> -->
+      <div class="my-flex mt-4">
         <proj-filters @filterCategory="changeFilter" class="hidden-sm-and-down"></proj-filters>
         <!-- main -->
         <div>
@@ -39,7 +39,7 @@
         </div>
       </v-navigation-drawer>
       <v-fab-transition>
-        <v-btn v-show="showBtn" color="primary" bottom right fab fixed @click="$vuetify.goTo(target, options)">
+        <v-btn v-show="showBtn" color="primary" bottom right fab fixed @click="$vuetify.goTo(target, option)">
           <v-icon>expand_less</v-icon>
         </v-btn>
       </v-fab-transition>
@@ -63,13 +63,13 @@ export default {
 			searchTxt: null,
 			drawer: false,
 			target: '#top',
-			Option: {
+			option: {
 				duration: 1000,
 				offset: 0,
 				easing: 'easeInOutCubic'
 			},
-			offsetTop: 0
-		};
+      offsetTop: 0
+		}
 	},
 	methods: {
 		onScroll() {
@@ -109,7 +109,8 @@ export default {
 		},
 		numOfProjs() {
 			return this.$store.getters.numOfProjs;
-		}
+    },
+
 	},
 	components: {
 		ProjPreview,
