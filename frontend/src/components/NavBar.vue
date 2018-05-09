@@ -31,7 +31,7 @@
       app 
       fixed 
       clipped-left>
-      
+
       <span class="ma-0 hidden-md-and-up">
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       </span>
@@ -39,7 +39,7 @@
       <v-toolbar-title class="ml-1">
         <router-link 
           tag="img"
-          src="http://www.kinnidesign.co/images/portfolio/identity-liftoff.png"
+          src="./img/logo.png"
           :to="{name: 'home'}"
           class="logo"></router-link>
       </v-toolbar-title>
@@ -108,7 +108,6 @@ export default {
 
 <style scoped>
 .logo {
-  height: 40px;
   width: 150px;
   cursor: pointer;
   vertical-align: middle;
