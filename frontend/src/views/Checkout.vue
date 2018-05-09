@@ -97,7 +97,7 @@
 </template>
 
 <script>
-import { SET_SELECTED_PROJ } from '../store/ProjStore.js';
+import { SET_SELECTED_PROJ,UPDATE_FUNDS_RAISED } from '../store/ProjStore.js';
 import { SAVE_PLEDGE } from '../store/PledgeStore.js';
 import { UPDATE_WALLET_DIFF } from '../store/UserStore.js';
 
@@ -145,6 +145,7 @@ export default {
       .then(pledge => {
         console.log('got after pay',pledge)
         this.$store.dispatch({type:UPDATE_WALLET_DIFF,user:{diff:this.reward.cost,_id:this.user._id} })
+        this.$store.dispatch({type:UPDATE_FUNDS_RAISED,proj:{diff:this.reward.cost,_id:this.$route.params.projId} })
         });
 		}
 	},

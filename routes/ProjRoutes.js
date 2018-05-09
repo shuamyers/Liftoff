@@ -39,6 +39,14 @@ module.exports = app => {
       .catch(err => res.status(500).send(`proj delete failed, ERROR: ${err}`));
   });
 
+  app.put(`${PROJ_URL}/updateFundsRaised`, (req, res) => {
+    var proj = req.body;
+    console.log('got in funds raised',proj)
+    ProjService.updateFundsRaised(proj)
+      .then(updatedProj => res.json(updatedProj))
+      .catch(err => res.status(403).send({ error: `Register failed, ERROR:${err}` }));
+  });
+
     // Query
     app.get(PROJ_URL, (req, res) => {
       ProjService.query(req.query)
