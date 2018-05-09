@@ -74,7 +74,7 @@ function updateWallet(user) {
         (err, updatedInfo) => {
           if (err) reject(err);
           else{
-            db.collection("user").findOne({ _id: user._id }, (err, updatedUserFromDB) => {
+            db.collection("user").findOne({ _id: user._id },{digitalWallet:1,_id:0}, (err, updatedUserFromDB) => {
               // console.log('updated user!',updatedUserFromDB)
               resolve(updatedUserFromDB);
             })

@@ -129,7 +129,7 @@ function updateFundsRaised(proj) {
         (err, updatedInfo) => {
           if (err) reject(err);
           else{
-            db.collection("proj").findOne({ _id: proj._id }, (err, updatedUserFromDB) => {
+            db.collection("proj").findOne({ _id: proj._id },{fundsRaised:1,_id:0}, (err, updatedUserFromDB) => {
               // console.log('updated user!',updatedUserFromDB)
               resolve(updatedUserFromDB);
             })

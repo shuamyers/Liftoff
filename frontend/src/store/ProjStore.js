@@ -146,7 +146,6 @@ export default {
 			});
 		},
 		[UPDATE_FUNDS_RAISED](store,{proj}){
-			console.log('stpre proj got',proj)
 			projService.updateFundsRaised(proj) 
 			.then(projDb => {
 			  store.commit({type: 'updateFundsRaised', fundsRaised: projDb.fundsRaised});
