@@ -22,9 +22,13 @@ function logout() {
     })
     .catch(err => {throw new Error('Logout Failed')})
 }
+function updateWallet(user) {
+ return axios.put(`${BASE_URL}/updateWallet`, user).then(res => res.data)
+}
 
 export default {
   login,
   register,
-  logout
+  logout,
+  updateWallet
 };

@@ -82,7 +82,7 @@
                   <v-card-title>
                     <div class="ml-4 headline">
                       <span>Balance:</span>
-                      <span> 1000$</span>
+                      <span>${{user.digitalWallet}}</span>
                     </div>
                   </v-card-title>
                 </v-layout>
@@ -99,6 +99,7 @@
 <script>
 import { SET_SELECTED_PROJ } from '../store/ProjStore.js';
 import { SAVE_PLEDGE } from '../store/PledgeStore.js';
+import { UPDATE_WALLET_DIFF } from '../store/UserStore.js';
 
 export default {
 	data() {
@@ -114,12 +115,12 @@ export default {
 				postalCode: ''
 			},
 			pledge: {
-				userId: '5af197f9f6d0a90aa07c3c84',
+				userId: '',
 				projId: '',
 				rewardsId: '',
-				pledgedAmount: 0,
-				userName: 'normal',
-				userImg: 'http://www.avglobalservices.in/img/testimonial/02.jpg'
+        pledgedAmount: 0,
+        userName:'',
+        userImg:'',
 			}
 		};
 	},
@@ -135,14 +136,25 @@ export default {
 	},
 	methods: {
 		pay() {
-			console.log('paying');
-			this.$store.dispatch({ type: SAVE_PLEDGE, pledge: this.pledge });
+      console.log('paying');
+      this.pledge.userId = this.user._id;
+      this.pledge.userName = this.user.name;
+      this.pledge.userImg = this.user.imgUrl;
+
+      this.$store.dispatch({ type: SAVE_PLEDGE, pledge: this.pledge })
+      .then(pledge => {
+        console.log('got after pay',pledge)
+        this.$store.dispatch({type:UPDATE_WALLET_DIFF,user:{diff:this.reward.cost,_id:this.user._id} })
+        });
 		}
 	},
 	computed: {
 		proj() {
 			return this.$store.getters.selectedProj;
-		}
+    },
+    user() {
+      return this.$store.getters.loggedInUser;
+    },
 	}
 };
 </script>
