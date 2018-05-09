@@ -6,7 +6,7 @@ export const SET_SELECTED_PROJ = 'setSelectedProj';
 export const DELETE_PROJ = 'deleteProj';
 export const LOAD_MORE_PROJS = 'loadMoreProjs';
 
-function _addFavoriteToProj(proj) {
+function _addFavoriteToProj(proj, user) {
 	var userLikes = [
 		{ projId: '5af1a19df6d0a90aa07c403a' },
 		{ projId: '5af1a19df6d0a90aa07c403b' }
@@ -14,13 +14,18 @@ function _addFavoriteToProj(proj) {
 	var index = userLikes.findIndex(like => {
 		return like.projId === proj._id;
 	});
+	
+	if(index !== -1) proj.isFavorite = true;
+
+	console.log(proj)
+
 	return proj;
 }
 
-function _checkIfFavorite(projs) {
+function _checkIfFavorite(projs ,user) {
 	console.log(projs);
 	var newProjs = projs.map(proj => {
-		return _addFavoriteToProj(proj);
+		return _addFavoriteToProj(proj, user);
 	});
 	return newProjs;
 }
@@ -49,7 +54,6 @@ export default {
 	},
 	mutations: {
 		setProjs(state, { projs }) {
-			_checkIfFavorite(projs);
 			state.projs = projs;
 		},
 		setMorePorj(state, { projs }) {
@@ -93,6 +97,7 @@ export default {
 				}
 			};
 			return projService.query(criteria).then(projs => {
+				projs = _checkIfFavorite(projs, store.getters.loggedInUser);
 				store.commit({ type: 'setProjs', projs });
 				store.commit({ type: 'setNumOfProjs', projs });
 				return projs.length;
