@@ -37,7 +37,7 @@ module.exports = app => {
 
   app.post('/logout', (req, res) => {
     req.session.reset();
-    res.end('Loggedout');
+    res.end('Logged out');
   });
 
   // app.get('/profile', isLoggedIn, (req, res) => {

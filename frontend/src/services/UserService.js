@@ -18,7 +18,7 @@ function logout() {
   return axios
     .post(`${BASE_URL}/logout`)
     .then(res => {
-      delete sessionStorage.user;
+      console.log(res);
     })
     .catch(err => {throw new Error('Logout Failed')})
 }
