@@ -23,6 +23,7 @@ function checkLogin (user) {
 function addUser (user) {
   user.admin = false;
   user.createdAt = Date.now();
+  user.digitalWallet = 1000;
   return new Promise((resolve, reject) => {
     const isValidate = validateDetails(user);
     if (!isValidate) reject('Validate failed!');

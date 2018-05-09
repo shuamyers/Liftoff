@@ -8,7 +8,7 @@
 			"http://yourshot.nationalgeographic.com/u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDNebW9lmdkTC3lV_ac9jTmHd1M5xScukEU1oY94kJ4kvBwa9CO25dp1K9cgh1TLoXw-2vbO1W7p42NgGKFi7kz20Zij66OE2hgXzZGeUvZAlTWOWSKd-H9J_Omkt9tX1AfidXFa3ObSS-schF38jJoEsfIz9w2awfwTvjdXQWmvmQ/",
 			"https://i.pinimg.com/736x/9e/3c/29/9e3c299ff4073ff34f711f0ef3596cbb--rain-storm-the-storm.jpg"
 		],
-		"featuredImgUrl": "https://ksr-ugc.imgix.net/assets/021/057/608/7eb31893f9290bf30a1f5d0988717312_original.jpg?w=680&fit=max&v=1525027427&auto=format&q=92&s=8d7d1c31d877d70eb58e3f270518bf41",
+		"featuredImgUrl": "https://i.pinimg.com/736x/9e/3c/29/9e3c299ff4073ff34f711f0ef3596cbb--rain-storm-the-storm.jpg",
 		"category": "Tech",
 		"location": "Israel",
 		"overView": "OverView!!!!! Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
@@ -17,15 +17,17 @@
 		"duration": 1527022800000,
 		"updates": [
 			{
+				"id": ObjectId(),
 				"createdAt": 1525002800000,
-				"userId": 9,
+				"userId":  ObjectId("5af197f9f6d0a90aa07c3c85"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 				"userName": "John Terry",
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat."
 			},
 			{
+				"id": ObjectId(),
 				"createdAt": 1525002800000,
-				"userId": 9,
+				"userId":  ObjectId("5af197f9f6d0a90aa07c3c85"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 				"userName": "REFE MARR",
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat."
@@ -33,24 +35,27 @@
 		],
 		"comments": [
 			{
+				"id": ObjectId(),
 				"createdAt": 1525002800000,
-				"userId": 9,
+				"userId": ObjectId("5af197f9f6d0a90aa07c3c84"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 				"userName": "REFE MARR",
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
 				"replys": []
 			},
 			{
+				"id": ObjectId(),
 				"createdAt": 1525002800000,
-				"userId": 6,
+				"userId":  ObjectId("5af197f9f6d0a90aa07c3c85"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 				"userName": "Superman",
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
 				"replys": []
 			},
 			{
+				"id": ObjectId(),
 				"createdAt": 1525002800000,
-				"userId": 2,
+				"userId":  ObjectId("5af197f9f6d0a90aa07c3c85"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 				"userName": "Borat",
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
@@ -60,14 +65,14 @@
 		"backers": [
 			{
 				"createdAt": 1525002800000,
-				"userId": 9,
+				"userId":  ObjectId("5af197f9f6d0a90aa07c3c85"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 				"userName": "bla bku",
 				"amount": 15
 			},
 			{
 				"createdAt": 1525002800000,
-				"userId": 9,
+				"userId": ObjectId("5af197f9f6d0a90aa07c3c84"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 				"userName": "Rlo lae",
 				"amount": 15
@@ -75,7 +80,7 @@
 		],
 		"rewards": [
 			{
-				"id": 1,
+				"id": ObjectId(),
 				"title": "Basic",
 				"cost": 59,
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
@@ -90,7 +95,7 @@
 				]
 			},
 			{
-				"id": 2,
+				"id": ObjectId(),
 				"title": "Gold",
 				"cost": 100,
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
@@ -105,7 +110,7 @@
 				]
 			},
 			{
-				"id": 3,
+				"id": ObjectId(),
 				"title": "Platinum",
 				"cost": 155,
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
@@ -121,20 +126,12 @@
 			}
 		],
 		"owner": {
-			"userID": "12321312",
+			"userId":  ObjectId("5af197f9f6d0a90aa07c3c85"),
 			"name": "Shua",
 			"bio": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
 			"avatarUrl": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 			"location": "Tel Aviv, Israel"
-		},
-		"pledges": [
-			{
-				"userId": "22222",
-				"rewardsId": "1",
-				"pledgedAt": 1525347324,
-				"pledgedAmuont": "59"
-			}
-		]
+		}
 	},
 	{
 		"title": "Proj2 title",
@@ -145,7 +142,7 @@
 			"http://yourshot.nationalgeographic.com/u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDNebW9lmdkTC3lV_ac9jTmHd1M5xScukEU1oY94kJ4kvBwa9CO25dp1K9cgh1TLoXw-2vbO1W7p42NgGKFi7kz20Zij66OE2hgXzZGeUvZAlTWOWSKd-H9J_Omkt9tX1AfidXFa3ObSS-schF38jJoEsfIz9w2awfwTvjdXQWmvmQ/",
 			"https://i.pinimg.com/736x/9e/3c/29/9e3c299ff4073ff34f711f0ef3596cbb--rain-storm-the-storm.jpg"
 		],
-		"featuredImgUrl": "https://ksr-ugc.imgix.net/assets/021/057/608/7eb31893f9290bf30a1f5d0988717312_original.jpg?w=680&fit=max&v=1525027427&auto=format&q=92&s=8d7d1c31d877d70eb58e3f270518bf41",
+		"featuredImgUrl": "http://yourshot.nationalgeographic.com/u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDNebW9lmdkTC3lV_ac9jTmHd1M5xScukEU1oY94kJ4kvBwa9CO25dp1K9cgh1TLoXw-2vbO1W7p42NgGKFi7kz20Zij66OE2hgXzZGeUvZAlTWOWSKd-H9J_Omkt9tX1AfidXFa3ObSS-schF38jJoEsfIz9w2awfwTvjdXQWmvmQ/",
 		"category": "Tech",
 		"location": "Israel",
 		"overView": "OverView!!!!! Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
@@ -154,15 +151,17 @@
 		"duration": 1527022800000,
 		"updates": [
 			{
+				"id": ObjectId(),
 				"createdAt": 1525002800000,
-				"userId": 9,
+				"userId": ObjectId("5af197f9f6d0a90aa07c3c84"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 				"userName": "John Terry",
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat."
 			},
 			{
+				"id": ObjectId(),
 				"createdAt": 1525002800000,
-				"userId": 9,
+				"userId": ObjectId("5af197f9f6d0a90aa07c3c84"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 				"userName": "REFE MARR",
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat."
@@ -170,24 +169,27 @@
 		],
 		"comments": [
 			{
+				"id": ObjectId(),
 				"createdAt": 1525002800000,
-				"userId": 9,
+				"userId":  ObjectId("5af197f9f6d0a90aa07c3c85"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 				"userName": "REFE MARR",
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
 				"replys": []
 			},
 			{
+				"id": ObjectId(),
 				"createdAt": 1525002800000,
-				"userId": 6,
+				"userId": ObjectId("5af197f9f6d0a90aa07c3c84"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 				"userName": "Superman",
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
 				"replys": []
 			},
 			{
+				"id": ObjectId(),
 				"createdAt": 1525002800000,
-				"userId": 2,
+				"userId":  ObjectId("5af197f9f6d0a90aa07c3c85"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 				"userName": "Borat",
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
@@ -197,14 +199,14 @@
 		"backers": [
 			{
 				"createdAt": 1525002800000,
-				"userId": 9,
+				"userId":  ObjectId("5af197f9f6d0a90aa07c3c85"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 				"userName": "bla bku",
 				"amount": 15
 			},
 			{
 				"createdAt": 1525002800000,
-				"userId": 9,
+				"userId": ObjectId("5af197f9f6d0a90aa07c3c84"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 				"userName": "Rlo lae",
 				"amount": 15
@@ -212,7 +214,7 @@
 		],
 		"rewards": [
 			{
-				"id": 1,
+				"id": ObjectId(),
 				"title": "Basic",
 				"cost": 59,
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
@@ -227,7 +229,7 @@
 				]
 			},
 			{
-				"id": 2,
+				"id": ObjectId(),
 				"title": "Gold",
 				"cost": 100,
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
@@ -242,7 +244,7 @@
 				]
 			},
 			{
-				"id": 3,
+				"id": ObjectId(),
 				"title": "Platinum",
 				"cost": 155,
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
@@ -258,20 +260,12 @@
 			}
 		],
 		"owner": {
-			"userID": "12321312",
+			"userId":  ObjectId("5af197f9f6d0a90aa07c3c85"),
 			"name": "Shua",
 			"bio": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
 			"avatarUrl": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 			"location": "Tel Aviv, Israel"
-		},
-		"pledges": [
-			{
-				"userId": "22222",
-				"rewardsId": "1",
-				"pledgedAt": 1525347324,
-				"pledgedAmuont": "59"
-			}
-		]
+		}
 	},
 	{
 		"title": "Proj3 title",
@@ -282,7 +276,7 @@
 			"http://yourshot.nationalgeographic.com/u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDNebW9lmdkTC3lV_ac9jTmHd1M5xScukEU1oY94kJ4kvBwa9CO25dp1K9cgh1TLoXw-2vbO1W7p42NgGKFi7kz20Zij66OE2hgXzZGeUvZAlTWOWSKd-H9J_Omkt9tX1AfidXFa3ObSS-schF38jJoEsfIz9w2awfwTvjdXQWmvmQ/",
 			"https://i.pinimg.com/736x/9e/3c/29/9e3c299ff4073ff34f711f0ef3596cbb--rain-storm-the-storm.jpg"
 		],
-		"featuredImgUrl": "https://ksr-ugc.imgix.net/assets/021/057/608/7eb31893f9290bf30a1f5d0988717312_original.jpg?w=680&fit=max&v=1525027427&auto=format&q=92&s=8d7d1c31d877d70eb58e3f270518bf41",
+		"featuredImgUrl": "https://www.natgeokids.com/wp-content/uploads/2017/02/20140110100724615883389.jpg",
 		"category": "Tech",
 		"location": "Israel",
 		"overView": "OverView!!!!! Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
@@ -291,15 +285,17 @@
 		"duration": 1527022800000,
 		"updates": [
 			{
+				"id": ObjectId(),
 				"createdAt": 1525002800000,
-				"userId": 9,
+				"userId": ObjectId("5af197f9f6d0a90aa07c3c84"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 				"userName": "John Terry",
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat."
 			},
 			{
+				"id": ObjectId(),
 				"createdAt": 1525002800000,
-				"userId": 9,
+				"userId":  ObjectId("5af197f9f6d0a90aa07c3c85"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 				"userName": "REFE MARR",
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat."
@@ -307,24 +303,27 @@
 		],
 		"comments": [
 			{
+				"id": ObjectId(),
 				"createdAt": 1525002800000,
-				"userId": 9,
+				"userId":  ObjectId("5af197f9f6d0a90aa07c3c85"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 				"userName": "REFE MARR",
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
 				"replys": []
 			},
 			{
+				"id": ObjectId(),
 				"createdAt": 1525002800000,
-				"userId": 6,
+				"userId": ObjectId("5af197f9f6d0a90aa07c3c84"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 				"userName": "Superman",
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
 				"replys": []
 			},
 			{
+				"id": ObjectId(),
 				"createdAt": 1525002800000,
-				"userId": 2,
+				"userId": ObjectId("5af197f9f6d0a90aa07c3c84"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 				"userName": "Borat",
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet fugit placeat.",
@@ -334,14 +333,14 @@
 		"backers": [
 			{
 				"createdAt": 1525002800000,
-				"userId": 9,
+				"userId": ObjectId("5af197f9f6d0a90aa07c3c84"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 				"userName": "bla bku",
 				"amount": 15
 			},
 			{
 				"createdAt": 1525002800000,
-				"userId": 9,
+				"userId":  ObjectId("5af197f9f6d0a90aa07c3c85"),
 				"userImg": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 				"userName": "Rlo lae",
 				"amount": 15
@@ -349,7 +348,7 @@
 		],
 		"rewards": [
 			{
-				"id": 1,
+				"id": ObjectId(),
 				"title": "Basic",
 				"cost": 59,
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
@@ -364,7 +363,7 @@
 				]
 			},
 			{
-				"id": 2,
+				"id": ObjectId(),
 				"title": "Gold",
 				"cost": 100,
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
@@ -379,7 +378,7 @@
 				]
 			},
 			{
-				"id": 3,
+				"id": ObjectId(),
 				"title": "Platinum",
 				"cost": 155,
 				"desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
@@ -395,19 +394,11 @@
 			}
 		],
 		"owner": {
-			"userID": "12321312",
+			"userId": ObjectId("5af197f9f6d0a90aa07c3c84"),
 			"name": "Shua",
 			"bio": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui iusto perspiciatis harum pariatur est eaque eveniet",
 			"avatarUrl": "https://avatars0.githubusercontent.com/u/9064066?v=4&s=460",
 			"location": "Tel Aviv, Israel"
-		},
-		"pledges": [
-			{
-				"userId": "22222",
-				"rewardsId": "1",
-				"pledgedAt": 1525347324,
-				"pledgedAmuont": "59"
-			}
-		]
+		}
 	}
 ]

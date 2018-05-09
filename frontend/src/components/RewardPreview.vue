@@ -1,5 +1,4 @@
 <template>
-  
    <v-flex  xs12 sm12 md12 wrap >
         <!-- <h1>{{reward}}}</h1> -->
         <v-card class="ma-2">
@@ -22,11 +21,10 @@
           </v-card-title>
           <v-card-actions class="card-footer justify-center">
             <p></p>
-            <v-btn class="align-self-center reward-title mt-2 mb-2" outline flat color="blue" @click="openPerk">Get This Perk</v-btn>
+            <v-btn class="align-self-center reward-title mt-2 mb-2" outline flat color="blue" @click="emitOpenPerk">Get This Perk</v-btn>
           </v-card-actions>
         </v-card>
    </v-flex>
-  
 </template>
 
 <script>
@@ -38,8 +36,9 @@ export default {
         },
     },
     methods: {
-        openPerk() {
-            console.log('clicked perk!')
+        emitOpenPerk() {
+            console.log('clicked perk!',this.reward.id)
+            this.$emit('openPerk', this.reward.id )
         }
     },
 

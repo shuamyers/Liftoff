@@ -6,9 +6,14 @@ import store from './store/index'
 import './registerServiceWorker'
 import Vuetify from 'vuetify'
 import axios from 'axios'
+import VueObserveVisibility from 'vue-observe-visibility'
+
 import moment from 'moment'
 import './css/main.css'
 import 'vuetify/dist/vuetify.min.css'
+
+Vue.use(Vuetify)
+Vue.use(VueObserveVisibility)
 
 Vue.config.productionTip = false
 

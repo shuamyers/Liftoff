@@ -1,16 +1,18 @@
 [
   {
-    "name": "admin",
-    "email": "admin@admin.com",
-    "pass": "123",
-    "admin": true,
-    "createdAt": 1525002800000
+    "name": "user",
+    "email": "user@user.com",
+    "pass": "1234",
+    "admin": false,
+    "createdAt": 1525002800000,
+    "digitalWallet": 1000
   },
   {
-    "name": "demo",
-    "email": "demo@demo.com",
-    "pass": "123",
-    "admin": false,
-    "createdAt": 1525002800000
+    "name": "admin",
+    "email": "admin@admin.com",
+    "pass": "1234",
+    "admin": true,
+    "createdAt": 1525002800000,
+    "digitalWallet": 1000
   }
 ]

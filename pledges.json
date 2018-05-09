@@ -1,0 +1,9 @@
+
+{
+    "userId":  ObjectId("5af197f9f6d0a90aa07c3c85"),
+    "projId": ObjectId("5af19c46f6d0a90aa07c3e63"),
+    "rewardsId":  ObjectId("5af19c46f6d0a90aa07c3e5e"),
+	"pledgedAt": 1525347324,
+	"pledgedAmuont": "59"
+}
+

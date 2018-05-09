@@ -33,10 +33,14 @@ global.isLoggedIn = (req, res, next) => {
   }
 }
 
-const addUserRoutes = require('./routes/UserRoutes.js');
-addUserRoutes(app);
-const addProjRoutes = require('./routes/ProjRoutes.js');
-addProjRoutes(app);
+const addUserRoutes = require('./routes/UserRoutes.js')
+addUserRoutes(app)
+const addProjRoutes = require('./routes/ProjRoutes.js')
+addProjRoutes(app)
+const addPledgeRoutes = require('./routes/PledgeRoutes.js')
+addPledgeRoutes(app)
+const addCommentRoutes = require('./routes/CommentRoutes.js')
+addCommentRoutes(app)
 
 http.listen(3000, () => {
   console.log('listening on *:3000');

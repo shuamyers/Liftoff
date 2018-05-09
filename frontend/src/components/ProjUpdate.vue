@@ -13,7 +13,7 @@
                 </v-list-tile>
             </div>
             <p>{{update.createdAt | timePassed}}</p>
-        </div>
+        </div>  
         <v-divider></v-divider>
         <div>
             <p>{{update.desc}}</p>  
