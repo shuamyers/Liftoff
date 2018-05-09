@@ -39,7 +39,6 @@
 
 <script>
 import { REGISTER } from "../store/UserStore.js";
-
 export default {
   data() {
     return {

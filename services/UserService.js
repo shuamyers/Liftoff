@@ -55,7 +55,7 @@ function createNewUser(user) {
     createdAt: Date.now(),
     imgUrl: 'http://www.avglobalservices.in/img/testimonial/02.jpg',
     digitalWallet: 1000,
-    favourites: []
+    favorites: []
   }
 }
 
