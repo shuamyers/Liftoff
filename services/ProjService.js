@@ -80,15 +80,19 @@ function query(criteria) {
 	// var query = { $or: [{ title: regex }, { desc: regex }, { category: regex }] };
 
 	var category = criteria.category ? criteria.category : new RegExp('[sS]*');
+  // var duration = criteria.duration ? JSON.parse(criteria.duration) : new RegExp('[sS]*');
+  var duration = criteria.duration ? JSON.parse(criteria.duration) : new RegExp('[sS]*');
+  console.log(duration)
 
 	query = {
 		$and: [
 			{
-				$or: [{ title: regex }, { desc: regex }, { category: regex }]
+				$or: [{ title: regex }, { desc: regex }, { category: regex }, { duration: regex }]
 			},
-			{ category }
+			{ category,duration }
 		]
-	};
+  };
+  console.log('query!',query)
 
 	return new Promise((resolve, reject) => {
 		DBService.dbConnect().then(db => {
@@ -109,7 +113,7 @@ function query(criteria) {
 				.toArray((err, projs) => {
           if (err) reject(err);
 					else resolve(projs);
-          console.log('projs! for',criteria,projs)
+          // console.log('projs! for',criteria,projs)
 					db.close();
 				});
 		});
