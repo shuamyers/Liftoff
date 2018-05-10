@@ -12,7 +12,7 @@
         <v-list-tile 
           v-for="link in filteredLinks"
           :key="link.txt"
-          :to="{name: link.routeName}"
+          :to="link.routeName"
           exact>
           <v-list-tile-action>
             <v-icon>{{link.icon}}</v-icon>
@@ -48,7 +48,7 @@
           v-for="link in filteredLinks"
           :key="link.txt"
           :class="{'hidden-sm-and-down': link.hiddenOnMobile}"
-          :to="{name: link.routeName}"
+          :to="link.routeName"
           exact>
           {{ link.txt }}
         </v-btn>
@@ -67,42 +67,42 @@ export default {
         {
           txt: "Home",
           icon: "home",
-          routeName: "home",
+          routeName: {name: 'home'},
           alwaysShow: true,
           hiddenOnMobile: true
         },
         {
           txt: "Explore",
           icon: "explore",
-          routeName: "explore",
+          routeName: {name: 'explore'},
           alwaysShow: true,
           hiddenOnMobile: false
         },
         {
           txt: "Start Campaign",
           icon: "create",
-          routeName: "startCampaign",
+          routeName: {name: 'startCampaign'},
           alwaysShow: true,
           hiddenOnMobile: true
         },
         {
           txt: "Login / Signup",
           icon: "account_circle",
-          routeName: "login",
+          routeName: {name: 'login'},
           loginRequired: false,
           hiddenOnMobile: true
         },
         {
           txt: "My Profile",
           icon: "account_circle",
-          routeName: "userProfile",
+          routeName: {path: `user/`},
           loginRequired: true,
           hiddenOnMobile: true
         },
         {
           txt: "Logout",
           icon: "input",
-          routeName: "logout",
+          routeName: {name: 'logout'},
           loginRequired: true,
           hiddenOnMobile: true
         }
@@ -110,9 +110,6 @@ export default {
     };
   },
   computed: {
-    loggedInUser() {
-      return this.$store.getters.loggedInUser;
-    },
     filteredLinks() {
       return this.links.filter(link => {
         if (this.loggedInUser) {
