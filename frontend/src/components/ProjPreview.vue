@@ -11,7 +11,7 @@
            <v-divider ></v-divider>
           <v-card-title primary-title>
             <div>
-              <h3 class="display-1 mb-0">{{proj.title}}</h3>
+              <h3 class="headline mb-0">{{proj.title}}</h3>
               <div class="mt-5">
                   <div class="prgs-bar-stats">
                     <span class="text-xs-left title">${{proj.fundsRaised}}</span>

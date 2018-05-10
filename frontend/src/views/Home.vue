@@ -114,13 +114,13 @@ export default {
         {
           name: "Music",
           imgUrl:
-            "https://images.pexels.com/photos/761963/pexels-photo-761963.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+            "https://images.pexels.com/photos/374703/pexels-photo-374703.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
           to: "/explore"
         },
         {
-          name: "Film",
+          name: "Animals",
           imgUrl:
-            "https://images.pexels.com/photos/274937/pexels-photo-274937.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+            "https://images.pexels.com/photos/59523/pexels-photo-59523.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
           to: "/explore"
         }
       ]
