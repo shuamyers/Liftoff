@@ -26,7 +26,7 @@
             </v-flex>
             <v-layout wrap>
 							<v-flex xs12 sm6 md4 wrap v-for="proj in projs" :key="proj._id" >
-              	<proj-preview @setFavorite="setFavorite" @removeFavorite="removeFavorite" :proj="proj" @click.native="goToProj(proj._id)"></proj-preview>
+              	<proj-preview @setFavorite="setFavorite" @openLogin="openLogin" @removeFavorite="removeFavorite" :proj="proj" @click.native="goToProj(proj._id)"></proj-preview>
 							</v-flex>
               <infinite-loading @infinite="infiniteHandler" ref="infiniteLoading" class="centered">
 
@@ -47,7 +47,21 @@
       </v-fab-transition>
     </v-container>
 
- 
+  <v-dialog v-model="login" width="600px">
+        <!-- <v-btn slot="activator" color="primary" dark>Open Dialog</v-btn> -->
+        <v-card>
+          <v-card-title>
+            <div>
+            <h1 class="headline">Pleas login</h1>
+            </div>
+          </v-card-title>
+          <v-card-text>
+                <v-flex xs12>
+                   <login></login>
+                </v-flex>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
   </section>
 </template>
 
@@ -57,7 +71,7 @@ import { LOAD_PROJS, LOAD_MORE_PROJS } from '../store/ProjStore';
 import { ADD_FAVORITES,GET_BY_ID,REMOVE_FAVORITES } from "../store/UserStore.js";
 import ProjFilters from '../components/ProjFilters.vue';
 import InfiniteLoading from 'vue-infinite-loading';
-
+import Login from '../components/Login';
 
 export default {
 	created() {
@@ -74,7 +88,7 @@ export default {
 				easing: 'easeInOutCubic'
 			},
 			offsetTop: 0,
-				
+			login: false
 		}
 	},
 	methods: {
@@ -112,7 +126,11 @@ export default {
     removeFavorite(projId){
 		// console.log('favort',this.$store.getters.loggedInUser)
       this.$store.dispatch({type: REMOVE_FAVORITES , projId , user:this.$store.getters.loggedInUser })
-    }
+		},
+		openLogin(){
+			console.log('here')
+			this.login = true
+		}
 	},
 	computed: {
 		showBtn() {
@@ -130,7 +148,7 @@ export default {
 		ProjPreview,
 		ProjFilters,
 		InfiniteLoading,
-
+		Login
 	}
 };
 </script>

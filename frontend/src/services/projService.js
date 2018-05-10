@@ -1,7 +1,9 @@
-const BASE_URL = "http://localhost:3000/proj";
+
+const BASE_URL = (process.env.NODE_ENV !== 'development') ? '/proj' : 'http://localhost:3000/proj';
+
 
 function query(criteria = "") {
-    console.log('2')
+    
   criteria = flattenNestedObj(criteria);
 
   criteria = Object.keys(criteria)

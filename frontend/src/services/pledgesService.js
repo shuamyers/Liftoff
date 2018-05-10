@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const PLEDGE_URL = 'http://localhost:3000/pledge';
+const PLEDGE_URL = (process.env.NODE_ENV !== 'development') ? '/pledge' : 'http://localhost:3000/pledge';
 
 function query() {
 	return axios
