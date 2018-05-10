@@ -14,8 +14,7 @@ const corsOptions = {
   credentials: true
 };
 
-app​.​use​(​express​.​static​(​'​dist​'​)) 
-
+app.use(express.static('dist'))
 app.use(cors(corsOptions));
 
 app.use(bodyParser.urlencoded({ extended: false }));
