@@ -25,7 +25,9 @@
               <v-spacer></v-spacer>
             </v-flex>
             <v-layout wrap>
-              <proj-preview class="proj-preview" :proj="proj" @setFavorite="setFavorite" v-for="proj in projs" :key="proj._id" @click.native="goToProj(proj._id)"></proj-preview>
+							<v-flex xs12 sm6 md4 wrap v-for="proj in projs" :key="proj._id" >
+              	<proj-preview @setFavorite="setFavorite" :proj="proj" @click.native="goToProj(proj._id)"></proj-preview>
+							</v-flex>
               <infinite-loading @infinite="infiniteHandler" ref="infiniteLoading" class="centered">
 
               </infinite-loading>
@@ -101,8 +103,8 @@ export default {
 			this.$refs.infiniteLoading.$emit("$InfiniteLoading:reset");
     },
     setFavorite(projId){
-
-      this.$store.dispatch({type:ADD_FAVORITES , projId })
+		// console.log(this.$store.getters.loggedInUser)
+      this.$store.dispatch({type:ADD_FAVORITES , projId,user:this.$store.getters.loggedInUser })
     }
 	},
 	computed: {
@@ -164,9 +166,9 @@ export default {
 	display: flex;
 }
 
-.proj-preview {
+/* .proj-preview {
 	cursor: pointer;
-}
+} */
 
 .inline {
 	display: inline;

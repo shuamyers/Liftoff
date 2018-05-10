@@ -2,15 +2,14 @@
   <v-carousel
     v-if="featuredProjs" 
     :hide-controls="false"
-    :hide-delimiters="true">
-
+    :hide-delimiters="true"
+    style="height:468px">
     <v-carousel-item 
       v-for="(proj, i) in featuredProjs" 
       :src="proj.featuredImgUrl" 
       :key="i">
-
       <v-jumbotron dark :to="`/project/${proj._id}`">
-        <v-container fill-height>
+        <v-container fill-height style="max-width:1200px">
           <v-layout class="align-end">
             <v-flex style="max-width: 350px" >
               <h4 class="featured-txt body-1 mb-3">Featured</h4>
@@ -21,9 +20,7 @@
           </v-layout>
         </v-container>
       </v-jumbotron>
-
     </v-carousel-item>
-
   </v-carousel>
 </template>
 

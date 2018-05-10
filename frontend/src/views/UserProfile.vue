@@ -43,19 +43,25 @@
       <h1 class="headline ">Projects</h1>
       <v-divider class="mb-5"></v-divider>
       <v-layout>
-        <proj-preview class="proj-preview" :proj="proj" v-for="proj in projs" :key="proj._id"></proj-preview>
+        	<v-flex xs12 sm6 md4 wrap v-for="proj in projs" :key="proj._id" >
+              	<proj-preview  :proj="proj" @click.native="goToProj(proj._id)"></proj-preview>
+							</v-flex>
 
       </v-layout>
       <h1 class="headline mt-5">Favorites</h1>
       <v-divider class=" mb-3"></v-divider>
       <v-layout>
-        <proj-preview class="proj-preview" :proj="proj" v-for="proj in projs" :key="proj._id"></proj-preview>
+      	<v-flex xs12 sm6 md4 wrap v-for="proj in projs" :key="proj._id" >
+              	<proj-preview  :proj="proj" @click.native="goToProj(proj._id)"></proj-preview>
+							</v-flex>
 
       </v-layout>
       <h1 class="headline mt-5">Pledges</h1>
       <v-divider class=" mb-3"></v-divider>
       <v-layout class="mb-4">
-        <proj-preview class="proj-preview" :proj="proj" v-for="proj in projs" :key="proj._id"></proj-preview>
+      	<v-flex xs12 sm6 md4 wrap v-for="proj in projs" :key="proj._id" >
+              	<proj-preview  :proj="proj" @click.native="goToProj(proj._id)"></proj-preview>
+							</v-flex>
       </v-layout>
     </v-container>
 
@@ -67,12 +73,19 @@
 import { LOAD_PLEDGES_BY_USER_ID } from '../store/PledgeStore.js';
 import { LOAD_PROJS } from '../store/ProjStore';
 import ProjPreview from '../components/ProjPreview';
+import ProjService from '../services/projService.js'
 
 export default {
 	created() {
 		const userId = this.$route.params.userId;
 		this.$store.dispatch({ type: LOAD_PLEDGES_BY_USER_ID, userId });
-		this.$store.dispatch({ type: LOAD_PROJS });
+    setTimeout(() =>{
+              projService.query(this.criteria).then(projs => {
+                  console.log(this.criteria)
+                  console.log('catalog projs!',projs)
+                this.catalogedProjs = projs;
+              });
+          },500)
 	},
 	data() {
 		return {
@@ -80,16 +93,26 @@ export default {
 				name: '',
 				email: ''
 			},
-			edit: false
-		};
+      edit: false,
+     Criteria: {
+        skip: 0,
+        limit: 4,
+        filterBy: {
+          searchTxt: "",
+          category: "",
+        }
+      },
+    projs:null
+		}
 	},
 	computed: {
+  
 		pledges() {
 			return this.$store.getters.pledgesForDisplay;
 		},
-		projs() {
-			return this.$store.getters.projsForDisplay;
-		},
+		// projs() {
+		// 	return this.$store.getters.projsForDisplay;
+		// },
 		user() {
 			return this.$store.getters.loggedInUser;
 		}

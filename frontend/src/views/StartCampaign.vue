@@ -35,15 +35,17 @@
                   <v-layout wrap justify-content>
                       <v-flex xs12 wrap class="edit-menu-horizantal">
                           <div class="ml-2 my-flex">
-                          <div class="labels-wrapper-horizantal">
-                              <!-- <p class="title-label ma-0 mb-1" >Contents</p> -->
-                              <div class="my-flex ">
-                                  <p class="edit-label ma-0 mr-1" v-for="(type,idx) in editType" :key="type.title"
-                                  @click="labelChosen(type,idx)" :class="{currLabel: idx === activeLabel}">{{type.title}}
-                                  </p>         
-                              </div>
-                           </div>                 
-                        </div>
+                              <div class="labels-wrapper-horizantal">
+                                  <!-- <p class="title-label ma-0 mb-1" >Contents</p> -->
+                                  <div class="labels-contnet-wrapper">
+                                    <div class="my-flex ">
+                                        <p class="edit-label ma-0 mr-1" v-for="(type,idx) in editType" :key="type.title"
+                                        @click="labelChosen(type,idx)" :class="{currLabel: idx === activeLabel}">{{type.title}}
+                                        </p>         
+                                    </div>
+                                  </div>
+                              </div>                 
+                            </div>
                       </v-flex>
                       <v-flex xs12 sm10 md10 wrap class="">
 
@@ -190,7 +192,7 @@ export default {
 .edit-menu-horizantal {
   position: sticky;
   /* top: 60px; */
-  top: 0;
+  top: 60px;
   z-index: 5;
 }
 .labels-wrapper {
@@ -202,6 +204,10 @@ export default {
   padding-bottom: 5px;
    border-bottom: 4px solid rgb(32, 138, 224);
   border-radius: 6px; 
+}
+.labels-contnet-wrapper {
+  width: 100%;
+  background-color: white;
 }
 
 

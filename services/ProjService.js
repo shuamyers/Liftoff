@@ -63,12 +63,16 @@ function update(proj) {
 }
 
 function query(criteria) {
-	// console.log(criteria);
+	console.log('criteria!',criteria);
   
 	var skip = +criteria.skip;
 	if (!skip || skip === 0) {
 		delete criteria.skip;
 		skip = 0;
+	}
+	var limit = +criteria.limit;
+	if (!limit || limit === 0) {
+		delete criteria.limit;
 	}
 
 	var regex = new RegExp('.*' + criteria.searchTxt + '.*', 'i');
@@ -101,10 +105,11 @@ function query(criteria) {
 					isFavorite: 1
 				})
 				.skip(skip)
-				.limit(5)
+				.limit((limit || 12))
 				.toArray((err, projs) => {
-					if (err) reject(err);
+          if (err) reject(err);
 					else resolve(projs);
+          console.log('projs! for',criteria,projs)
 					db.close();
 				});
 		});

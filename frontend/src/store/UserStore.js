@@ -47,7 +47,6 @@ export default {
         })
     },
     [LOGOUT](store) {
-      console.log(store);
       return UserService.logout()
         .then(() => {
           store.commit({ type: 'setUser', user: null });
@@ -59,9 +58,9 @@ export default {
         store.commit({type: 'updateWallet', walletVal: userDb.digitalWallet});
       })
    }, 
-    [ADD_FAVORITES](store,{projId}){
-      console.log(projId)
-      var user = store.getters.loggedInUser
+    [ADD_FAVORITES](store,{projId,user}){
+      console.log("user",user,'projId',projId)
+
       if(!user) return
       
       return UserService.addFavorites(user,projId) 

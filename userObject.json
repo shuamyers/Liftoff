@@ -7,7 +7,7 @@
     "createdAt": 1525002800000,
     "imgUrl": "http://www.avglobalservices.in/img/testimonial/02.jpg",
     "digitalWallet": 1000,
-    "favourites": [
+    "favorites": [
       {
         "projId": "5af1a19df6d0a90aa07c403a"
       }
@@ -20,6 +20,23 @@
     "isAdmin": true,
     "createdAt": 1525002800000,
     "imgUrl": "http://www.avglobalservices.in/img/testimonial/02.jpg",
+    "digitalWallet": 1000,
+    "favorites": [
+      {
+        "projId": "5af1a1cef6d0a90aa07c4088"
+      },
+      {
+        "projId": "af1a19df6d0a90aa07c403b"
+      }
+    ]
+  },
+  {
+    "name": "Borat",
+    "email": "borat@borat.com",
+    "pass": "1234",
+    "isAdmin": false,
+    "createdAt": 1525002800000,
+    "imgUrl": "http://www.yosmusic.com/images/articles/big/borat3-b.jpg",
     "digitalWallet": 1000,
     "favourites": [
       {

@@ -102,9 +102,9 @@ function addFavorite(data) {
 				}
 			}
 		};
+	} else {
+		query = { $pull: { favorites: { projId } } };
 	}
-
-	// var query2 = { $pull: { favorites: { projId: "af1a19df6d0a90aa07c403b"} } }
 
 	return new Promise((resolve, reject) => {
 		user._id = new mongo.ObjectID(user._id);
@@ -127,33 +127,33 @@ function addFavorite(data) {
 	});
 }
 
-function addFavorite(user) {
-	// var query2 = { $pull: { favorites: { projId: "af1a19df6d0a90aa07c403b"} } }
+// function addFavorite(user) {
+// 	// var query2 = { $pull: { favorites: { projId: "af1a19df6d0a90aa07c403b"} } }
 
-	return new Promise((resolve, reject) => {
-		user._id = new mongo.ObjectID(user._id);
-		DBService.dbConnect().then(db => {
-			db
-				.collection('user')
-				.updateOne(
-					{ _id: user._id },
-					{ $set: { name: user.name, email: user.email } },
-					(err, updatedInfo) => {
-						if (err) reject(err);
-						else {
-							db
-								.collection('user')
-								.findOne({ _id: user._id }, (err, updatedUserFromDB) => {
-									console.log('updatedUserFromDB,', updatedUserFromDB);
-									resolve(updatedUserFromDB);
-								});
-						}
-						db.close();
-					}
-				);
-		});
-	});
-}
+// 	return new Promise((resolve, reject) => {
+// 		user._id = new mongo.ObjectID(user._id);
+// 		DBService.dbConnect().then(db => {
+// 			db
+// 				.collection('user')
+// 				.updateOne(
+// 					{ _id: user._id },
+// 					{ $set: { name: user.name, email: user.email } },
+// 					(err, updatedInfo) => {
+// 						if (err) reject(err);
+// 						else {
+// 							db
+// 								.collection('user')
+// 								.findOne({ _id: user._id }, (err, updatedUserFromDB) => {
+// 									console.log('updatedUserFromDB,', updatedUserFromDB);
+// 									resolve(updatedUserFromDB);
+// 								});
+// 						}
+// 						db.close();
+// 					}
+// 				);
+// 		});
+// 	});
+// }
 
 function getById(userId) {
 	userId = new mongo.ObjectID(userId);

@@ -19,14 +19,20 @@ function register(user) {
 }
 
 function logout() {
-	return axios
-		.post(`${BASE_URL}/logout`)
-		.then(res => {
-			delete sessionStorage.user;
-		})
-		.catch(err => {
-			throw new Error('Logout Failed');
-		});
+	// return axios
+	// 	.post(`${BASE_URL}/logout`)
+	// 	.then(res => {
+	// 		delete sessionStorage.user;
+	// 	})
+	// 	.catch(err => {
+	// 		throw new Error('Logout Failed');
+	// 	});
+  return axios
+    .post(`${BASE_URL}/logout`)
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {throw new Error('Logout Failed')})
 }
 function updateWallet(user) {
 	return axios.put(`${BASE_URL}/updateWallet`, user).then(res => res.data);

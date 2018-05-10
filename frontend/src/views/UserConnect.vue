@@ -24,11 +24,30 @@
 <script>
 import Login from "../components/Login.vue";
 import Signup from "../components/Signup.vue";
+import { LOGOUT } from "../store/UserStore.js";
 
 export default {
   computed: {
     currentTab() {
-      return this.$route.name;
+      const tab = this.$route.name;
+      if (tab === 'logout') {
+        const user = this.$store.getters.loggedInUser;
+        return (user) ? this.logoutUser() : 
+                        this.$router.push({ name: "home" });
+      }
+      return tab;
+    }
+  },
+  methods: {
+    logoutUser() {
+      this.$store
+        .dispatch({ type: LOGOUT })
+        .then(() => {
+          this.$router.push({ name: "home" });
+        })
+        .catch(err => {
+          throw new Error("Logout Failed");
+        });
     }
   },
   components: {

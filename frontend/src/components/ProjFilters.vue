@@ -4,10 +4,6 @@
         <div>
             <p class="headlinefont text-xs-left  filter-title"> CATEGORY </p>
             <ul class="clean-list text-xs-left filter">
-                <!-- <li @click="emitfilter('')" :class="{active: active === ''}" > All Categories </li>
-                <li @click="emitfilter('Tech')" :class="{active: active === ''}" > Tech & Innovation </li>
-                <li @click="emitfilter('Art')" :class="{active: active === ''}" > Art </li>
-                <li @click="emitfilter('Community')" :class="{active: active === ''}" > Community Projects </li> -->
                 <CategoryFilterItem v-for="category in categories" :key="category" :category="category"
                          :isActive="activeCategory === category" @click.native="clickFilterHandler(category)" />
             </ul>
@@ -32,7 +28,7 @@ export default {
 	data() {
 		return {
 			activeCategory: '',
-			categories: ['All','Tech', 'Art', 'Community']
+			categories: ['All','Tech', 'Art','Music','Film']
 		};
 	},
 

@@ -10,11 +10,11 @@ export const UPDATE_FUNDS_RAISED = 'updateFundsRaised';
 function _addFavoriteToProj(proj, user) {
 	if (!user) return
 	var idx = user.favorites.findIndex(favorite => {
-		console.log(favorite.projId, proj._id)
+		// console.log(favorite.projId, proj._id)
 		return favorite.projId === proj._id;
 	});
 	if (idx !== -1) proj.isFavorite = true;
-
+      console.log(idx)
 	return proj;
 }
 
@@ -98,7 +98,7 @@ export default {
 				}
 			};
 			return projService.query(criteria).then(projs => {
-				// if(store.getters.loggedInUser) projs = _checkIfFavorite(projs, store.getters.loggedInUser);
+				if(store.getters.loggedInUser) projs = _checkIfFavorite(projs, store.getters.loggedInUser);
 				store.commit({ type: 'setProjs', projs });
 				store.commit({ type: 'setNumOfProjs', projs });
 				return projs.length;

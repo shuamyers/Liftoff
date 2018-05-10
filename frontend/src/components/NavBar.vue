@@ -1,37 +1,34 @@
 <template>
   <section>
 
+    <!-- Mobile menu -->
     <v-navigation-drawer 
       clipped
       app
       fixed
       disable-resize-watcher
       v-model="drawer">
-
       <v-list two-line>
-          <v-list-tile 
-              v-for="tile in tiles"
-              :key="tile.txt"
-              :to="{name: tile.routeName}"
-              exact>
-
-              <v-list-tile-action>
-                  <v-icon>{{tile.icon}}</v-icon>
-              </v-list-tile-action>
-              <v-list-tile-content>
-                  <v-list-tile-title>{{tile.txt}}</v-list-tile-title>
-              </v-list-tile-content>
-
-          </v-list-tile>
+        <v-list-tile 
+          v-for="link in filteredLinks"
+          :key="link.txt"
+          :to="{name: link.routeName}"
+          exact>
+          <v-list-tile-action>
+            <v-icon>{{link.icon}}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>{{link.txt}}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
       </v-list>
-
     </v-navigation-drawer> 
 
+    <!-- Desktop menu -->
     <v-toolbar 
       app 
       fixed 
-      clipped-left >
-
+      clipped-left>
       <span class="ma-0 hidden-md-and-up">
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       </span>
@@ -45,30 +42,17 @@
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
-      
-      <v-toolbar-items>     
-        <v-btn :to="{name: 'explore'}">Explore</v-btn>
-        <v-btn 
-          :to="{name: 'startCampaign'}"
-          class="hidden-sm-and-down">Start Campaign</v-btn>
-        
-        <template v-if="loggedInUser">
-          <v-btn 
-            :to="{name: 'userProfile', params: {userId: loggedInUser._id}}"
-            class="hidden-sm-and-down"
-            >{{ loggedInUser.name }}</v-btn>
-        </template>
 
-        <template v-else>
-          <v-btn 
-            :to="{name: 'login'}"
-            class="hidden-sm-and-down ">Log in</v-btn>
-          <v-btn 
-            :to="{name: 'signup'}"
-            class="hidden-sm-and-down " >Sign up</v-btn>
-        </template>
-      </v-toolbar-items>
-
+      <v-toolbar-items> 
+        <v-btn
+          v-for="link in filteredLinks"
+          :key="link.txt"
+          :class="{'hidden-sm-and-down': link.hiddenOnMobile}"
+          :to="{name: link.routeName}"
+          exact>
+          {{ link.txt }}
+        </v-btn>
+      </v-toolbar-items> 
     </v-toolbar>
 
   </section>
@@ -79,21 +63,48 @@ export default {
   data() {
     return {
       drawer: false,
-      tiles: [
+      links: [
         {
           txt: "Home",
           icon: "home",
-          routeName: "home"
+          routeName: "home",
+          alwaysShow: true,
+          hiddenOnMobile: true
         },
         {
           txt: "Explore",
           icon: "explore",
-          routeName: "explore"
+          routeName: "explore",
+          alwaysShow: true,
+          hiddenOnMobile: false
         },
         {
           txt: "Start Campaign",
           icon: "create",
-          routeName: "startCampaign"
+          routeName: "startCampaign",
+          alwaysShow: true,
+          hiddenOnMobile: true
+        },
+        {
+          txt: "Login / Signup",
+          icon: "account_circle",
+          routeName: "login",
+          loginRequired: false,
+          hiddenOnMobile: true
+        },
+        {
+          txt: "My Profile",
+          icon: "account_circle",
+          routeName: "userProfile",
+          loginRequired: true,
+          hiddenOnMobile: true
+        },
+        {
+          txt: "Logout",
+          icon: "input",
+          routeName: "logout",
+          loginRequired: true,
+          hiddenOnMobile: true
         }
       ]
     };
@@ -101,6 +112,15 @@ export default {
   computed: {
     loggedInUser() {
       return this.$store.getters.loggedInUser;
+    },
+    filteredLinks() {
+      return this.links.filter(link => {
+        if (this.loggedInUser) {
+          return (link.alwaysShow || link.loginRequired);
+        } else {
+          return (link.alwaysShow || !link.loginRequired);
+        }
+      })
     }
   }
 };
