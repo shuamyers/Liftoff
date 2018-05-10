@@ -19,10 +19,12 @@
                     <v-container fill-height>
                     <v-layout align-center>
                         <v-flex text-xs-center>
-                        <h3 class="moto big-font hidden-xs-only">Lift-off Your Creativity</h3>
-                        <h3 class="moto medium-font hidden-sm-and-up">Lift-off Your Creativity</h3>
+                        <div class="moto big-font hidden-xs-only">
+                          <p class="ma-0">Lift-off</p>
+                          <p class="ma-0">Your Creativity</p>
+                          </div>
                             <v-btn
-                                class="blue lighten-2 mt-5"
+                                class="primary mt-5"
                                 dark
                                 large
                                 :to="'/explore'"
@@ -30,6 +32,7 @@
                                 Explore
                                 </v-btn>
                         </v-flex>
+                        <h3 class="moto medium-font hidden-sm-and-up">Lift-off Your Creativity</h3>
                     </v-layout>
                     </v-container>
                 </v-jumbotron>
@@ -138,8 +141,8 @@ export default {
 <style scoped>
 .moto {
   font-family: "Domine";
-  color: rgb(255, 207, 51);
-  margin-bottom: 110px;
+  color:rgba(255, 255, 255, 0.78);
+  margin-bottom: 90px;
 }
 .big-font{
     font-size: 60px;

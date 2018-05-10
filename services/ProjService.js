@@ -81,15 +81,16 @@ function query(criteria) {
 
 	var category = criteria.category ? criteria.category : new RegExp('[sS]*');
   // var duration = criteria.duration ? JSON.parse(criteria.duration) : new RegExp('[sS]*');
-  var duration = criteria.duration ? JSON.parse(criteria.duration) : new RegExp('[sS]*');
-  console.log(duration)
+  // var duration = criteria.duration ? JSON.parse(criteria.duration) : new RegExp('[sS]*');
+  // console.log(duration)
 
 	query = {
 		$and: [
 			{
 				$or: [{ title: regex }, { desc: regex }, { category: regex }, { duration: regex }]
 			},
-			{ category,duration }
+			{ category }
+			// { category,duration }
 		]
   };
   console.log('query!',query)
