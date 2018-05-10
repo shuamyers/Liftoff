@@ -36,9 +36,12 @@
                           </div>
                           <div class="time-left">
                                 <p class="body-2 mb-0">Days left</p>
-                                <v-progress-circular :size="50" :width="7" :rotate="360" :value="(daysLeft/30)*100" color="teal">
-                                   {{daysLeft}}
+                                <v-progress-circular :size="50" :width="7" :rotate="360" :value="(proj.duration/30)*100" color="teal">
+                                   {{proj.duration}}
                                 </v-progress-circular>
+                                <!-- <v-progress-circular :size="50" :width="7" :rotate="360" :value="(daysLeft/30)*100" color="teal">
+                                   {{daysLeft}}
+                                </v-progress-circular> -->
                           </div>            
                     </v-layout>
                     </div>
