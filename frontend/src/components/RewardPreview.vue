@@ -6,7 +6,7 @@
           </v-card-media>
           <v-card-title class="flex-col align-baseline"  primary-title>
             <div class="align-self-center">
-                <v-chip v-show="reward.featured" label color="orange">FEATURED</v-chip>
+                <v-chip v-show="reward.featured" label class="subheading" color="transparent">FEATURED</v-chip>
             </div>
             <!-- <p class="reward-price mb-1">${{reward.cost}}</p> -->
             <p class="reward-title mb-1 align-self-center">{{reward.title}} - ${{reward.cost}}</p>
