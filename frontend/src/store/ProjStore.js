@@ -94,11 +94,9 @@ export default {
 		[LOAD_PROJS](store) {
 			var criteria = {
 				skip: 0,
-				// filterBySearchTxt: store.state.filterBy.searchTxt,
 				filterBy: {
 					searchTxt: store.state.filterBy.searchTxt,
 					category: store.state.filterBy.category
-					// status:null,
 				}
 			};
 			return projService.query(criteria).then(projs => {

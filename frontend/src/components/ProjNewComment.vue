@@ -18,7 +18,6 @@
                             auto-grow                            
                             hint="nvnt"
                             hide-details
-                            :maxlength="10" 
                             @focus="onComment = true"
                             ></v-text-field> 
                         </form>
