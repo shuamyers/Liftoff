@@ -12,7 +12,7 @@
               <v-flex xs5 align-content-start>
                 <div class="ml-3 mb-3">
                   <v-avatar size="150px" color="grey lighten-4" class="mx-auto mt-4">
-                    <img :src="user.imgUrl" alt="avatar">
+                    <img src="http://www.avglobalservices.in/img/testimonial/02.jpg" alt="avatar">
                   </v-avatar>
                 </div>
               </v-flex>
@@ -77,7 +77,8 @@ import ProjService from '../services/projService.js'
 
 export default {
 	created() {
-    const userId = this.$route.params.userId;
+		// const userId = this.$route.params.userId;
+    const userId = this.$store.getters.loggedInUser._id
     console.log("userId",userId)
     this.$store.dispatch({ type: LOAD_PLEDGES_BY_USER_ID, userId });
     setTimeout(() =>{
