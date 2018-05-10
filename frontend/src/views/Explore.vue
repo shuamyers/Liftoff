@@ -29,7 +29,7 @@
               	<proj-preview @setFavorite="setFavorite" @removeFavorite="removeFavorite" :proj="proj" @click.native="goToProj(proj._id)"></proj-preview>
 							</v-flex>
               <infinite-loading @infinite="infiniteHandler" ref="infiniteLoading" class="centered">
-
+  							<span slot="no-more"></span>
               </infinite-loading>
             </v-layout>
           </v-container>
@@ -52,126 +52,134 @@
 </template>
 
 <script>
-import ProjPreview from '../components/ProjPreview';
-import { LOAD_PROJS, LOAD_MORE_PROJS } from '../store/ProjStore';
-import { ADD_FAVORITES,GET_BY_ID,REMOVE_FAVORITES } from "../store/UserStore.js";
-import ProjFilters from '../components/ProjFilters.vue';
-import InfiniteLoading from 'vue-infinite-loading';
-
+import ProjPreview from "../components/ProjPreview";
+import { LOAD_PROJS, LOAD_MORE_PROJS } from "../store/ProjStore";
+import {
+  ADD_FAVORITES,
+  GET_BY_ID,
+  REMOVE_FAVORITES
+} from "../store/UserStore.js";
+import ProjFilters from "../components/ProjFilters.vue";
+import InfiniteLoading from "vue-infinite-loading";
 
 export default {
-	created() {
+  created() {
     this.$store.dispatch({ type: LOAD_PROJS });
-	},
-	data() {
-		return {
-			searchTxt: null,
-			drawer: false,
-			target: '#top',
-			option: {
-				duration: 1000,
-				offset: 0,
-				easing: 'easeInOutCubic'
-			},
-			offsetTop: 0,
-				
-		}
-	},
-	methods: {
-		onScroll() {
-			this.offsetTop = window.pageYOffset || document.documentElement.scrollTop;
-		},
-		goToProj(projId) {
-			this.$router.push('project/' + projId);
-		},
-		search() {
-			this.$store.commit('setFilterBySearchTxt', { searchTxt: this.searchTxt });
-			this.$store.dispatch(LOAD_PROJS);
-		},
-		infiniteHandler($state) {
-			this.$store.dispatch({ type: LOAD_MORE_PROJS }).then(length => {
-				if (length) {
-					$state.loaded();
-					if (length < 12) {
-						$state.complete();
-					}
-				} else {
-					$state.complete();
-				}
-			});
-		},
-		changeFilter(category) {
-			this.$store.commit('setFilterByCategory', { category });
-			this.$store.dispatch(LOAD_PROJS);
-			this.$refs.infiniteLoading.$emit("$InfiniteLoading:reset");
+  },
+  data() {
+    return {
+      searchTxt: null,
+      drawer: false,
+      target: "#top",
+      option: {
+        duration: 1000,
+        offset: 0,
+        easing: "easeInOutCubic"
+      },
+      offsetTop: 0
+    };
+  },
+  methods: {
+    onScroll() {
+      this.offsetTop = window.pageYOffset || document.documentElement.scrollTop;
     },
-    setFavorite(projId){
-		// console.log(this.$store.getters.loggedInUser)
-      this.$store.dispatch({type:ADD_FAVORITES , projId,user:this.$store.getters.loggedInUser })
+    goToProj(projId) {
+      this.$router.push("project/" + projId);
     },
-    removeFavorite(projId){
-		// console.log('favort',this.$store.getters.loggedInUser)
-      this.$store.dispatch({type: REMOVE_FAVORITES , projId , user:this.$store.getters.loggedInUser })
+    search() {
+      this.$store.commit("setFilterBySearchTxt", { searchTxt: this.searchTxt });
+      this.$store.dispatch(LOAD_PROJS);
+    },
+    infiniteHandler($state) {
+      this.$store.dispatch({ type: LOAD_MORE_PROJS }).then(length => {
+        if (length) {
+          $state.loaded();
+          if (length < 12) {
+            $state.complete();
+          }
+        } else {
+          $state.complete();
+        }
+      });
+    },
+    changeFilter(category) {
+      this.$store.commit("setFilterByCategory", { category });
+      this.$store.dispatch(LOAD_PROJS);
+      this.$refs.infiniteLoading.$emit("$InfiniteLoading:reset");
+    },
+    setFavorite(projId) {
+      // console.log(this.$store.getters.loggedInUser)
+      this.$store.dispatch({
+        type: ADD_FAVORITES,
+        projId,
+        user: this.$store.getters.loggedInUser
+      });
+    },
+    removeFavorite(projId) {
+      // console.log('favort',this.$store.getters.loggedInUser)
+      this.$store.dispatch({
+        type: REMOVE_FAVORITES,
+        projId,
+        user: this.$store.getters.loggedInUser
+      });
     }
-	},
-	computed: {
-		showBtn() {
-			return this.offsetTop > 500;
-		},
-		projs() {
-			return this.$store.getters.projsForDisplay;
-		},
-		numOfProjs() {
-			return this.$store.getters.numOfProjs;
+  },
+  computed: {
+    showBtn() {
+      return this.offsetTop > 500;
     },
-
-	},
-	components: {
-		ProjPreview,
-		ProjFilters,
-		InfiniteLoading,
-
-	}
+    projs() {
+      return this.$store.getters.projsForDisplay;
+    },
+    numOfProjs() {
+      return this.$store.getters.numOfProjs;
+    }
+  },
+  components: {
+    ProjPreview,
+    ProjFilters,
+    InfiniteLoading
+  }
 };
 </script>
 
 <style scoped>
 .filter-mobile {
-	margin: 50px 0 0 25px;
+  margin: 50px 0 0 25px;
 }
 .filter-div {
-	display: flex;
-	justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .my-flex-mobile {
-	display: block;
+  display: block;
 }
 
 .search-div {
-	display: block;
-	width: 100%;
+  display: block;
+  width: 100%;
 }
 @media only screen and (max-width: 960px) {
-	.my-flex-mobile {
-		display: flex;
-	}
-	.search-div {
-		width: 70%;
-		display: inline;
-	}
-	.filter-btn-mobile {
-		display: inline;
-		width: 30%;
-	}
+  .my-flex-mobile {
+    display: flex;
+  }
+  .search-div {
+    width: 70%;
+    display: inline;
+  }
+  .filter-btn-mobile {
+    display: inline;
+    width: 30%;
+  }
 }
 .divder {
-	margin: 20px 0 10px;
-	width: 100%;
+  margin: 20px 0 10px;
+  width: 100%;
 }
 
 .my-flex {
-	display: flex;
+  display: flex;
 }
 
 /* .proj-preview {
@@ -179,11 +187,11 @@ export default {
 } */
 
 .inline {
-	display: inline;
-	width: 80%;
+  display: inline;
+  width: 80%;
 }
 
 .centered {
-	margin: 0 auto;
+  margin: 0 auto;
 }
 </style>
