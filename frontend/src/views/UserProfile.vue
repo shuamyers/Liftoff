@@ -77,15 +77,17 @@ import ProjService from '../services/projService.js'
 
 export default {
 	created() {
-		const userId = this.$route.params.userId;
-		this.$store.dispatch({ type: LOAD_PLEDGES_BY_USER_ID, userId });
+		// const userId = this.$route.params.userId;
+    const userId = this.$store.getters.loggedInUser._id
+    console.log("userId",userId)
+    this.$store.dispatch({ type: LOAD_PLEDGES_BY_USER_ID, userId });
     setTimeout(() =>{
-              projService.query(this.criteria).then(projs => {
+              ProjService.query(this.criteria).then(projs => {
                   console.log(this.criteria)
                   console.log('catalog projs!',projs)
-                this.catalogedProjs = projs;
+                this.projs = projs;
               });
-          },500)
+          },1000)
 	},
 	data() {
 		return {
@@ -94,7 +96,7 @@ export default {
 				email: ''
 			},
       edit: false,
-     Criteria: {
+     criteria: {
         skip: 0,
         limit: 4,
         filterBy: {

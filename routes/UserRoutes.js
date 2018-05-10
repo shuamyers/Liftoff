@@ -46,6 +46,17 @@ module.exports = app => {
       .catch(err => res.status(403).send({ error: `Register failed, ERROR:${err}` }));
   });
 
+  app.put('/favorite/remove', (req, res) => {
+    var data = req.body;
+    UserService.addFavorite(data)
+      .then(updatedUser =>{
+        console.log('updatedUser')
+        res.json(updatedUser)
+        
+      } )
+      .catch(err => res.status(403).send({ error: `Register failed, ERROR:${err}` }));
+  });
+
   app.post('/logout', (req, res) => {
     req.session.reset();
     res.end('Logged out');

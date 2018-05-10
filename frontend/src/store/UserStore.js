@@ -70,17 +70,16 @@ export default {
       })
 
    } ,
+
     [REMOVE_FAVORITES](store,{projId}){
       var user = store.getters.loggedInUser
-      var idx = user.favorites.findIndex(favorite => favorite.projId === projId)
-      user.favorite.splice(idx,1)
-      return UserService.updateWallet(user) 
-      .then(userDb => {
-        store.commit({type: 'updateWallet', walletVal: userDb.digitalWallet});
+      return UserService.removeFavorites(user,projId) 
+      .then(_=> {
+        console.log('made it')
+       store.commit({type: 'removeFavorite',projId});
       })
    }, 
    [GET_BY_ID](store ,{userId}){
-  
       return UserService.getById(userId).then(user=>{
         store.commit({type:'setCurrUser',user})
       })

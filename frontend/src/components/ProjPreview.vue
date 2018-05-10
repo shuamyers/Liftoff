@@ -2,10 +2,10 @@
         <v-card class="text-xs-center proj-preview prokema-2">
           <v-card-media class="preview-img" :src="proj.featuredImgUrl" height="200px">
           </v-card-media>
-             <v-btn icon v-if="!proj.isFavorite" @click.stop ="emitFavorite">
+             <v-btn icon v-if="!proj.isFavorite" @click.stop ="emitSetFavorite">
                  <v-icon color="info">favorite_border</v-icon>
              </v-btn>
-                <v-btn icon v-if="proj.isFavorite" @click.stop ="emitFavorite" >
+                <v-btn icon v-if="proj.isFavorite" @click.stop ="emitRemoveFavorite" >
                  <v-icon color="info">favorite</v-icon>
              </v-btn>
            <v-divider ></v-divider>
@@ -50,8 +50,11 @@ export default {
         goToProj(projId) {
             this.$router.push('project/' + projId)
         },
-        emitFavorite(){
+        emitSetFavorite(){
             	this.$emit('setFavorite',this.proj._id)
+        },
+        emitRemoveFavorite(){
+            	this.$emit('removeFavorite',this.proj._id)
         }
     },
     computed: {

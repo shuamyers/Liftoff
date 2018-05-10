@@ -26,7 +26,7 @@
             </v-flex>
             <v-layout wrap>
 							<v-flex xs12 sm6 md4 wrap v-for="proj in projs" :key="proj._id" >
-              	<proj-preview @setFavorite="setFavorite" :proj="proj" @click.native="goToProj(proj._id)"></proj-preview>
+              	<proj-preview @setFavorite="setFavorite" @removeFavorite="removeFavorite" :proj="proj" @click.native="goToProj(proj._id)"></proj-preview>
 							</v-flex>
               <infinite-loading @infinite="infiniteHandler" ref="infiniteLoading" class="centered">
 
@@ -53,7 +53,7 @@
 <script>
 import ProjPreview from '../components/ProjPreview';
 import { LOAD_PROJS, LOAD_MORE_PROJS } from '../store/ProjStore';
-import { ADD_FAVORITES,GET_BY_ID } from "../store/UserStore.js";
+import { ADD_FAVORITES,GET_BY_ID,REMOVE_FAVORITES } from "../store/UserStore.js";
 import ProjFilters from '../components/ProjFilters.vue';
 import InfiniteLoading from 'vue-infinite-loading';
 
@@ -105,6 +105,10 @@ export default {
     setFavorite(projId){
 		// console.log(this.$store.getters.loggedInUser)
       this.$store.dispatch({type:ADD_FAVORITES , projId,user:this.$store.getters.loggedInUser })
+    },
+    removeFavorite(projId){
+		// console.log('favort',this.$store.getters.loggedInUser)
+      this.$store.dispatch({type: REMOVE_FAVORITES , projId , user:this.$store.getters.loggedInUser })
     }
 	},
 	computed: {

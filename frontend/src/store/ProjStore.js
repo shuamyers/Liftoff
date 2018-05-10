@@ -84,6 +84,10 @@ export default {
 		setFavorite(state, { projId }) {
 			var proj = state.projs.find(proj => proj._id === projId);
 			proj.isFavorite = !proj.isFavorite;
+		},
+		removeFavorite(state, { projId }) {
+			var proj = state.projs.find(proj => proj._id === projId);
+			proj.isFavorite = !proj.isFavorite;
 		}
 	},
 	actions: {
@@ -153,6 +157,15 @@ export default {
 					fundsRaised: projDb.fundsRaised
 				});
 			});
-		}
+		},
+
+		// [UPDATE_USER_FAVORITE](store, { proj }) {
+		// 	projService.updateFundsRaised(proj).then(projDb => {
+		// 		store.commit({
+		// 			type: 'updateFundsRaised',
+		// 			fundsRaised: projDb.fundsRaised
+		// 		});
+		// 	});
+		// }
 	}
 };
