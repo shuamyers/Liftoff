@@ -93,11 +93,56 @@
       </v-layout>
     </v-container>
 
+    <v-dialog v-model="dialog" width="600px">
+        <!-- <v-btn slot="activator" color="primary" dark>Open Dialog</v-btn> -->
+        <v-card>
+          <v-card-title>
+            <div>
+            <h1 class="headline">Thank you for Purchasing</h1>
+            <h3>Your New Balance: ${{user.digitalWallet}}</h3>
+
+            </div>
+          </v-card-title>
+          <v-card-text>
+           
+            <v-container grid-list-md>
+              <v-layout wrap>
+                <v-flex xs12 sm5>
+                  <v-card-media :src="this.reward.imgUrl" height="200" contain>
+                  </v-card-media>
+                </v-flex>
+                <v-flex xs12 sm7>
+                  <v-card-title primary-title>
+                    <div>
+                      <div class="headline">{{this.reward.title}}</div>
+                      <div>{{this.reward.desc}}</div>
+                      <div>
+                        <div class="headline mt-3">Reward includes</div>
+                        <ul>
+                          <li class="ml-3" v-for="(item,i) in this.reward.itemsIndcluded" :key="i">{{item}}</li>
+                        </ul>
+                      </div>
+                      <v-divider class="mt-3"></v-divider>
+                      <v-flex justify-end row ali>
+                        <v-card-actions>
+                           <v-btn color="primary" block flat outline @click.native="sentTo">Go back</v-btn>
+                        </v-card-actions>
+                      </v-flex>
+                    </div>
+                  </v-card-title>
+                </v-flex>
+              </v-layout>
+            </v-container>
+        
+          </v-card-text>
+        </v-card>
+      </v-dialog>
+
   </section>
 </template>
 
 <script>
-import { SET_SELECTED_PROJ,UPDATE_FUNDS_RAISED } from '../store/ProjStore.js';
+import { SET_SELECTED_PROJ, UPDATE_FUNDS_RAISED } from '../store/ProjStore.js';
 import { SAVE_PLEDGE } from '../store/PledgeStore.js';
 import { UPDATE_WALLET_DIFF } from '../store/UserStore.js';
 
@@ -118,10 +163,11 @@ export default {
 				userId: '',
 				projId: '',
 				rewardsId: '',
-        pledgedAmount: 0,
-        userName:'',
-        userImg:'',
-			}
+				pledgedAmount: 0,
+				userName: '',
+				userImg: ''
+			},
+			dialog: false
 		};
 	},
 	created() {
@@ -136,26 +182,37 @@ export default {
 	},
 	methods: {
 		pay() {
-      console.log('paying');
-      this.pledge.userId = this.user._id;
-      this.pledge.userName = this.user.name;
-      this.pledge.userImg = this.user.imgUrl;
+			console.log('paying');
+			this.pledge.userId = this.user._id;
+			this.pledge.userName = this.user.name;
+			this.pledge.userImg = this.user.imgUrl;
 
-      this.$store.dispatch({ type: SAVE_PLEDGE, pledge: this.pledge })
-      .then(pledge => {
-        console.log('got after pay',pledge)
-        this.$store.dispatch({type:UPDATE_WALLET_DIFF,user:{diff:-this.reward.cost,_id:this.user._id} })
-        this.$store.dispatch({type:UPDATE_FUNDS_RAISED,proj:{diff:this.reward.cost,_id:this.$route.params.projId} })
-        });
+			this.$store
+				.dispatch({ type: SAVE_PLEDGE, pledge: this.pledge })
+				.then(pledge => {
+					this.dialog = true;
+					console.log('got after pay', pledge);
+					this.$store.dispatch({
+						type: UPDATE_WALLET_DIFF,
+						user: { diff: -this.reward.cost, _id: this.user._id }
+					});
+					this.$store.dispatch({
+						type: UPDATE_FUNDS_RAISED,
+						proj: { diff: this.reward.cost, _id: this.$route.params.projId }
+					});
+				});
+		},
+		sentTo() {
+			this.$router.push('/explore');
 		}
 	},
 	computed: {
 		proj() {
 			return this.$store.getters.selectedProj;
-    },
-    user() {
-      return this.$store.getters.loggedInUser;
-    },
+		},
+		user() {
+			return this.$store.getters.loggedInUser;
+		}
 	}
 };
 </script>

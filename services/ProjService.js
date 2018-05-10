@@ -110,7 +110,7 @@ function query(criteria) {
 					isFavorite: 1
 				})
 				.skip(skip)
-				.limit((1 || 12))
+				.limit((limit || 12))
 				.toArray((err, projs) => {
           if (err) reject(err);
 					else resolve(projs);

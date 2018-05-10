@@ -130,7 +130,7 @@
             <span class="headline">Choose a package</span>
           </v-card-title>
           <v-card-text>
-              <reward-preview @openPerk="openPerk" @click.native="openPerk(reward.id)" class="proj-reward" 
+              <reward-preview   @openPerk="openPerk" @click.native="openPerk(reward.id)" class="proj-reward" 
                 v-for="reward in proj.rewards" 
                 :key="reward.id" :reward="reward">
               </reward-preview>
@@ -138,6 +138,24 @@
         </v-card>
       </v-dialog>
     </v-layout>
+
+
+     <v-dialog v-model="login" width="600px">
+        <!-- <v-btn slot="activator" color="primary" dark>Open Dialog</v-btn> -->
+        <v-card>
+          <v-card-title>
+            <div>
+            <h1 class="headline">Pleas log in</h1>
+
+            </div>
+          </v-card-title>
+          <v-card-text>
+          <login></login>
+        
+          </v-card-text>
+        </v-card>
+      </v-dialog>
+
 
   </section>
 
@@ -160,6 +178,7 @@ import ProjUpdate from '../components/ProjUpdate';
 import ProjBacker from '../components/ProjBacker';
 import ProjComment from '../components/ProjComment';
 import ProjNewComment from '../components/ProjNewComment';
+import Login from '../components/Login'
 
 export default {
   data() {
@@ -170,7 +189,8 @@ export default {
         comments: false,
         backers: false
       },
-      dialog:false
+      dialog:false,
+      login: false
     };
   },
 
@@ -271,7 +291,8 @@ export default {
 		ProjUpdate,
 		ProjBacker,
 		ProjComment,
-		ProjNewComment
+    ProjNewComment,
+    Login
 	}
 };
 </script>
