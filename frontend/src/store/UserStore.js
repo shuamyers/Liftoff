@@ -49,7 +49,8 @@ export default {
     [LOGOUT](store) {
       return UserService.logout()
         .then(() => {
-          store.commit({ type: 'setUser', user: null });
+          const user = null;
+          store.commit({ type: 'setUser', user });
         })
     },
     [UPDATE_WALLET_DIFF](store, { user }) {

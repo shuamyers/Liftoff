@@ -145,13 +145,13 @@
         <v-card>
           <v-card-title>
             <div>
-            <h1 class="headline">Pleas log in</h1>
-
+            <h1 class="headline">Pleas login</h1>
             </div>
           </v-card-title>
           <v-card-text>
-          <login></login>
-        
+                <v-flex xs12>
+                   <login></login>
+                </v-flex>
           </v-card-text>
         </v-card>
       </v-dialog>
@@ -178,33 +178,33 @@ import ProjUpdate from '../components/ProjUpdate';
 import ProjBacker from '../components/ProjBacker';
 import ProjComment from '../components/ProjComment';
 import ProjNewComment from '../components/ProjNewComment';
-import Login from '../components/Login'
+import Login from '../components/Login';
 
 export default {
-  data() {
-    // console.log(filters)
-    return {
-      projId: this.$route.params.projId,
-      clicked: {
-        comments: false,
-        backers: false
-      },
-      dialog:false,
-      login: false
-    };
-  },
+	data() {
+		// console.log(filters)
+		return {
+			projId: this.$route.params.projId,
+			clicked: {
+				comments: false,
+				backers: false
+			},
+			dialog: false,
+			login: false
+		};
+	},
 
-  created() {
-    this.loadBackers();
-    if(this.$route.params.tab === 'tab-comments'){
-      this.loadComments()
-    }
-    // else if(this.$route.params.tab === 'tab-backers') {
-    //   this.loadBackers()
-    // }
-    const projId = this.projId;
-    this.$store.dispatch({ type: SET_SELECTED_PROJ, projId });
-  },
+	created() {
+		this.loadBackers();
+		if (this.$route.params.tab === 'tab-comments') {
+			this.loadComments();
+		}
+		// else if(this.$route.params.tab === 'tab-backers') {
+		//   this.loadBackers()
+		// }
+		const projId = this.projId;
+		this.$store.dispatch({ type: SET_SELECTED_PROJ, projId });
+	},
 
 	methods: {
 		edit() {
@@ -228,6 +228,11 @@ export default {
 			this.$router.go(-1);
 		},
 		openPerk(rewardId) {
+      console.log(this.$store.getters.loggedInUser)
+      if(!this.$store.getters.loggedInUser) {
+        this.login = true
+        return
+      }
 			this.$router.push(
 				'/project/' +
 					this.$route.params.projId +
@@ -256,30 +261,30 @@ export default {
 		}
 	},
 
-  computed: {
-    proj() {
-      return this.$store.getters.selectedProj;
-    },
-    user() {
-      return this.$store.getters.loggedInUser;
-    },
-    comments() {
-      return this.$store.getters.commentsForDisplay;
-    },
-    backers() {
-      return this.$store.getters.pledgesForDisplay;
-    },
-    raisedPercent() {
-      return (this.proj.fundsRaised / this.proj.fundingGoal * 100).toFixed(0);
-    },
-    daysLeft() {
-      var today = new Date();
-      var endDate = this.proj.duration;
-      var one_day = 1000 * 60 * 60 * 24;
-      var daysLeft = Math.ceil((endDate - today.getTime()) / one_day);
-      return (daysLeft > 0) ? daysLeft : 0;
-      }
-  },
+	computed: {
+		proj() {
+			return this.$store.getters.selectedProj;
+		},
+		user() {
+			return this.$store.getters.loggedInUser;
+		},
+		comments() {
+			return this.$store.getters.commentsForDisplay;
+		},
+		backers() {
+			return this.$store.getters.pledgesForDisplay;
+		},
+		raisedPercent() {
+			return (this.proj.fundsRaised / this.proj.fundingGoal * 100).toFixed(0);
+		},
+		daysLeft() {
+			var today = new Date();
+			var endDate = this.proj.duration;
+			var one_day = 1000 * 60 * 60 * 24;
+			var daysLeft = Math.ceil((endDate - today.getTime()) / one_day);
+			return daysLeft > 0 ? daysLeft : 0;
+		}
+	},
 
 	destroyed() {
 		this.$store.commit({ type: 'setSelectedProj', selectedProj: null });
@@ -291,8 +296,8 @@ export default {
 		ProjUpdate,
 		ProjBacker,
 		ProjComment,
-    ProjNewComment,
-    Login
+		ProjNewComment,
+		Login
 	}
 };
 </script>

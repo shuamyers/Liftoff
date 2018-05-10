@@ -47,6 +47,7 @@
       </v-fab-transition>
     </v-container>
 
+ 
   </section>
 </template>
 
@@ -56,6 +57,7 @@ import { LOAD_PROJS, LOAD_MORE_PROJS } from '../store/ProjStore';
 import { ADD_FAVORITES,GET_BY_ID,REMOVE_FAVORITES } from "../store/UserStore.js";
 import ProjFilters from '../components/ProjFilters.vue';
 import InfiniteLoading from 'vue-infinite-loading';
+
 
 export default {
 	created() {
@@ -71,7 +73,8 @@ export default {
 				offset: 0,
 				easing: 'easeInOutCubic'
 			},
-      offsetTop: 0
+			offsetTop: 0,
+				
 		}
 	},
 	methods: {
@@ -126,7 +129,8 @@ export default {
 	components: {
 		ProjPreview,
 		ProjFilters,
-		InfiniteLoading
+		InfiniteLoading,
+
 	}
 };
 </script>
