@@ -25,7 +25,9 @@
               <v-spacer></v-spacer>
             </v-flex>
             <v-layout wrap>
-              <proj-preview class="proj-preview" :proj="proj" v-for="proj in projs" :key="proj._id" @click.native="goToProj(proj._id)"></proj-preview>
+							<v-flex xs12 sm6 md4 wrap v-for="proj in projs" :key="proj._id" >
+              	<proj-preview  :proj="proj" @click.native="goToProj(proj._id)"></proj-preview>
+							</v-flex>
               <infinite-loading @infinite="infiniteHandler" ref="infiniteLoading" class="centered">
 
               </infinite-loading>
@@ -159,9 +161,9 @@ export default {
 	display: flex;
 }
 
-.proj-preview {
+/* .proj-preview {
 	cursor: pointer;
-}
+} */
 
 .inline {
 	display: inline;

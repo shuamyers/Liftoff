@@ -32,7 +32,7 @@ export default {
 	data() {
 		return {
 			activeCategory: '',
-			categories: ['All','Tech', 'Art', 'Community']
+			categories: ['All','Tech', 'Art','Music','Film', 'Community']
 		};
 	},
 
