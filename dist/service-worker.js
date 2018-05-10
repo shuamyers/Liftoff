@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.1.0/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.76faa0877a2ed4d79527309ae33f70ed.js"
+  "/precache-manifest.62fe1cdb89c09ba56ec90477d44e9eff.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "liftoff"});
