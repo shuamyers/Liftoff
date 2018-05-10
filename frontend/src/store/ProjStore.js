@@ -8,23 +8,17 @@ export const LOAD_MORE_PROJS = 'loadMoreProjs';
 export const UPDATE_FUNDS_RAISED = 'updateFundsRaised';
 
 function _addFavoriteToProj(proj, user) {
-	var userLikes = [
-		{ projId: '5af1a19df6d0a90aa07c403a' },
-		{ projId: '5af1a19df6d0a90aa07c403b' }
-	];
-	var index = userLikes.findIndex(like => {
-		return like.projId === proj._id;
+	if (!user) return
+	var idx = user.favorites.findIndex(favorite => {
+		console.log(favorite.projId, proj._id)
+		return favorite.projId === proj._id;
 	});
-	
-	if(index !== -1) proj.isFavorite = true;
-
-	console.log(proj)
+	if (idx !== -1) proj.isFavorite = true;
 
 	return proj;
 }
 
-function _checkIfFavorite(projs ,user) {
-	console.log(projs);
+function _checkIfFavorite(projs, user) {
 	var newProjs = projs.map(proj => {
 		return _addFavoriteToProj(proj, user);
 	});
@@ -85,10 +79,12 @@ export default {
 			state.filterBy.searchTxt = searchTxt;
 		},
 		setFilterByCategory(state, { category }) {
-			console.log(category);
 			state.filterBy.category = category;
 		},
-
+		setFavorite(state, { projId }) {
+			var proj = state.projs.find(proj => proj._id === projId);
+			proj.isFavorite = !proj.isFavorite;
+		}
 	},
 	actions: {
 		[LOAD_PROJS](store) {
@@ -102,7 +98,7 @@ export default {
 				}
 			};
 			return projService.query(criteria).then(projs => {
-				projs = _checkIfFavorite(projs, store.getters.loggedInUser);
+				// if(store.getters.loggedInUser) projs = _checkIfFavorite(projs, store.getters.loggedInUser);
 				store.commit({ type: 'setProjs', projs });
 				store.commit({ type: 'setNumOfProjs', projs });
 				return projs.length;
@@ -150,11 +146,13 @@ export default {
 				store.commit({ type: 'deleteProj', projId });
 			});
 		},
-		[UPDATE_FUNDS_RAISED](store,{proj}){
-			projService.updateFundsRaised(proj) 
-			.then(projDb => {
-			  store.commit({type: 'updateFundsRaised', fundsRaised: projDb.fundsRaised});
-			})
-		 } 
+		[UPDATE_FUNDS_RAISED](store, { proj }) {
+			projService.updateFundsRaised(proj).then(projDb => {
+				store.commit({
+					type: 'updateFundsRaised',
+					fundsRaised: projDb.fundsRaised
+				});
+			});
+		}
 	}
 };

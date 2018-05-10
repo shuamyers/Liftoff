@@ -64,7 +64,7 @@ function update(proj) {
 
 function query(criteria) {
 	// console.log(criteria);
-
+  
 	var skip = +criteria.skip;
 	if (!skip || skip === 0) {
 		delete criteria.skip;
@@ -101,7 +101,7 @@ function query(criteria) {
 					isFavorite: 1
 				})
 				.skip(skip)
-				.limit(12)
+				.limit(5)
 				.toArray((err, projs) => {
 					if (err) reject(err);
 					else resolve(projs);

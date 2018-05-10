@@ -3,10 +3,10 @@
         <v-card class="ma-2">
           <v-card-media class="preview-img" :src="proj.featuredImgUrl" height="200px">
           </v-card-media>
-             <v-btn icon v-if="!proj.isFavorite" @click.stop ="favorite = !favorite">
+             <v-btn icon v-if="!proj.isFavorite" @click.stop ="emitFavorite">
                  <v-icon color="info">favorite_border</v-icon>
              </v-btn>
-                <v-btn icon v-if="proj.isFavorite" @click.stop ="favorite = !favorite" >
+                <v-btn icon v-if="proj.isFavorite" @click.stop ="emitFavorite" >
                  <v-icon color="info">favorite</v-icon>
              </v-btn>
            <v-divider ></v-divider>
@@ -51,11 +51,14 @@ export default {
     methods: {
         goToProj(projId) {
             this.$router.push('project/' + projId)
+        },
+        emitFavorite(){
+            	this.$emit('setFavorite',this.proj._id)
         }
     },
     computed: {
         procentRasied() {
-            return ((this.proj.fundsRaised/this.proj.fundingGoal)*100).toFixed(0);
+           return ((this.proj.fundsRaised/this.proj.fundingGoal)*100).toFixed(0);
         }
     },
 

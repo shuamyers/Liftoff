@@ -51,6 +51,7 @@ module.exports = app => {
     app.get(PROJ_URL, (req, res) => {
       ProjService.query(req.query)
         .then(projs => {
+          
           res.json(projs);
         })
         .catch(err => res.status(500).send(err.message));

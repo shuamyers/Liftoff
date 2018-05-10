@@ -30,7 +30,7 @@
     <v-toolbar 
       app 
       fixed 
-      clipped-left>
+      clipped-left >
 
       <span class="ma-0 hidden-md-and-up">
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
@@ -62,10 +62,10 @@
         <template v-else>
           <v-btn 
             :to="{name: 'login'}"
-            class="hidden-sm-and-down">Log in</v-btn>
+            class="hidden-sm-and-down ">Log in</v-btn>
           <v-btn 
             :to="{name: 'signup'}"
-            class="hidden-sm-and-down">Sign up</v-btn>
+            class="hidden-sm-and-down " >Sign up</v-btn>
         </template>
       </v-toolbar-items>
 

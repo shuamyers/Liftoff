@@ -4,15 +4,21 @@ export const LOGIN = "login";
 export const LOGOUT = "logout";
 export const REGISTER = "register";
 export const UPDATE_WALLET_DIFF = "update-wallaet-diff";
+export const ADD_FAVORITES = "add-favorites";
+export const REMOVE_FAVORITES = "remove-favorites";
+export const GET_BY_ID = "get-By-Id";
+
 
 
 export default {
   state: {
-    loggedInUser: null
+    loggedInUser: null,
+    currUser:null
   },
   getters: {
     loggedInUser(state) {
       return state.loggedInUser;
+      
     }
   },
   mutations: {
@@ -21,7 +27,11 @@ export default {
     },
     updateWallet(state,{walletVal}){
       state.loggedInUser.digitalWallet = walletVal;
+    },
+    setCurrUser(state,{user}){
+      state.currUser = user;
     }
+   
   },
   actions: {
     [LOGIN](store, { userCredentials }) {
@@ -44,10 +54,37 @@ export default {
         })
     },
     [UPDATE_WALLET_DIFF](store,{user}){
-      UserService.updateWallet(user) 
+      return UserService.updateWallet(user) 
       .then(userDb => {
         store.commit({type: 'updateWallet', walletVal: userDb.digitalWallet});
       })
-   } 
+   }, 
+    [ADD_FAVORITES](store,{projId}){
+      console.log(projId)
+      var user = store.getters.loggedInUser
+      if(!user) return
+      
+      return UserService.addFavorites(user,projId) 
+      .then(userDb => {
+        // console.log('here')
+        store.commit({type: 'setFavorite',projId});
+      })
+
+   } ,
+    [REMOVE_FAVORITES](store,{projId}){
+      var user = store.getters.loggedInUser
+      var idx = user.favorites.findIndex(favorite => favorite.projId === projId)
+      user.favorite.splice(idx,1)
+      return UserService.updateWallet(user) 
+      .then(userDb => {
+        store.commit({type: 'updateWallet', walletVal: userDb.digitalWallet});
+      })
+   }, 
+   [GET_BY_ID](store ,{userId}){
+  
+      return UserService.getById(userId).then(user=>{
+        store.commit({type:'setCurrUser',user})
+      })
+   }
   }
 }

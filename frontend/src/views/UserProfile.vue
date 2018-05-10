@@ -2,7 +2,7 @@
   <section>
 
     <v-layout row wrap justify-end class="mt-1">
-      <v-btn flat>Edit Profile</v-btn>
+      <v-btn flat @click.native="edit=!edit">Edit Profile</v-btn>
     </v-layout>
     <v-layout column justify-center align-center>
       <v-flex align-center>
@@ -18,13 +18,15 @@
               </v-flex>
               <v-flex xs12>
                 <v-card-title primary-title>
-                  <div>
-                    <h2 class="pl-4 mt-2 title">
-                      <v-icon>person</v-icon> Shua Myers</h2>
-                    <h2 class="pl-4 mt-4 title ">
-                      <v-icon>email</v-icon> shua@gmail.com</h2>
+                  <div v-if="user">
+                    <v-text-field label="Enter user name" :value="user.name" prepend-icon="person" single-line v-if="edit"></v-text-field>
+                    <v-text-field v-if="edit" label="Enter user name" :value="user.email" prepend-icon="email" single-line></v-text-field>
+                    <h2 class="pl-4 mt-2 title" v-if="!edit">
+                      <v-icon> person </v-icon> {{user.name}}</h2>
+                    <h2 class="pl-4 mt-4 title " v-if="!edit">
+                      <v-icon>email</v-icon> {{user.email}}</h2>
                     <h2 class="pl-4 mt-4 title">
-                      <v-icon>account_balance_wallet</v-icon> Balance: 1000$</h2>
+                      <v-icon>account_balance_wallet</v-icon> Balance: ${{user.digitalWallet}}</h2>
                   </div>
                 </v-card-title>
               </v-flex>
@@ -34,10 +36,28 @@
       </v-flex>
     </v-layout>
     <v-layout justify-center align-center class="mt-5 ">
-      <div>
-        <proj-preview class="proj-preview" :proj="proj" v-for="proj in projs" :key="proj._id" @click.native="goToProj(proj._id)"></proj-preview>
-      </div>
+
     </v-layout>
+
+    <v-container grid-list-md>
+      <h1 class="headline ">Projects</h1>
+      <v-divider class="mb-5"></v-divider>
+      <v-layout>
+        <proj-preview class="proj-preview" :proj="proj" v-for="proj in projs" :key="proj._id"></proj-preview>
+
+      </v-layout>
+      <h1 class="headline mt-5">Favorites</h1>
+      <v-divider class=" mb-3"></v-divider>
+      <v-layout>
+        <proj-preview class="proj-preview" :proj="proj" v-for="proj in projs" :key="proj._id"></proj-preview>
+
+      </v-layout>
+      <h1 class="headline mt-5">Pledges</h1>
+      <v-divider class=" mb-3"></v-divider>
+      <v-layout class="mb-4">
+        <proj-preview class="proj-preview" :proj="proj" v-for="proj in projs" :key="proj._id"></proj-preview>
+      </v-layout>
+    </v-container>
 
   </section>
 
@@ -45,19 +65,37 @@
 
 <script>
 import { LOAD_PLEDGES_BY_USER_ID } from '../store/PledgeStore.js';
+import { LOAD_PROJS } from '../store/ProjStore';
+import ProjPreview from '../components/ProjPreview';
 
 export default {
 	created() {
 		const userId = this.$route.params.userId;
 		this.$store.dispatch({ type: LOAD_PLEDGES_BY_USER_ID, userId });
+		this.$store.dispatch({ type: LOAD_PROJS });
+	},
+	data() {
+		return {
+			newUser: {
+				name: '',
+				email: ''
+			},
+			edit: false
+		};
 	},
 	computed: {
 		pledges() {
 			return this.$store.getters.pledgesForDisplay;
 		},
 		projs() {
-			return this.$store.getters.projsForDisplay
+			return this.$store.getters.projsForDisplay;
+		},
+		user() {
+			return this.$store.getters.loggedInUser;
 		}
+	},
+	components: {
+		ProjPreview
 	}
 };
 </script>

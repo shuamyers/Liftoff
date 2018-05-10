@@ -35,9 +35,26 @@ module.exports = app => {
       .catch(err => res.status(403).send({ error: `Register failed, ERROR:${err}` }));
   });
 
+  app.put('/favorite', (req, res) => {
+    var data = req.body;
+    UserService.addFavorite(data)
+      .then(updatedUser =>{
+        console.log('updatedUser')
+        res.json(updatedUser)
+        
+      } )
+      .catch(err => res.status(403).send({ error: `Register failed, ERROR:${err}` }));
+  });
+
   app.post('/logout', (req, res) => {
     req.session.reset();
     res.end('Loggedout');
+  });
+
+  app.get('/user/:id', (req, res) => {
+    const userId = req.params.userId;
+    UserService.getById(userId).then(userFromDb =>res.json(userFromDb))
+    .catch(err => res.status(500).send(err.message));
   });
 
   // app.get('/profile', isLoggedIn, (req, res) => {

@@ -25,7 +25,7 @@
               <v-spacer></v-spacer>
             </v-flex>
             <v-layout wrap>
-              <proj-preview class="proj-preview" :proj="proj" v-for="proj in projs" :key="proj._id" @click.native="goToProj(proj._id)"></proj-preview>
+              <proj-preview class="proj-preview" :proj="proj" @setFavorite="setFavorite" v-for="proj in projs" :key="proj._id" @click.native="goToProj(proj._id)"></proj-preview>
               <infinite-loading @infinite="infiniteHandler" ref="infiniteLoading" class="centered">
 
               </infinite-loading>
@@ -51,12 +51,13 @@
 <script>
 import ProjPreview from '../components/ProjPreview';
 import { LOAD_PROJS, LOAD_MORE_PROJS } from '../store/ProjStore';
+import { ADD_FAVORITES,GET_BY_ID } from "../store/UserStore.js";
 import ProjFilters from '../components/ProjFilters.vue';
 import InfiniteLoading from 'vue-infinite-loading';
 
 export default {
 	created() {
-		this.$store.dispatch({ type: LOAD_PROJS });
+    this.$store.dispatch({ type: LOAD_PROJS });
 	},
 	data() {
 		return {
@@ -98,7 +99,11 @@ export default {
 			this.$store.commit('setFilterByCategory', { category });
 			this.$store.dispatch(LOAD_PROJS);
 			this.$refs.infiniteLoading.$emit("$InfiniteLoading:reset");
-		}
+    },
+    setFavorite(projId){
+
+      this.$store.dispatch({type:ADD_FAVORITES , projId })
+    }
 	},
 	computed: {
 		showBtn() {
