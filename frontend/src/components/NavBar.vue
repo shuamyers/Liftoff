@@ -12,7 +12,7 @@
         <v-list-tile 
           v-for="link in filteredLinks"
           :key="link.txt"
-          :to="{name: link.routeName}"
+          :to="link.route"
           exact>
           <v-list-tile-action>
             <v-icon>{{link.icon}}</v-icon>
@@ -48,7 +48,7 @@
           v-for="link in filteredLinks"
           :key="link.txt"
           :class="{'hidden-sm-and-down': link.hiddenOnMobile}"
-          :to="{name: link.routeName}"
+          :to="link.route"
           exact>
           {{ link.txt }}
         </v-btn>
@@ -67,42 +67,42 @@ export default {
         {
           txt: "Home",
           icon: "home",
-          routeName: "home",
+          route: { name: "home" },
           alwaysShow: true,
           hiddenOnMobile: true
         },
         {
           txt: "Explore",
           icon: "explore",
-          routeName: "explore",
+          route: { name: "explore" },
           alwaysShow: true,
           hiddenOnMobile: false
         },
         {
           txt: "Start Campaign",
           icon: "create",
-          routeName: "startCampaign",
+          route: { name: "startCampaign" },
           alwaysShow: true,
           hiddenOnMobile: true
         },
         {
           txt: "Login / Signup",
           icon: "account_circle",
-          routeName: "login",
+          route: { name: "login" },
           loginRequired: false,
           hiddenOnMobile: true
         },
         {
           txt: "My Profile",
           icon: "account_circle",
-          routeName: "userProfile",
+          route: { name: "profile" },
           loginRequired: true,
           hiddenOnMobile: true
         },
         {
           txt: "Logout",
           icon: "input",
-          routeName: "logout",
+          route: { name: "logout" },
           loginRequired: true,
           hiddenOnMobile: true
         }
@@ -116,11 +116,11 @@ export default {
     filteredLinks() {
       return this.links.filter(link => {
         if (this.loggedInUser) {
-          return (link.alwaysShow || link.loginRequired);
+          return link.alwaysShow || link.loginRequired;
         } else {
-          return (link.alwaysShow || !link.loginRequired);
+          return link.alwaysShow || !link.loginRequired;
         }
-      })
+      });
     }
   }
 };

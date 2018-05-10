@@ -69,12 +69,9 @@ export default new Router({
     },
     {
       path: '/user',
-      component: User,
+      name: 'profile',
+      component: UserProfile,
       children: [
-        {
-          path: '',
-          redirect: { name: 'home' }
-        },
         {
           path: ':userId',
           name: 'userProfile',

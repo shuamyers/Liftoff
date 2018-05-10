@@ -54,6 +54,7 @@ export default {
             this.$router.push('project/' + projId)
         },
         emitSetFavorite(){
+            
             if(!this.$store.getters.loggedInUser){
                 this.$emit('openLogin')
                 return
@@ -61,6 +62,7 @@ export default {
             	this.$emit('setFavorite',this.proj._id)
         },
         emitRemoveFavorite(){
+
               if(!this.$store.getters.loggedInUser){
                 this.$emit('openLogin')
                 return

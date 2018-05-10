@@ -86,8 +86,8 @@
             <v-tabs color="transparent">
               <!-- <v-tab :to="{path:`${this.$route.params.projId}/tab-story`}">STORY</v-tab> -->
               <!-- <v-tab :to="{path:`tab-story`,params:{projId : this.$route.params.projId}}">STORY</v-tab> -->
-              <v-tab :to="`/project/${this.$route.params.projId}/tab-story`">STORY</v-tab>
               <v-tab :to="`/project/${this.$route.params.projId}/tab-updates`">UPDATES</v-tab>
+              <v-tab :to="`/project/${this.$route.params.projId}/tab-story`">STORY</v-tab>
               <v-tab :to="`/project/${this.$route.params.projId}/tab-comments`" @click="loadComments">Comments</v-tab>
               <v-tab :to="`/project/${this.$route.params.projId}/tab-backers`" @click="loadBackers"> BACKERS</v-tab>
 
