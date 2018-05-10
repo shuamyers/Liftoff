@@ -2,9 +2,9 @@
     <section>
         <featured></featured>
         <site-stats></site-stats>
-         <!-- <v-container grid-list-md text-xs-left style="max-width:1200px">
+         <v-container grid-list-md text-xs-left style="max-width:1200px">
             <catalog-projs :criteria="completedCriteria" :label="'Trending'"></catalog-projs>
-        </v-container> -->
+        </v-container>
         <section>
             <v-container grid-list-md text-xs-left style="max-width:1200px" class="mb-5">
                 <v-layout wrap class="categories">
@@ -37,9 +37,9 @@
         <v-container grid-list-md text-xs-left style="max-width:1200px">
             <catalog-projs :criteria="endingSoonCriteria" :label="'Ending Soon'"></catalog-projs>
         </v-container>
-        <!-- <v-container grid-list-md text-xs-left style="max-width:1200px">
+        <v-container grid-list-md text-xs-left style="max-width:1200px">
             <catalog-projs :criteria="allCriteria" :label="'All'"></catalog-projs>
-        </v-container> -->
+        </v-container>
     </section>
 </template>
 
