@@ -77,8 +77,7 @@ import ProjService from '../services/projService.js'
 
 export default {
 	created() {
-		// const userId = this.$route.params.userId;
-    const userId = this.$store.getters.loggedInUser._id
+    const userId = this.$route.params.userId;
     console.log("userId",userId)
     this.$store.dispatch({ type: LOAD_PLEDGES_BY_USER_ID, userId });
     setTimeout(() =>{

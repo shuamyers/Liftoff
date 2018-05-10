@@ -81,7 +81,7 @@ function query(criteria) {
 
 	var category = criteria.category ? criteria.category : new RegExp('[sS]*');
 
-	query = {
+	var queryFilter = {
 		$and: [
 			{
 				$or: [{ title: regex }, { desc: regex }, { category: regex }]
@@ -94,7 +94,7 @@ function query(criteria) {
 		DBService.dbConnect().then(db => {
 			db
 				.collection('proj')
-				.find(query, {
+				.find(queryFilter, {
 					title: 1,
 					desc: 1,
 					category: 1,
@@ -105,11 +105,11 @@ function query(criteria) {
 					isFavorite: 1
 				})
 				.skip(skip)
-				.limit((limit || 12))
+				.limit((1 || 12))
 				.toArray((err, projs) => {
           if (err) reject(err);
 					else resolve(projs);
-          console.log('projs! for',criteria,projs)
+          console.log('projs! for',queryFilter,projs)
 					db.close();
 				});
 		});
