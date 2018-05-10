@@ -233,13 +233,13 @@ export default {
         this.login = true
         return
       }
-			// this.$router.push(
-			// 	'/project/' +
-			// 		this.$route.params.projId +
-			// 		'/new/' +
-			// 		rewardId +
-			// 		'/checkout'
-			// );
+			this.$router.push(
+				'/project/' +
+					this.$route.params.projId +
+					'/new/' +
+					rewardId +
+					'/checkout'
+			);
 		},
 		loadComments() {
 			if (!this.clicked.comments) {
