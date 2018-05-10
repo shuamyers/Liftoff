@@ -4,7 +4,7 @@
             <v-divider class="mb-4"></v-divider>
             <v-layout wrap>
                 <v-flex class="mb-5" xs12 sm6 md3 wrap v-for="proj in catalogedProjs" :key="proj._id" >
-                    <proj-preview :proj="proj"></proj-preview>
+                    <proj-preview @click.native="goToProj(proj._id)" :proj="proj"></proj-preview>
                 </v-flex>
             </v-layout>
         </section>
@@ -20,38 +20,40 @@ export default {
       required: true
     },
     label: {
-        type: String,
-        required: true
+      type: String,
+      required: true
     }
   },
   data() {
-      return {
-          catalogedProjs :[]
-          
-      }
+    return {
+      catalogedProjs: []
+    };
   },
   created() {
-      if(this.label === 'Trending') {
-          setTimeout(() =>{
-
-              projService.query(this.criteria).then(projs => {
-                  console.log(this.criteria)
-                  console.log('catalog projs!',projs)
-                this.catalogedProjs = projs;
-              });
-          },1500)
-      } else{
-
-          projService.query(this.criteria).then(projs => {
-              console.log(this.criteria)
-              console.log('catalog projs!',projs)
-            this.catalogedProjs = projs;
-          });
-      }
+    if (this.label === "Trending") {
+      setTimeout(() => {
+        projService.query(this.criteria).then(projs => {
+          console.log(this.criteria);
+          console.log("catalog projs!", projs);
+          this.catalogedProjs = projs;
+        });
+      }, 500);
+    } else {
+      projService.query(this.criteria).then(projs => {
+        console.log(this.criteria);
+        console.log("catalog projs!", projs);
+        this.catalogedProjs = projs;
+      });
+    }
+  },
+  methods: {
+    goToProj(projId) {
+      this.$router.push("project/" + projId);
+    }
   },
 
-  components:{
-      ProjPreview
+  components: {
+    ProjPreview
   }
 };
 </script>

@@ -36,9 +36,12 @@
                           </div>
                           <div class="time-left">
                                 <p class="body-2 mb-0">Days left</p>
-                                <v-progress-circular :size="50" :width="7" :rotate="360" :value="(daysLeft/30)*100" color="teal">
-                                   {{daysLeft}}
+                                <v-progress-circular :size="50" :width="7" :rotate="360" :value="(proj.duration/30)*100" color="teal">
+                                   {{proj.duration}}
                                 </v-progress-circular>
+                                <!-- <v-progress-circular :size="50" :width="7" :rotate="360" :value="(daysLeft/30)*100" color="teal">
+                                   {{daysLeft}}
+                                </v-progress-circular> -->
                           </div>            
                     </v-layout>
                     </div>
@@ -95,7 +98,7 @@
                 <proj-update v-for="update in proj.updates" :key="update.userName" :update="update" class="my-flex flex-col proj-update mt-2 mb-2"></proj-update>
               </v-tab-item>
               <v-tab-item :id="`/project/${this.$route.params.projId}/tab-comments`">
-                <proj-new-comment :user="user" @addComment="validateComment"></proj-new-comment>
+                <proj-new-comment v-if="user" :user="user" @addComment="validateComment"></proj-new-comment>
                 <proj-comment v-if="comments.length" v-for="comment in comments" :key="comment._id" :comment="comment" class="my-flex flex-col proj-comment mt-0 mb-0"></proj-comment>
               </v-tab-item>
               <v-tab-item :id="`/project/${this.$route.params.projId}/tab-backers`">
