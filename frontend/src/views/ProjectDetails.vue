@@ -100,9 +100,11 @@
               <v-tab-item :id="`/project/${this.$route.params.projId}/tab-comments`">
                 <proj-new-comment v-if="user" :user="user" @addComment="validateComment"></proj-new-comment>
                 <proj-comment v-if="comments.length" v-for="comment in comments" :key="comment._id" :comment="comment" class="my-flex flex-col proj-comment mt-0 mb-0"></proj-comment>
+                <p v-if="!comments.length" class="">No comments yet</p>
               </v-tab-item>
               <v-tab-item :id="`/project/${this.$route.params.projId}/tab-backers`">
                 <proj-backer v-if="backers.length" v-for="backer in backers" :key="backer._id" :backer="backer" class="my-flex flex-col proj-backer mt-2 mb-2"></proj-backer>
+                <p v-if="!backers.length" class="">No backers yet</p>
               </v-tab-item>
             </v-tabs>
           </v-container>
