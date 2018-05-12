@@ -63,7 +63,7 @@ function update(proj) {
 }
 
 function query(criteria) {
-	console.log('criteria!',criteria);
+
   
 	var skip = +criteria.skip;
 	if (!skip || skip === 0) {
@@ -77,12 +77,10 @@ function query(criteria) {
 
 	var regex = new RegExp('.*' + criteria.searchTxt + '.*', 'i');
 
-	// var query = { $or: [{ title: regex }, { desc: regex }, { category: regex }] };
+
 
 	var category = criteria.category ? criteria.category : new RegExp('[sS]*');
-  // var duration = criteria.duration ? JSON.parse(criteria.duration) : new RegExp('[sS]*');
-  // var duration = criteria.duration ? JSON.parse(criteria.duration) : new RegExp('[sS]*');
-  // console.log(duration)
+ 
 
 	var queryFilter = {
 		$and: [
