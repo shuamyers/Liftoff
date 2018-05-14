@@ -33,10 +33,10 @@
             <v-flex xs12 wrap>
               <v-container class="proj-edit-header" grid-list-md text-xl-left>
                   <v-layout wrap justify-content>
-                      <v-flex xs12 wrap class="edit-menu-horizantal">
+                      <!-- <v-flex xs12 wrap class="edit-menu-horizantal">
                           <div class="ml-2 my-flex">
                               <div class="labels-wrapper-horizantal">
-                                  <!-- <p class="title-label ma-0 mb-1" >Contents</p> -->
+                                  <p class="title-label ma-0 mb-1" >Contents</p>
                                   <div class="labels-contnet-wrapper">
                                     <div class="my-flex ">
                                         <p class="edit-label ma-0 mr-1" v-for="(type,idx) in editType" :key="type.title"
@@ -46,7 +46,7 @@
                                   </div>
                               </div>                 
                             </div>
-                      </v-flex>
+                      </v-flex> -->
                       <v-flex xs12 sm10 md10 wrap class="">
 
                         <div v-for="(type,idx) in editType" :key="type.title"
@@ -55,7 +55,7 @@
                           <span class="headline">{{type.title}}</span>
                           <v-divider></v-divider>
                         <component  
-                          :is="type.to" >
+                          :is="type.title" >
                         </component>                    
                         </div>
                       </v-flex>

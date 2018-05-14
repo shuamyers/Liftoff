@@ -102,7 +102,7 @@ export default {
 				}
 			};
 			return projService.query(criteria).then(projs => {
-				if(store.getters.loggedInUser) projs = _checkIfFavorite(projs, store.getters.loggedInUser);
+				// if(store.getters.loggedInUser) projs = _checkIfFavorite(projs, store.getters.loggedInUser);
 				store.commit({ type: 'setProjs', projs });
 				store.commit({ type: 'setNumOfProjs', projs });
 				return projs.length;

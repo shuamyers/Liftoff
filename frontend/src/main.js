@@ -8,12 +8,19 @@ import Vuetify from 'vuetify'
 import axios from 'axios'
 import VueObserveVisibility from 'vue-observe-visibility'
 
+import VueQuillEditor from 'vue-quill-editor'
+// require styles
+
 import moment from 'moment'
 import './css/main.css'
 import 'vuetify/dist/vuetify.min.css'
 
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
 Vue.use(Vuetify)
 Vue.use(VueObserveVisibility)
+Vue.use(VueQuillEditor, /* { default global options } */)
 
 Vue.config.productionTip = false
 

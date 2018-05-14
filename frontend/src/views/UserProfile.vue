@@ -12,7 +12,7 @@
               <v-flex xs5 align-content-start>
                 <div class="ml-3 mb-3">
                   <v-avatar size="150px" color="grey lighten-4" class="mx-auto mt-4">
-                    <img src="http://www.avglobalservices.in/img/testimonial/02.jpg" alt="avatar">
+                    <img :src="user.imgUrl" alt="avatar">
                   </v-avatar>
                 </div>
               </v-flex>
