@@ -31,8 +31,8 @@ export default {
 		selectedProj: null,
 		filterBy: {
 			searchTxt: '',
-			category: ''
-			// status:null,
+			category: '',
+			duration: '',
 		},
 		numOfProjs: 0
 	},
@@ -81,6 +81,10 @@ export default {
 		setFilterByCategory(state, { category }) {
 			state.filterBy.category = category;
 		},
+		setFilterByDuration(state, { status }) {
+			console.log('status',status)
+			state.filterBy.duration = status;
+		},
 		setFavorite(state, { projId }) {
 			var proj = state.projs.find(proj => proj._id === projId);
 			proj.isFavorite = !proj.isFavorite;
@@ -96,7 +100,9 @@ export default {
 				skip: 0,
 				filterBy: {
 					searchTxt: store.state.filterBy.searchTxt,
-					category: store.state.filterBy.category
+					category: store.state.filterBy.category,
+					duration: store.state.filterBy.duration
+					
 				}
 			};
 			return projService.query(criteria).then(projs => {
@@ -112,8 +118,8 @@ export default {
 				skip: store.state.numOfProjs,
 				filterBy: {
 					searchTxt: store.state.filterBy.searchTxt,
-					category: store.state.filterBy.category
-					// status:null,
+					category: store.state.filterBy.category,
+					duration: store.state.filterBy.duration
 				}
 			};
 			console.log('criteria', criteria);

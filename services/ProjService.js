@@ -63,8 +63,6 @@ function update(proj) {
 }
 
 function query(criteria) {
-
-  
 	var skip = +criteria.skip;
 	if (!skip || skip === 0) {
 		delete criteria.skip;
@@ -77,21 +75,43 @@ function query(criteria) {
 
 	var regex = new RegExp('.*' + criteria.searchTxt + '.*', 'i');
 
-
-
 	var category = criteria.category ? criteria.category : new RegExp('[sS]*');
- 
+	var duration = criteria.duration ? JSON.parse(criteria.duration) : null;
 
-	var queryFilter = {
-		$and: [
-			{
-				$or: [{ title: regex }, { desc: regex }, { category: regex }, { duration: regex }]
-			},
-			{ category }
-			// { category,duration }
-		]
-  };
-  console.log('query!',query)
+	var queryFilter;
+
+	if (duration) {
+		queryFilter = {
+			$and: [
+				{
+					$or: [
+						{ title: regex },
+						{ desc: regex },
+						{ category: regex },
+						{ duration: regex }
+					]
+				},
+				{ category },
+				{ duration }
+			]
+		};
+	} else {
+		queryFilter = {
+			$and: [
+				{
+					$or: [
+						{ title: regex },
+						{ desc: regex },
+						{ category: regex },
+						{ duration: regex }
+					]
+				},
+				{ category }
+			]
+		};
+	}
+
+	console.log('query!', queryFilter);
 
 	return new Promise((resolve, reject) => {
 		DBService.dbConnect().then(db => {
@@ -108,11 +128,11 @@ function query(criteria) {
 					isFavorite: 1
 				})
 				.skip(skip)
-				.limit((limit || 12))
+				.limit(limit || 12)
 				.toArray((err, projs) => {
-          if (err) reject(err);
+					if (err) reject(err);
 					else resolve(projs);
-          // console.log('projs! for',criteria,projs)
+					// console.log('projs! for',criteria,projs)
 					db.close();
 				});
 		});
@@ -120,38 +140,44 @@ function query(criteria) {
 }
 
 function updateFundsRaised(proj) {
-  return new Promise((resolve, reject) => {
-    // let isValidate = validateDetails(user);
-    // if (!isValidate) reject('Validate failed!');
-    proj._id = new mongo.ObjectID(proj._id);
-    DBService.dbConnect().then(db => {
-      db.collection("proj").updateOne(
-        { _id: proj._id },
-        {
-          $inc: {
-            fundsRaised: proj.diff
-          }
-        },
-        (err, updatedInfo) => {
-          if (err) reject(err);
-          else{
-            db.collection("proj").findOne({ _id: proj._id },{fundsRaised:1,_id:0}, (err, updatedUserFromDB) => {
-              // console.log('updated user!',updatedUserFromDB)
-              resolve(updatedUserFromDB);
-            })
-          }
-          db.close();
-        }
-      );
-    });
-  });
+	return new Promise((resolve, reject) => {
+		// let isValidate = validateDetails(user);
+		// if (!isValidate) reject('Validate failed!');
+		proj._id = new mongo.ObjectID(proj._id);
+		DBService.dbConnect().then(db => {
+			db.collection('proj').updateOne(
+				{ _id: proj._id },
+				{
+					$inc: {
+						fundsRaised: proj.diff
+					}
+				},
+				(err, updatedInfo) => {
+					if (err) reject(err);
+					else {
+						db
+							.collection('proj')
+							.findOne(
+								{ _id: proj._id },
+								{ fundsRaised: 1, _id: 0 },
+								(err, updatedUserFromDB) => {
+									// console.log('updated user!',updatedUserFromDB)
+									resolve(updatedUserFromDB);
+								}
+							);
+					}
+					db.close();
+				}
+			);
+		});
+	});
 }
 
 module.exports = {
-  query,
-  add,
-  remove,
-  update,
-  getById,
-  updateFundsRaised
+	query,
+	add,
+	remove,
+	update,
+	getById,
+	updateFundsRaised
 };

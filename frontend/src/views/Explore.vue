@@ -1,11 +1,9 @@
 <template>
   <section>
     <v-container grid-list-md text-xs-center v-scroll="onScroll">
-      <!-- <div class="cmp-title">
-        <p class="display-3 mt-4" id="top">Invest in the Future</p>
-      </div> -->
+
       <div class="my-flex mt-4">
-        <proj-filters @filterCategory="changeFilter" class="hidden-sm-and-down"></proj-filters>
+        <proj-filters @filterCategory="changeFilterCategory" @filterStatus="changeFilterStatus" class="hidden-sm-and-down"></proj-filters>
         <!-- main -->
         <div>
           <div class="search-wrapper">
@@ -25,11 +23,11 @@
               <v-spacer></v-spacer>
             </v-flex>
             <v-layout wrap>
-							<v-flex xs12 sm6 md4 wrap v-for="proj in projs" :key="proj._id" >
-              	<proj-preview @setFavorite="setFavorite" @openLogin="openLogin" @removeFavorite="removeFavorite" :proj="proj" @click.native="goToProj(proj._id)"></proj-preview>
-							</v-flex>
+              <v-flex xs12 sm6 md4 wrap v-for="proj in projs" :key="proj._id">
+                <proj-preview @setFavorite="setFavorite" @openLogin="openLogin" @removeFavorite="removeFavorite" :proj="proj" @click.native="goToProj(proj._id)"></proj-preview>
+              </v-flex>
               <infinite-loading @infinite="infiniteHandler" ref="infiniteLoading" class="centered">
-  							<span slot="no-more"></span>
+                <span slot="no-more"></span>
               </infinite-loading>
             </v-layout>
           </v-container>
@@ -37,7 +35,7 @@
       </div>
       <v-navigation-drawer v-model="drawer" temporary absolute clipped>
         <div class="filter-mobile">
-          <proj-filters @filterCategory="changeFilter"></proj-filters>
+          <proj-filters @filterCategory="changeFilterCategory" @filterStatus="changeFilterStatus"></proj-filters>
         </div>
       </v-navigation-drawer>
       <v-fab-transition>
@@ -47,39 +45,38 @@
       </v-fab-transition>
     </v-container>
 
-  <v-dialog v-model="login" width="600px">
-        
-        <v-card>
-          <v-card-title>
-            <div>
+    <v-dialog v-model="login" width="600px">
+      <v-card>
+        <v-card-title>
+          <div>
             <h1 class="headline">Pleas login</h1>
-            </div>
-          </v-card-title>
-          <v-card-text>
-                <v-flex xs12>
-                   <login></login>
-                </v-flex>
-          </v-card-text>
-        </v-card>
-      </v-dialog>
+          </div>
+        </v-card-title>
+        <v-card-text>
+          <v-flex xs12>
+            <login></login>
+          </v-flex>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   </section>
 </template>
 
 <script>
-import ProjPreview from "../components/ProjPreview";
-import { LOAD_PROJS, LOAD_MORE_PROJS } from "../store/ProjStore";
+import ProjPreview from '../components/ProjPreview';
+import { LOAD_PROJS, LOAD_MORE_PROJS } from '../store/ProjStore';
 import {
-  ADD_FAVORITES,
-  GET_BY_ID,
-  REMOVE_FAVORITES,
-} from "../store/UserStore.js";
-import ProjFilters from "../components/ProjFilters.vue";
-import InfiniteLoading from "vue-infinite-loading";
-import Login from "../components/Login"
+	ADD_FAVORITES,
+	GET_BY_ID,
+	REMOVE_FAVORITES
+} from '../store/UserStore.js';
+import ProjFilters from '../components/ProjFilters.vue';
+import InfiniteLoading from 'vue-infinite-loading';
+import Login from '../components/Login';
 
 export default {
-  created() {
-    this.$store.dispatch({ type: LOAD_PROJS });
+	created() {
+		this.$store.dispatch({ type: LOAD_PROJS });
 	},
 	data() {
 		return {
@@ -93,7 +90,7 @@ export default {
 			},
 			offsetTop: 0,
 			login: false
-		}
+		};
 	},
 	methods: {
 		onScroll() {
@@ -118,27 +115,34 @@ export default {
 				}
 			});
 		},
-		changeFilter(category) {
+		changeFilterCategory(category) {
 			this.$store.commit('setFilterByCategory', { category });
 			this.$store.dispatch(LOAD_PROJS);
-			this.$refs.infiniteLoading.$emit("$InfiniteLoading:reset");
-    },
-    changeFilter(category) {
-      this.$store.commit("setFilterByCategory", { category });
-      this.$store.dispatch(LOAD_PROJS);
-      this.$refs.infiniteLoading.$emit("$InfiniteLoading:reset");
-    },
-    removeFavorite(projId){
-		// console.log('favort',this.$store.getters.loggedInUser)
-      this.$store.dispatch({type: REMOVE_FAVORITES , projId , user:this.$store.getters.loggedInUser })
+			this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset');
 		},
-    setFavorite(projId){
-		// console.log('favort',this.$store.getters.loggedInUser)
-      this.$store.dispatch({type: ADD_FAVORITES , projId , user:this.$store.getters.loggedInUser })
+		changeFilterStatus(status) {
+			console.log(status);
+			this.$store.commit('setFilterByDuration', { status });
+			this.$store.dispatch(LOAD_PROJS);
+			this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset');
 		},
-		openLogin(){
-			console.log('here')
-			this.login = true
+		removeFavorite(projId) {
+			this.$store.dispatch({
+				type: REMOVE_FAVORITES,
+				projId,
+				user: this.$store.getters.loggedInUser
+			});
+		},
+		setFavorite(projId) {
+			this.$store.dispatch({
+				type: ADD_FAVORITES,
+				projId,
+				user: this.$store.getters.loggedInUser
+			});
+		},
+		openLogin() {
+			console.log('here');
+			this.login = true;
 		}
 	},
 	computed: {
@@ -150,9 +154,12 @@ export default {
 		},
 		numOfProjs() {
 			return this.$store.getters.numOfProjs;
-    },
-
+		}
 	},
+	destroyed() {
+      this.$store.commit('setFilterByDuration', { status:'' });
+      this.$store.commit('setFilterByCategory', { category:'' });
+  },
 	components: {
 		ProjPreview,
 		ProjFilters,
@@ -164,41 +171,41 @@ export default {
 
 <style scoped>
 .filter-mobile {
-  margin: 50px 0 0 25px;
+	margin: 50px 0 0 25px;
 }
 .filter-div {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 .my-flex-mobile {
-  display: block;
+	display: block;
 }
 
 .search-div {
-  display: block;
-  width: 100%;
+	display: block;
+	width: 100%;
 }
 @media only screen and (max-width: 960px) {
-  .my-flex-mobile {
-    display: flex;
-  }
-  .search-div {
-    width: 70%;
-    display: inline;
-  }
-  .filter-btn-mobile {
-    display: inline;
-    width: 30%;
-  }
+	.my-flex-mobile {
+		display: flex;
+	}
+	.search-div {
+		width: 70%;
+		display: inline;
+	}
+	.filter-btn-mobile {
+		display: inline;
+		width: 30%;
+	}
 }
 .divder {
-  margin: 20px 0 10px;
-  width: 100%;
+	margin: 20px 0 10px;
+	width: 100%;
 }
 
 .my-flex {
-  display: flex;
+	display: flex;
 }
 
 /* .proj-preview {
@@ -206,11 +213,11 @@ export default {
 } */
 
 .inline {
-  display: inline;
-  width: 80%;
+	display: inline;
+	width: 80%;
 }
 
 .centered {
-  margin: 0 auto;
+	margin: 0 auto;
 }
 </style>
