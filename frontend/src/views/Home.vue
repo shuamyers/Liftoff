@@ -21,10 +21,10 @@
               <div class="moto big-font hidden-xs-only">
                 <p class="ma-0">Lift-off</p>
                 <p class="ma-0">Your Creativity</p>
+                  <v-btn class="primary mt-5 my-font" dark large :to="'/explore'">
+                    Explore
+                  </v-btn>
               </div>
-              <v-btn class="primary mt-5" dark large :to="'/explore'">
-                Explore
-              </v-btn>
             </v-flex>
             <h3 class="moto medium-font hidden-sm-and-up">Lift-off Your Creativity</h3>
           </v-layout>
@@ -149,11 +149,14 @@ export default {
 .medium-font {
 	font-size: 40px;
 }
-
+.my-font{
+  font-family: Roboto,sans-serif; 
+}
 .categories:nth-child(even) {
 	margin-right: 50px;
 }
 </style>
+
 <style>
 .category-preview .jumbotron__image {
 	transition: 0.5 all;
