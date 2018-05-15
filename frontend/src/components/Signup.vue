@@ -1,7 +1,4 @@
 <template>
-  <v-container fluid>
-    <v-layout justify-center>
-      <v-flex xs12 sm8 md4>
         <v-card>
           <v-alert 
             v-model="alert.isShow" 
@@ -36,10 +33,7 @@
                   color="primary"
                   @click="register">Sign up</v-btn>
           </v-card-actions>
-        </v-card>
-      </v-flex>
-    </v-layout>
-  </v-container>
+        </v-card>  
 </template>
 
 <script>

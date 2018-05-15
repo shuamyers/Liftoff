@@ -49,13 +49,11 @@
       <v-card>
         <v-card-title>
           <div>
-            <h1 class="headline">Pleas login</h1>
+            <h1 class="headline">Please login</h1>
           </div>
         </v-card-title>
         <v-card-text>
-          <v-flex xs12>
-            <login></login>
-          </v-flex>
+            <login class=""></login>
         </v-card-text>
       </v-card>
     </v-dialog>

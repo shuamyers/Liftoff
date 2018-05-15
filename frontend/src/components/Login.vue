@@ -1,9 +1,5 @@
 <template>
-  <v-container fluid>
-    <v-layout justify-center>
-      <v-flex xs12 sm8 md4>
         <v-card>
-
             <v-card-text>
                 <v-form>
                     <v-text-field 
@@ -25,11 +21,7 @@
                     color="primary"
                     @click="checkLogin">Log in</v-btn>
             </v-card-actions>
-
         </v-card>
-      </v-flex>
-    </v-layout>
-  </v-container>
 </template>
 
 <script>
