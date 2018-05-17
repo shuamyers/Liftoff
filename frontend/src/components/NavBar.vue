@@ -95,7 +95,7 @@ export default {
         {
           txt: "My Profile",
           icon: "account_circle",
-          route: { name: "profile" },
+          route: { name: "userProfile" },
           loginRequired: true,
           hiddenOnMobile: true
         },

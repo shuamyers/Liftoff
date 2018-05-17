@@ -1,7 +1,4 @@
-import axios from 'axios'; 
-
 const BASE_URL = (process.env.NODE_ENV !== 'development') ? '/proj' : 'http://localhost:3000/proj';
-
 
 function query(criteria = "") {
     

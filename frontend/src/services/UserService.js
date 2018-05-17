@@ -1,8 +1,4 @@
-import axios from 'axios';
-
-
 const BASE_URL = (process.env.NODE_ENV !== 'development') ? '' : 'http://localhost:3000';
-
 
 function login(user) {
 	return axios
@@ -23,14 +19,6 @@ function register(user) {
 }
 
 function logout() {
-	// return axios
-	// 	.post(`${BASE_URL}/logout`)
-	// 	.then(res => {
-	// 		delete sessionStorage.user;
-	// 	})
-	// 	.catch(err => {
-	// 		throw new Error('Logout Failed');
-	// 	});
 	return axios
 		.post(`${BASE_URL}/logout`)
 		.then(res => {

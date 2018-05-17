@@ -69,12 +69,11 @@ export default new Router({
     },
     {
       path: '/user',
-      name: 'profile',
+      name: 'userProfile',
       component: UserProfile,
       children: [
         {
           path: ':userId',
-          name: 'userProfile',
           component: UserProfile
         }
       ]

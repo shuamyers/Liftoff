@@ -34,7 +34,6 @@
 
 <script>
 import editProjStore,{UPDATE_EDITED_PROJ} from '../../store/EditProjStore.js'
-import axios from 'axios'
 // cloudinary.config({ 
 //   cloud_name: 'dlhs7xpgp', 
 //   api_key: '139543215892619', 

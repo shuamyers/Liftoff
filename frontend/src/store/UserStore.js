@@ -8,8 +8,6 @@ export const ADD_FAVORITES = "add-favorites";
 export const REMOVE_FAVORITES = "remove-favorites";
 export const GET_BY_ID = "get-By-Id";
 
-
-
 export default {
   state: {
     loggedInUser: null,
