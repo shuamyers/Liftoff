@@ -1,35 +1,18 @@
 <template>
 <section class="project-edit">
-    <!-- <v-navigation-drawer app hide-overlay clipped
-      fixed
-     permanent
-      v-model="drawer"
-      width="150">
-    <v-toolbar flat class="transparent">
-      <v-list class="pa-0">
-        <v-list-tile class="my-flex justify-right">
-          <v-list-tile-title class="title">
-            Application
-          </v-list-tile-title>
-          <v-list-tile-action>
-          </v-list-tile-action>
-        </v-list-tile>
-      </v-list>
-    </v-toolbar>
-    <v-list class="pt-0" dense>
-      <v-divider></v-divider>
-      <v-list-tile v-for="item in items" :key="item.title" @click="labelChosen(item)">
-        <v-list-tile-action>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-    </v-list>
-  </v-navigation-drawer> -->
   <v-container class="pa-5 project-edit-main" grid-list-md text-xl-left style="max-width:1000px">
-       <v-layout>
+       <v-layout wrap>
+         <!-- Start Of Edit Proj Header! -->
+        <v-container class="proj-edit-header" grid-list-md text-xl-left>
+                  <v-layout wrap justify-content>
+                      <v-flex xs12 wrap>
+                        <div class="my-flex flex-end">
+                          <v-btn large color="red">Preview</v-btn>
+                          <v-btn large color="primary">Save</v-btn>
+                        </div>
+                      </v-flex>
+                  </v-layout>
+        </v-container>
             <v-flex xs12 wrap>
               <v-container class="proj-edit-header" grid-list-md text-xl-left>
                   <v-layout wrap justify-content>
@@ -54,9 +37,7 @@
                         v-observe-visibility="visibilityChanged">
                           <span class="headline">{{type.title}}</span>
                           <v-divider></v-divider>
-                        <component  
-                          :is="type.title" >
-                        </component>                    
+                          <component :is="type.title" class="pt-3 pb-3"></component>                    
                         </div>
                       </v-flex>
                       <v-flex xs12 sm2 md2 wrap class="my-flex flex-row edit-menu flex-end" style="height:100%">
@@ -74,13 +55,7 @@
               </v-container>
             </v-flex>
        </v-layout>
-        <!-- Start Of Edit Proj Header! -->
-        <v-container class="proj-edit-header" grid-list-md text-xl-left>
-                  <v-layout wrap justify-content>
-                      <v-flex xs12 sm6 md6 wrap>
-                      </v-flex>
-                  </v-layout>
-        </v-container>
+        
   </v-container>
 
 </section>
@@ -91,6 +66,11 @@ import Basics from "../components/open-proj/EditBasics";
 import Items from "../components/open-proj/EditItems";
 import Story from "../components/open-proj/EditStory";
 import Rewards from "../components/open-proj/EditRewards";
+
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+
 
 export default {
   created() {
@@ -143,6 +123,9 @@ export default {
 </script>
 
 <style scoped>
+.project-edit {
+ font-family: "Benton Sans", "Helvetica", "sans-serif";
+}
 .my-flex {
   display: flex;
 }

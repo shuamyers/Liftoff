@@ -6,12 +6,15 @@ const bodyParser = require('body-parser');
 var parseurl = require('parseurl');
 const clientSessions = require('client-sessions');
 
+const PORT = process.env.PORT || 3000;
+
 
 const corsOptions = {
   origin: /http:\/\/localhost:\d+/,
   credentials: true
 };
 
+app.use(express.static('dist'));
 app.use(cors(corsOptions));
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -42,6 +45,6 @@ addPledgeRoutes(app)
 const addCommentRoutes = require('./routes/CommentRoutes.js')
 addCommentRoutes(app)
 
-http.listen(3000, () => {
+http.listen(PORT, () => {
   console.log('listening on *:3000');
 });

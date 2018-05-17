@@ -63,7 +63,7 @@ function update(proj) {
 }
 
 function query(criteria) {
-	console.log('criteria!',criteria);
+	// console.log('criteria!',criteria);
   
 	var skip = +criteria.skip;
 	if (!skip || skip === 0) {
@@ -93,7 +93,7 @@ function query(criteria) {
 			// { category,duration }
 		]
   };
-  console.log('query!',query)
+  // console.log('query!',query)
 
 	return new Promise((resolve, reject) => {
 		DBService.dbConnect().then(db => {

@@ -1,5 +1,4 @@
 <template>
-<section>
         <v-card class="text-xs-center proj-preview prokema-2">
           <v-card-media class="preview-img" :src="proj.featuredImgUrl" height="200px">
           </v-card-media>
@@ -33,25 +32,10 @@
           </v-card-actions>
         </v-card>
 
-        <v-dialog v-model="login" width="600px">
-                <v-card>
-                <v-card-title>
-                    <div>
-                    <h1 class="headline">Pleas login</h1>
-                    </div>
-                </v-card-title>
-                <v-card-text>
-                        <v-flex xs12>
-                        <login></login>
-                        </v-flex>
-                </v-card-text>
-                </v-card>
-            </v-dialog>
-</section>
 </template>
 
 <script>
-import Login from './Login';
+
 
 export default {
     props: {
@@ -62,7 +46,7 @@ export default {
     },
     data() {
         return {
-          login: false
+        
         }
     },
     methods: {
@@ -70,9 +54,19 @@ export default {
             this.$router.push('project/' + projId)
         },
         emitSetFavorite(){
+            
+            if(!this.$store.getters.loggedInUser){
+                this.$emit('openLogin')
+                return
+            }
             	this.$emit('setFavorite',this.proj._id)
         },
         emitRemoveFavorite(){
+
+              if(!this.$store.getters.loggedInUser){
+                this.$emit('openLogin')
+                return
+            }
             	this.$emit('removeFavorite',this.proj._id)
         }
     },
@@ -82,7 +76,7 @@ export default {
         }
     },
     components:{
-        Login
+     
     }
 
 }

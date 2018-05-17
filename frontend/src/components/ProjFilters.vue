@@ -28,7 +28,7 @@ export default {
 	data() {
 		return {
 			activeCategory: '',
-			categories: ['All','Tech', 'Art','Music','Film']
+			categories: ['All','Tech', 'Art','Music','Animals']
 		};
 	},
 

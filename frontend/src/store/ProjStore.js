@@ -94,15 +94,13 @@ export default {
 		[LOAD_PROJS](store) {
 			var criteria = {
 				skip: 0,
-				// filterBySearchTxt: store.state.filterBy.searchTxt,
 				filterBy: {
 					searchTxt: store.state.filterBy.searchTxt,
 					category: store.state.filterBy.category
-					// status:null,
 				}
 			};
 			return projService.query(criteria).then(projs => {
-				// if(store.getters.loggedInUser) projs = _checkIfFavorite(projs, store.getters.loggedInUser);
+				if(store.getters.loggedInUser) projs = _checkIfFavorite(projs, store.getters.loggedInUser);
 				store.commit({ type: 'setProjs', projs });
 				store.commit({ type: 'setNumOfProjs', projs });
 				return projs.length;

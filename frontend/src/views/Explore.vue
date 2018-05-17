@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="explore-page">
     <v-container grid-list-md text-xs-center v-scroll="onScroll">
       <!-- <div class="cmp-title">
         <p class="display-3 mt-4" id="top">Invest in the Future</p>
@@ -26,7 +26,7 @@
             </v-flex>
             <v-layout wrap>
 							<v-flex xs12 sm6 md4 wrap v-for="proj in projs" :key="proj._id" >
-              	<proj-preview @setFavorite="setFavorite" @removeFavorite="removeFavorite" :proj="proj" @click.native="goToProj(proj._id)"></proj-preview>
+              	<proj-preview @setFavorite="setFavorite" @openLogin="openLogin" @removeFavorite="removeFavorite" :proj="proj" @click.native="goToProj(proj._id)"></proj-preview>
 							</v-flex>
               <infinite-loading @infinite="infiniteHandler" ref="infiniteLoading" class="centered">
   							<span slot="no-more"></span>
@@ -47,7 +47,21 @@
       </v-fab-transition>
     </v-container>
 
- 
+  <v-dialog v-model="login" width="600px">
+        
+        <v-card>
+          <v-card-title>
+            <div>
+            <h1 class="headline">Pleas login</h1>
+            </div>
+          </v-card-title>
+          <v-card-text>
+                <v-flex xs12>
+                   <login></login>
+                </v-flex>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
   </section>
 </template>
 
@@ -57,89 +71,94 @@ import { LOAD_PROJS, LOAD_MORE_PROJS } from "../store/ProjStore";
 import {
   ADD_FAVORITES,
   GET_BY_ID,
-  REMOVE_FAVORITES
+  REMOVE_FAVORITES,
 } from "../store/UserStore.js";
 import ProjFilters from "../components/ProjFilters.vue";
 import InfiniteLoading from "vue-infinite-loading";
+import Login from "../components/Login"
 
 export default {
   created() {
     this.$store.dispatch({ type: LOAD_PROJS });
-  },
-  data() {
-    return {
-      searchTxt: null,
-      drawer: false,
-      target: "#top",
-      option: {
-        duration: 1000,
-        offset: 0,
-        easing: "easeInOutCubic"
-      },
-      offsetTop: 0
-    };
-  },
-  methods: {
-    onScroll() {
+	},
+	data() {
+		return {
+			searchTxt: null,
+			drawer: false,
+			target: '.content',
+			option: {
+				duration: 1000,
+				offset: 0,
+				easing: 'easeInOutCubic'
+			},
+			offsetTop: 0,
+			login: false
+		}
+	},
+	methods: {
+		onScroll() {
       this.offsetTop = window.pageYOffset || document.documentElement.scrollTop;
-    },
-    goToProj(projId) {
-      this.$router.push("project/" + projId);
-    },
-    search() {
-      this.$store.commit("setFilterBySearchTxt", { searchTxt: this.searchTxt });
-      this.$store.dispatch(LOAD_PROJS);
-    },
-    infiniteHandler($state) {
-      this.$store.dispatch({ type: LOAD_MORE_PROJS }).then(length => {
-        if (length) {
-          $state.loaded();
-          if (length < 12) {
-            $state.complete();
-          }
-        } else {
-          $state.complete();
-        }
-      });
+		},
+		goToProj(projId) {
+			this.$router.push('project/' + projId);
+		},
+		search() {
+			this.$store.commit('setFilterBySearchTxt', { searchTxt: this.searchTxt });
+			this.$store.dispatch(LOAD_PROJS);
+		},
+		infiniteHandler($state) {
+			this.$store.dispatch({ type: LOAD_MORE_PROJS }).then(length => {
+				if (length) {
+					$state.loaded();
+					if (length < 12) {
+						$state.complete();
+					}
+				} else {
+					$state.complete();
+				}
+			});
+		},
+		changeFilter(category) {
+			this.$store.commit('setFilterByCategory', { category });
+			this.$store.dispatch(LOAD_PROJS);
+			this.$refs.infiniteLoading.$emit("$InfiniteLoading:reset");
     },
     changeFilter(category) {
       this.$store.commit("setFilterByCategory", { category });
       this.$store.dispatch(LOAD_PROJS);
       this.$refs.infiniteLoading.$emit("$InfiniteLoading:reset");
     },
-    setFavorite(projId) {
-      // console.log(this.$store.getters.loggedInUser)
-      this.$store.dispatch({
-        type: ADD_FAVORITES,
-        projId,
-        user: this.$store.getters.loggedInUser
-      });
+    removeFavorite(projId){
+		// console.log('favort',this.$store.getters.loggedInUser)
+      this.$store.dispatch({type: REMOVE_FAVORITES , projId , user:this.$store.getters.loggedInUser })
+		},
+    setFavorite(projId){
+		// console.log('favort',this.$store.getters.loggedInUser)
+      this.$store.dispatch({type: ADD_FAVORITES , projId , user:this.$store.getters.loggedInUser })
+		},
+		openLogin(){
+			console.log('here')
+			this.login = true
+		}
+	},
+	computed: {
+		showBtn() {
+			return this.offsetTop > 500;
+		},
+		projs() {
+			return this.$store.getters.projsForDisplay;
+		},
+		numOfProjs() {
+			return this.$store.getters.numOfProjs;
     },
-    removeFavorite(projId) {
-      // console.log('favort',this.$store.getters.loggedInUser)
-      this.$store.dispatch({
-        type: REMOVE_FAVORITES,
-        projId,
-        user: this.$store.getters.loggedInUser
-      });
-    }
-  },
-  computed: {
-    showBtn() {
-      return this.offsetTop > 500;
-    },
-    projs() {
-      return this.$store.getters.projsForDisplay;
-    },
-    numOfProjs() {
-      return this.$store.getters.numOfProjs;
-    }
-  },
-  components: {
-    ProjPreview,
-    ProjFilters,
-    InfiniteLoading
-  }
+
+	},
+	components: {
+		ProjPreview,
+		ProjFilters,
+		InfiniteLoading,
+		Login
+	}
 };
 </script>
 

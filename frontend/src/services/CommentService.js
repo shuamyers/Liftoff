@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const COMMENT_URL = 'http://localhost:3000/comment';
+const COMMENT_URL = (process.env.NODE_ENV !== 'development') ? '/comment' : 'http://localhost:3000/comment';
 
 function query() {
 	return axios
