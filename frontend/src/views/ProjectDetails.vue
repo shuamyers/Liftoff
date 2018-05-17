@@ -124,7 +124,6 @@
 
     <v-layout row justify-center>
       <v-dialog v-model="dialog" width="600px">
-        <!-- <v-btn slot="activator" color="primary" dark>Open Dialog</v-btn> -->
         <v-card>
           <v-card-title>
             <span class="headline">Choose a package</span>
@@ -141,7 +140,6 @@
 
 
      <v-dialog v-model="login" width="600px">
-        <!-- <v-btn slot="activator" color="primary" dark>Open Dialog</v-btn> -->
         <v-card>
           <v-card-title>
             <div>
