@@ -25,8 +25,15 @@
                     Explore
                   </v-btn>
               </div>
+            <h3 class="moto medium-font hidden-sm-and-up">Lift-off Your Creativity
+							<p>
+							<v-btn class="primary mt-5 my-font" dark large :to="'/explore'">
+                    Explore
+                  </v-btn>
+
+							</p>
+						</h3>
             </v-flex>
-            <h3 class="moto medium-font hidden-sm-and-up">Lift-off Your Creativity</h3>
           </v-layout>
         </v-container>
       </v-jumbotron>
@@ -35,8 +42,11 @@
       <catalog-projs :criteria="endingSoonCriteria" :label="'Ending Soon'"></catalog-projs>
     </v-container>
     <v-container grid-list-md text-xs-left style="max-width:1200px">
-      <catalog-projs :criteria="allCriteria" :label="'All'"></catalog-projs>
+      <catalog-projs :criteria="newCriteria" :label="'New Campaigns'"></catalog-projs>
     </v-container>
+    <!-- <v-container grid-list-md text-xs-left style="max-width:1200px">
+      <catalog-projs :criteria="allCriteria" :label="'All'"></catalog-projs>
+    </v-container> -->
   </section>
 </template>
 
@@ -60,8 +70,7 @@ export default {
 				limit: 4,
 				filterBy: {
 					searchTxt: '',
-					category: 'Tech',
-					duration: '{"$lt": 3}'
+					duration: '{"$lt": 7}'
 				}
 			},
 			completedCriteria: {
@@ -93,7 +102,7 @@ export default {
 				limit: 4,
 				filterBy: {
 					searchTxt: '',
-					category: 'Tech'
+					duration: '{"$gt": 20}'
 				}
 			},
 			categories: [

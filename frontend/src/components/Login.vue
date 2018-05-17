@@ -33,8 +33,8 @@ export default {
   data() {
     return {
       user: {
-        email: null,
-        pass: null
+        email: 'borat@borat.com',
+        pass: '1234'
       }
     };
   },
