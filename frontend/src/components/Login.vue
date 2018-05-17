@@ -1,20 +1,18 @@
 <template>
-  <v-container fluid>
-    <v-layout justify-center>
-      <v-flex xs12 sm8 md4>
         <v-card>
-
             <v-card-text>
                 <v-form>
                     <v-text-field 
                         prepend-icon="person" 
                         label="Email" 
                         type="text"
+                        @keyup.enter.native="checkLogin"
                         v-model="user.email"></v-text-field>
                     <v-text-field 
                         prepend-icon="lock" 
                         label="Password" 
                         type="password"
+                        @keyup.enter.native="checkLogin"
                         v-model="user.pass"></v-text-field>
                 </v-form>
             </v-card-text>
@@ -25,11 +23,7 @@
                     color="primary"
                     @click="checkLogin">Log in</v-btn>
             </v-card-actions>
-
         </v-card>
-      </v-flex>
-    </v-layout>
-  </v-container>
 </template>
 
 <script>
@@ -55,6 +49,6 @@ export default {
           throw new Error("Login Failed");
         });
     }
-  }
+  },
 };
 </script>
