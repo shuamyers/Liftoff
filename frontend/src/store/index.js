@@ -4,6 +4,7 @@ import ProjStore from './ProjStore.js'
 import UserStore from './UserStore.js'
 import PledgeStore from './PledgeStore.js'
 import CommentStore from './CommentStore.js'
+import EditProjStore from './EditProjStore.js'
 
 
 Vue.use(Vuex)
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     ProjStore,
     UserStore,
     PledgeStore,
-    CommentStore
+    CommentStore,
+    EditProjStore
   }
 })

@@ -1,90 +1,128 @@
 <template>
   <section>
-   <v-container fluid class="pa-0 pt-2 pb-2">
-    <v-layout row>
-      <v-flex xs4>
-        <v-subheader>Campaign Title *</v-subheader>
-      </v-flex>
-      <v-flex xs8>
-        <v-text-field
-          id="testing"
-          name="input-1"
-          label="Label Text"
-        ></v-text-field>
-      </v-flex>
-    </v-layout>
-    <v-layout row>
-      <v-flex xs4>
-        <v-subheader>Campaign Tagline *</v-subheader>
-      </v-flex>
-      <v-flex xs8>
-        <v-text-field
-          id="testing1"
-          name="input-4"
-          label="Label Text"
-        ></v-text-field>
-      </v-flex>
-    </v-layout>
-    <v-layout row>
-      <v-flex xs4>
-        <v-subheader>Focus</v-subheader>
-      </v-flex>
-      <v-flex xs8>
+   <p class="info-title" style="width:90%">Make a good first impression: introduce your campaign objectives and entice people to learn more. This basic information will represent your campaign on your campaign page, on your campaign card, and in searches.</p>
+   <v-container fluid class="pa-0 pt-2 pb-2" >
+      <div>
+        <p class="mb-2 edit-subtitle">Campaign Title <span class="red--text">*</span></p>
         <v-text-field
           name="input-2"
-          label="Label Text"
-          value="Input text"
+          label="What is the title of your campaign? "
           class="input-group--focused"
+          @input="changedText($event,'title')"
         ></v-text-field>
-      </v-flex>
-    </v-layout>
-    <v-layout row>
-      <v-flex xs4>
-        <v-subheader>Normal with input text + label</v-subheader>
-      </v-flex>
-      <v-flex xs8>
+      </div>
+      <div>
+        <p class="mb-2 edit-subtitle">Campaign Tagline <span class="red--text">*</span></p>
         <v-text-field
-          name="input-3"
-          label="Label Text"
-          value="Input text"
+          name="input-2"
+          label="Provide a short description that best describes your campaign to your audience. "
+          class="input-group--focused"
+          multi-line
+          rows="2"
+          @input="changedText($event,'tagLine')"
         ></v-text-field>
-      </v-flex>
-    </v-layout>
-    <v-layout row>
-      <v-flex xs4>
-        <v-subheader>Disabled</v-subheader>
-      </v-flex>
-      <v-flex xs8>
+      </div>
+      <div>
+        <p class="mb-2 edit-subtitle" >Location <span class="red--text">*</span></p>
+        <v-text-field 
+          style="width:150px"
+          name="input-2"
+          label="City"
+          @input="changedText($event,'location','city')"
+        ></v-text-field>
         <v-text-field
-          name="input-3"
-          label="Label Text"
-          value="Input text"
-          disabled
+          name="input-2"
+          label="Country"
+          style="width:150px"
+          @input="changedText($event,'location','country')"
         ></v-text-field>
-      </v-flex>
-    </v-layout>
+      </div>
+      <div>
+        <p class="mb-2 edit-subtitle">Category <span class="red--text">*</span></p>
+        <v-select
+          :items="categories"
+          v-model="category"
+          label="Select"
+          style="width:200px"
+          single-line
+          @change="changedSelect($event.text)"
+        ></v-select>
+      </div>
+      <div>
+        <p class="mb-2 edit-subtitle" >Campaign Funding Goal <span class="red--text">*</span></p>
+        <v-text-field 
+        style="width:150px"
+          name="input-2"
+          placeholder="Funding Goal"
+          type="number"
+          @input="changedText(+$event,'fundingGoal')"
+          
+        ></v-text-field>
+      </div>
+      <div>
+        <p class="mb-2 edit-subtitle" >Campaign Duration <span class="red--text">*</span></p>
+        <v-text-field 
+        style="width:150px"
+          name="input-2"
+          placeholder="Duration in days"
+          type="number"
+          @input="changedText(+$event,'duration')"
+          max="30"
+        ></v-text-field>
+      </div>
+    
+      
   </v-container>
-    <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias maxime laudantium dolorum exercitationem. Iusto, consequuntur earum. Quasi at numquam ab, maiores ut non magnam fugiat quos inventore vitae et neque?
-                              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit temporibus a illum delectus inventore voluptatum eum vitae accusamus ducimus fugiat? Ducimus ea optio, accusamus doloremque a quia quasi iste reprehenderit?
-                              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam exercitationem architecto, dolorem optio vero fuga corporis maxime iste, minus quasi nihil. Minima sit, voluptatum consequatur deserunt temporibus nostrum rem aliquam?
-                              Lorem ipsum dolor sit amet conse
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias maxime laudantium dolorum exercitationem. Iusto, consequuntur earum. Quasi at numquam ab, maiores ut non magnam fugiat quos inventore vitae et neque?
-                              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit temporibus a illum delectus inventore voluptatum eum vitae accusamus ducimus fugiat? Ducimus ea optio, accusamus doloremque a quia quasi iste reprehenderit?
-                              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam exercitationem architecto, dolorem optio vero fuga corporis maxime iste, minus quasi nihil. Minima sit, voluptatum consequatur deserunt temporibus nostrum rem aliquam?
-                              Lorem ipsum dolor sit amet conse
-    </p>
-
   </section>
   
 </template>
 
 <script>
+import editProjStore,{UPDATE_EDITED_PROJ} from '../../store/EditProjStore.js'
 export default {
+  data() {
+    return {
+      category: 'Art',
 
-}
+      categories: [
+        { text: "Art" },
+        { text: "Music" },
+        { text: "Tech" },
+        { text: "Animals" }
+      ]
+    };
+  },
+  methods: {
+    changedSelect(selected) {
+      // console.log('clicked!',selected)
+      this.saveToStore({category : selected})
+    },
+    changedText(value,key,nested){
+      
+      if(nested){
+        this.saveToStore({[key] : {[nested]:value}})
+
+        } else {
+          this.saveToStore({[key] : value})
+        }
+    },
+    saveToStore(proj){
+      console.log(proj)
+      this.$store.commit({type:UPDATE_EDITED_PROJ, proj})
+      // console.log('basic got proj',this.$store.getters.editedProj)
+      ;
+    }
+  }
+};
 </script>
 
-<style>
+<style scoped>
+.info-title {
+  font-size: 20px;
+  font-weight: 500;
+}
+.edit-subtitle{
 
+  font-size:20px;
+}
 </style>

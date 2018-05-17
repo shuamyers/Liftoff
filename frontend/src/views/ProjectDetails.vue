@@ -49,7 +49,6 @@
                         <span class="body-1 p-0"> 
                           <span class="title">${{proj.fundsRaised}}</span>
                           <span> Raised by {{backers.length}} backers</span>  
-                          <!-- <span> Raised by {{proj.pledges.length}} backers</span>   -->
                         </span>
                         <v-progress-linear class="prog-bar" v-model="raisedPercent" color="success"></v-progress-linear>
                         <p class="ma-0"><span class="raised-percent">{{raisedPercent}}%</span> of {{proj.fundingGoal}}$ flexible goal</p>  
@@ -84,15 +83,13 @@
             </v-container>
             <v-divider></v-divider>
             <v-tabs color="transparent">
-              <!-- <v-tab :to="{path:`${this.$route.params.projId}/tab-story`}">STORY</v-tab> -->
-              <!-- <v-tab :to="{path:`tab-story`,params:{projId : this.$route.params.projId}}">STORY</v-tab> -->
               <v-tab :to="`/project/${this.$route.params.projId}/tab-updates`">UPDATES</v-tab>
               <v-tab :to="`/project/${this.$route.params.projId}/tab-story`">STORY</v-tab>
               <v-tab :to="`/project/${this.$route.params.projId}/tab-comments`" @click="loadComments">Comments</v-tab>
               <v-tab :to="`/project/${this.$route.params.projId}/tab-backers`" @click="loadBackers"> BACKERS</v-tab>
 
               <v-tab-item :id="`/project/${this.$route.params.projId}/tab-story`">
-                <div v-html="proj.story"></div>
+                 <quill-editor v-model="proj.story" ref="myQuillEditor" :options="editorOption"></quill-editor>
               </v-tab-item>
               <v-tab-item :id="`/project/${this.$route.params.projId}/tab-updates`">
                 <proj-update v-for="update in proj.updates" :key="update.userName" :update="update" class="my-flex flex-col proj-update mt-2 mb-2"></proj-update>
@@ -123,7 +120,8 @@
     </v-container>
 
     <v-layout row justify-center>
-      <v-dialog v-model="dialog" width="600px">
+      <v-dialog v-if="proj" v-model="dialog" width="600px">
+        <!-- <v-btn slot="activator" color="primary" dark>Open Dialog</v-btn> -->
         <v-card>
           <v-card-title>
             <span class="headline">Choose a package</span>
@@ -131,7 +129,7 @@
           <v-card-text>
               <reward-preview   @openPerk="openPerk" @click.native="openPerk(reward.id)" class="proj-reward" 
                 v-for="reward in proj.rewards" 
-                :key="reward.id" :reward="reward">
+                :key="reward._id" :reward="reward">
               </reward-preview>
           </v-card-text>
         </v-card>
@@ -160,178 +158,205 @@
 </template>
 
 <script>
-import { SET_SELECTED_PROJ, DELETE_PROJ } from '../store/ProjStore.js';
+import { SET_SELECTED_PROJ, DELETE_PROJ,SAVE_PROJ } from "../store/ProjStore.js";
 import {
-	LOAD_PLEDGES_BY_USER_ID,
-	LOAD_PLEDGES_BY_PROJ_ID
-} from '../store/PledgeStore.js';
+  LOAD_PLEDGES_BY_USER_ID,
+  LOAD_PLEDGES_BY_PROJ_ID
+} from "../store/PledgeStore.js";
 import {
-	LOAD_COMMENTS_BY_PROJ_ID,
-	SAVE_COMMENT,
-	LOAD_MORE_COMMENTS
-} from '../store/CommentStore.js';
-import EventBusService, { CLEAR_COMMET } from '../services/EventBusService.js';
-import RewardPreview from '../components/RewardPreview';
-import ProjUpdate from '../components/ProjUpdate';
-import ProjBacker from '../components/ProjBacker';
-import ProjComment from '../components/ProjComment';
-import ProjNewComment from '../components/ProjNewComment';
-import Login from '../components/Login';
+  LOAD_COMMENTS_BY_PROJ_ID,
+  SAVE_COMMENT,
+  LOAD_MORE_COMMENTS
+} from "../store/CommentStore.js";
+import EventBusService, { CLEAR_COMMET } from "../services/EventBusService.js";
+import RewardPreview from "../components/RewardPreview";
+import ProjUpdate from "../components/ProjUpdate";
+import ProjBacker from "../components/ProjBacker";
+import ProjComment from "../components/ProjComment";
+import ProjNewComment from "../components/ProjNewComment";
+import Login from "../components/Login";
+
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
 
 export default {
-	data() {
-		// console.log(filters)
-		return {
-			projId: this.$route.params.projId,
-			clicked: {
-				comments: false,
-				backers: false
-			},
-			dialog: false,
-			login: false
-		};
-	},
-
-	created() {
-		this.loadBackers();
-		if (this.$route.params.tab === 'tab-comments') {
-			this.loadComments();
-		}
-		// else if(this.$route.params.tab === 'tab-backers') {
-		//   this.loadBackers()
-		// }
-		const projId = this.projId;
-		this.$store.dispatch({ type: SET_SELECTED_PROJ, projId });
-	},
-
-	methods: {
-		edit() {
-			this.$router.push('/project/edit/' + this.proj._id);
-		},
-		deleteProj() {
-			this.$store
-				.dispatch({ type: DELETE_PROJ, projId: this.proj._id })
-				.then(_ => {
-					this.$router.push('/');
-				});
-		},
-		validateComment(commentTxt) {
-			console.log(commentTxt);
-			let comment = { projId: this.projId, user: this.user, desc: commentTxt };
-			this.$store.dispatch({ type: SAVE_COMMENT, comment }).then(_ => {
-				EventBusService.$emit(CLEAR_COMMET);
-			});
-		},
-		goBack() {
-			this.$router.go(-1);
-		},
-		openPerk(rewardId) {
-      console.log(this.$store.getters.loggedInUser)
-      if(!this.$store.getters.loggedInUser) {
-        this.login = true
-        return
+  data() {
+    // console.log(filters)
+    return {
+      projId: this.$route.params.projId,
+      clicked: {
+        comments: false,
+        backers: false
+      },
+      dialog: false,
+      login: false,
+      editorOption: {
+        theme: "bubble",
+        placeholder: "输入任何内容，支持html",
+        modules: {
+          toolbar: [
+            ["bold", "italic", "underline", "strike"],
+            [{ list: "ordered" }, { list: "bullet" }],
+            [{ header: [1, 2, 3, 4, 5, 6, false] }],
+            [{ color: [] }, { background: [] }],
+            [{ font: [] }],
+            [{ align: [] }],
+            ["link", "image"],
+            ["clean"]
+          ]
+        }
       }
-			this.$router.push(
-				'/project/' +
-					this.$route.params.projId +
-					'/new/' +
-					rewardId +
-					'/checkout'
-			);
-		},
-		loadComments() {
-			if (!this.clicked.comments) {
-				this.$store.dispatch({
-					type: LOAD_COMMENTS_BY_PROJ_ID,
-					projId: this.projId
-				});
-				this.clicked.comments = true;
-			}
-		},
-		loadBackers() {
-			if (!this.clicked.backers) {
-				this.$store.dispatch({
-					type: LOAD_PLEDGES_BY_PROJ_ID,
-					projId: this.projId
-				});
-				this.clicked.backers = true;
-			}
-		}
-	},
+    };
+  },
 
-	computed: {
-		proj() {
-			return this.$store.getters.selectedProj;
-		},
-		user() {
-			return this.$store.getters.loggedInUser;
-		},
-		comments() {
-			return this.$store.getters.commentsForDisplay;
-		},
-		backers() {
-			return this.$store.getters.pledgesForDisplay;
-		},
-		raisedPercent() {
-			return (this.proj.fundsRaised / this.proj.fundingGoal * 100).toFixed(0);
-		},
-		daysLeft() {
-			var today = new Date();
-			var endDate = this.proj.duration;
-			var one_day = 1000 * 60 * 60 * 24;
-			var daysLeft = Math.ceil((endDate - today.getTime()) / one_day);
-			return daysLeft > 0 ? daysLeft : 0;
-		}
-	},
+  created() {
+    this.loadBackers();
+    if (this.$route.params.tab === "tab-comments") {
+      this.loadComments();
+    }
+    // else if(this.$route.params.tab === 'tab-backers') {
+    //   this.loadBackers()
+    // }
+    
+    const projId = this.projId;
+    this.$store.dispatch({ type: SET_SELECTED_PROJ, projId })
+    .then(_ => {
+      this.$refs.myQuillEditor.quill.enable(false)
+    })
+  },
 
-	destroyed() {
-		this.$store.commit({ type: 'setSelectedProj', selectedProj: null });
-		this.$store.commit({ type: 'setPledges', pledges: [] });
-		this.$store.commit({ type: 'setComments', comments: [] });
-	},
-	components: {
-		RewardPreview,
-		ProjUpdate,
-		ProjBacker,
-		ProjComment,
-		ProjNewComment,
-		Login
-	}
+  methods: {
+    edit() {
+      this.$router.push("/project/edit/" + this.proj._id);
+    },
+    deleteProj() {
+      this.$store
+        .dispatch({ type: DELETE_PROJ, projId: this.proj._id })
+        .then(_ => {
+          this.$router.push("/");
+        });
+    },
+    validateComment(commentTxt) {
+      console.log(commentTxt);
+      let comment = { projId: this.projId, user: this.user, desc: commentTxt };
+      this.$store.dispatch({ type: SAVE_COMMENT, comment }).then(_ => {
+        EventBusService.$emit(CLEAR_COMMET);
+      });
+    },
+    goBack() {
+      this.$router.go(-1);
+    },
+    openPerk(rewardId) {
+      console.log(this.$store.getters.loggedInUser);
+      if (!this.$store.getters.loggedInUser) {
+        this.login = true;
+        return;
+      }
+      this.$router.push(
+        "/project/" +
+          this.$route.params.projId +
+          "/new/" +
+          rewardId +
+          "/checkout"
+      );
+    },
+    loadComments() {
+      if (!this.clicked.comments) {
+        this.$store.dispatch({
+          type: LOAD_COMMENTS_BY_PROJ_ID,
+          projId: this.projId
+        });
+        this.clicked.comments = true;
+      }
+    },
+    loadBackers() {
+      if (!this.clicked.backers) {
+        this.$store.dispatch({
+          type: LOAD_PLEDGES_BY_PROJ_ID,
+          projId: this.projId
+        });
+        this.clicked.backers = true;
+      }
+    }
+  },
+
+  computed: {
+    proj() {
+      return this.$store.getters.selectedProj;
+    },
+    user() {
+      return this.$store.getters.loggedInUser;
+    },
+    comments() {
+      return this.$store.getters.commentsForDisplay;
+    },
+    backers() {
+      return this.$store.getters.pledgesForDisplay;
+    },
+    raisedPercent() {
+      return (this.proj.fundsRaised / this.proj.fundingGoal * 100).toFixed(0);
+    },
+    daysLeft() {
+      var today = new Date();
+      var endDate = this.proj.duration;
+      var one_day = 1000 * 60 * 60 * 24;
+      var daysLeft = Math.ceil((endDate - today.getTime()) / one_day);
+      return daysLeft > 0 ? daysLeft : 0;
+    }
+  },
+   mounted(){
+
+    },
+
+  destroyed() {
+    this.$store.commit({ type: "setSelectedProj", selectedProj: null });
+    this.$store.commit({ type: "setPledges", pledges: [] });
+    this.$store.commit({ type: "setComments", comments: [] });
+  },
+  components: {
+    RewardPreview,
+    ProjUpdate,
+    ProjBacker,
+    ProjComment,
+    ProjNewComment,
+    Login
+  }
 };
 </script>
 
 <style scoped>
 .flex-col {
-	flex-direction: column;
+  flex-direction: column;
 }
 .flex-baseline {
-	align-items: baseline !important;
+  align-items: baseline !important;
 }
 .my-flex {
-	display: flex;
+  display: flex;
 }
 .justify-space-between {
-	justify-content: space-between;
+  justify-content: space-between;
 }
 .clr-flex-grow {
-	flex-grow: 0;
+  flex-grow: 0;
 }
 .proj-tagline {
-	font-size: 20px;
+  font-size: 20px;
 }
 .prog-bar {
-	margin: 5px 0;
-	border-radius: 10px;
+  margin: 5px 0;
+  border-radius: 10px;
 }
 .backme-btn {
-	/* align-self: center; */
+  /* align-self: center; */
 }
 .raised-percent {
-	font-weight: 700;
-	font-size: 17px;
+  font-weight: 700;
+  font-size: 17px;
 }
 .proj-update {
-	border: 1px solid lightgrey;
-	border-radius: 3px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="explore-page">
     <v-container grid-list-md text-xs-center v-scroll="onScroll">
 
       <div class="my-flex mt-4">
@@ -80,7 +80,7 @@ export default {
 		return {
 			searchTxt: null,
 			drawer: false,
-			target: '#top',
+			target: '.content',
 			option: {
 				duration: 1000,
 				offset: 0,
@@ -92,7 +92,7 @@ export default {
 	},
 	methods: {
 		onScroll() {
-			this.offsetTop = window.pageYOffset || document.documentElement.scrollTop;
+      this.offsetTop = window.pageYOffset || document.documentElement.scrollTop;
 		},
 		goToProj(projId) {
 			this.$router.push('project/' + projId);

@@ -6,11 +6,13 @@
                         prepend-icon="person" 
                         label="Email" 
                         type="text"
+                        @keyup.enter.native="checkLogin"
                         v-model="user.email"></v-text-field>
                     <v-text-field 
                         prepend-icon="lock" 
                         label="Password" 
                         type="password"
+                        @keyup.enter.native="checkLogin"
                         v-model="user.pass"></v-text-field>
                 </v-form>
             </v-card-text>
@@ -47,6 +49,6 @@ export default {
           throw new Error("Login Failed");
         });
     }
-  }
+  },
 };
 </script>
