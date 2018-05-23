@@ -82,5 +82,8 @@ export default new Router({
       path: '*',
       redirect: { name: 'home' }
     }
-  ]
+  ],
+  scrollBehavior () {
+    return { x: 0, y: 0 }
+  }
 })
