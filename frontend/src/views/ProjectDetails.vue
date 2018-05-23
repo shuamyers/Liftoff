@@ -83,23 +83,23 @@
             </v-container>
             <v-divider></v-divider>
             <v-tabs color="transparent">
-              <v-tab :to="`/project/${this.$route.params.projId}/tab-updates`">UPDATES</v-tab>
-              <v-tab :to="`/project/${this.$route.params.projId}/tab-story`">STORY</v-tab>
-              <v-tab :to="`/project/${this.$route.params.projId}/tab-comments`" @click="loadComments">Comments</v-tab>
-              <v-tab :to="`/project/${this.$route.params.projId}/tab-backers`" @click="loadBackers"> BACKERS</v-tab>
+              <v-tab :to="`/project/${this.$route.params.projId}/updates`">UPDATES</v-tab>
+              <v-tab :to="`/project/${this.$route.params.projId}/story`">STORY</v-tab>
+              <v-tab :to="`/project/${this.$route.params.projId}/comments`" @click="loadComments">Comments</v-tab>
+              <v-tab :to="`/project/${this.$route.params.projId}/backers`" @click="loadBackers"> BACKERS</v-tab>
 
-              <v-tab-item :id="`/project/${this.$route.params.projId}/tab-story`">
+              <v-tab-item :id="`/project/${this.$route.params.projId}/story`">
                  <quill-editor v-model="proj.story" ref="myQuillEditor" :options="editorOption"></quill-editor>
               </v-tab-item>
-              <v-tab-item :id="`/project/${this.$route.params.projId}/tab-updates`">
+              <v-tab-item :id="`/project/${this.$route.params.projId}/updates`">
                 <proj-update v-for="update in proj.updates" :key="update.userName" :update="update" class="my-flex flex-col proj-update mt-2 mb-2"></proj-update>
               </v-tab-item>
-              <v-tab-item :id="`/project/${this.$route.params.projId}/tab-comments`">
+              <v-tab-item :id="`/project/${this.$route.params.projId}/comments`">
                 <proj-new-comment v-if="user" :user="user" @addComment="validateComment"></proj-new-comment>
                 <proj-comment v-if="comments.length" v-for="comment in comments" :key="comment._id" :comment="comment" class="my-flex flex-col proj-comment mt-0 mb-0"></proj-comment>
                 <p v-if="!comments.length" class="">No comments yet</p>
               </v-tab-item>
-              <v-tab-item :id="`/project/${this.$route.params.projId}/tab-backers`">
+              <v-tab-item :id="`/project/${this.$route.params.projId}/backers`">
                 <proj-backer v-if="backers.length" v-for="backer in backers" :key="backer._id" :backer="backer" class="my-flex flex-col proj-backer mt-2 mb-2"></proj-backer>
                 <p v-if="!backers.length" class="">No backers yet</p>
               </v-tab-item>
@@ -212,10 +212,10 @@ export default {
 
   created() {
     this.loadBackers();
-    if (this.$route.params.tab === "tab-comments") {
+    if (this.$route.params.tab === "comments") {
       this.loadComments();
     }
-    // else if(this.$route.params.tab === 'tab-backers') {
+    // else if(this.$route.params.tab === 'backers') {
     //   this.loadBackers()
     // }
     

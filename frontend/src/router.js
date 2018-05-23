@@ -83,7 +83,9 @@ export default new Router({
       redirect: { name: 'home' }
     }
   ],
-  scrollBehavior () {
-    return { x: 0, y: 0 }
+  scrollBehavior (to) {
+    if (!to.params.tab) {
+      return { x: 0, y: 0 };
+    }
   }
 })
