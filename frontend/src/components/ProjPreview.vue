@@ -51,7 +51,7 @@ export default {
     },
     methods: {
         goToProj(projId) {
-            this.$router.push('project/' + projId)
+            this.$router.push(projId)
         },
         emitSetFavorite(){
             
