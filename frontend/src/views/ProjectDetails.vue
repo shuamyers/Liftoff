@@ -348,9 +348,6 @@ export default {
   margin: 5px 0;
   border-radius: 10px;
 }
-.backme-btn {
-  /* align-self: center; */
-}
 .raised-percent {
   font-weight: 700;
   font-size: 17px;
